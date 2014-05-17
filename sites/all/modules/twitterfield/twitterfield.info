@@ -1,0 +1,12 @@
+name = Twitter Field
+description = "A Field Widget and Formatters for Text fields to store and display Twitter items."
+core = 7.x
+
+dependencies[] = text (>=7.8)
+
+; Information added by drupal.org packaging script on 2013-10-19
+version = "7.x-1.0-rc1+3-dev"
+core = "7.x"
+project = "twitterfield"
+datestamp = "1382148326"
+
