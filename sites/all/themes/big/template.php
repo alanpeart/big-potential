@@ -12,12 +12,12 @@
 //  // drupal_add_js('http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js', 'external');
 //}
 
-/**
- * Implements template_preprocess_page
- *
- */
-//function big_preprocess_page(&$variables) {
-//}
+function big_preprocess_page(&$vars) {
+
+	$menu = menu_navigation_links('menu-user-menu');
+	$vars['user_menu'] = theme('links__menu_user_menu', array('links' => $menu));
+
+}
 
 /**
  * Implements template_preprocess_node

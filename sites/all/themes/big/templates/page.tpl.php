@@ -3,9 +3,9 @@
 
 <header class="l-header" id="user-menu-bar">
 	<section class="row">
-	   <?php if ($top_bar_secondary_menu): ?>
+	   <?php if ($user_menu): ?>
         <nav id="secondary-menu" class="navigation" role="navigation">
-          <?php print $top_bar_secondary_menu; ?>
+          <?php print $user_menu; ?>
         </nav> <!-- /#secondary-menu -->
       <?php endif; ?>
 	</section>
