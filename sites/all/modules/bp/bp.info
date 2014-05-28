@@ -1,0 +1,13 @@
+name = Big Potential
+description = Helper functions for the Big Potential website
+core = 7.x
+php = 5
+
+configure = admin/config/bp
+
+; Information added by Drupal.org packaging script on 2014-01-09
+version = "7.x-1.0-dev"
+core = "7.x"
+project = "bp"
+datestamp = "1389259410"
+

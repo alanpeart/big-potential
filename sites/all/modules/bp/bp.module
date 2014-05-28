@@ -1,0 +1,126 @@
+<?php
+
+/**
+ * @file
+ * The Big Potential Drupal module.
+ */
+ 
+function bp_admin() {
+  $form = array();
+  return system_settings_form($form);
+}
+
+function bp_menu() {
+  $items = array();
+  $items['admin/config/bp'] = array(
+    'title' => 'Big Potential module settings',
+    'description' => 'Here you can configure various constants and settings for the Big Potential website',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('bp_admin'),
+    'access arguments' => array('administer BP settings'),
+    'type' => MENU_NORMAL_ITEM,
+   );
+   
+  return $items;
+}
+
+function bp_user_report($uid, $type='nid') {
+	$nid = 0;
+	switch($type) {
+		case "nid":
+			$sql = "SELECT nid FROM node WHERE uid = :uid AND type = 'report' ORDER BY created DESC LIMIT 1";
+			$result = db_query($sql, array(':uid' => $uid));
+			foreach($result as $ret) {
+				$nid = $ret->nid;
+			}
+		break;
+	}
+	return $nid;
+}
+
+function bp_node_prepare($node) {
+  	if (empty($node->nid) && $node->type == 'report'/* && $node->uid > 1*/) {
+		$nid = bp_user_report($node->uid, 'nid');
+		if($nid > 0) {
+			// This user already has a report so redirect them to it!
+			// The only user we don't want to do this for is the superuser
+			drupal_goto('node/'.$nid);
+		}
+	}
+}
+
+function bp_provider_count($nid) {
+	/* Return the number of providers associated with an organisation */
+	$cnt=0;
+	$sql = "SELECT COUNT(DISTINCT f.entity_id) AS usercount 
+			FROM {field_data_field_provider_organisation} f
+			INNER JOIN {users} u ON f.entity_id = u.uid 
+			WHERE f.field_provider_organisation_nid = :nid 
+			AND f.entity_type = 'user' AND u.status = 1";
+	$result = db_query($sql, array(':nid' => $nid));
+	foreach($result as $ret) {
+		$cnt = $ret->usercount;
+	}
+	return $cnt;
+}
+
+function bp_notitle_types() {
+	return array('resource', 'provider');
+}
+
+function bp_author_link($uid) {
+	$u = user_load($uid);
+	$link = '<a href="'.url('user/'.$uid).'" title="'.$u->name.'">'.$u->name.'</a>';
+	return $link;
+}
+
+function computed_field_field_consultants_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+	/* We are going to return a string containing all of the relevant info from all consultants
+	* who reference this provider in their profiles. This allows user info to be searchable. */
+	$string = "";
+	$sql = "SELECT entity_id as uid FROM `field_data_field_provider_organisation`
+			WHERE field_provider_organisation_nid = :nid
+			AND entity_type = 'user'";
+	$result = db_query($sql, array(':nid' => $entity->nid));
+	foreach($result as $ret) {
+		$uid = $ret->uid;
+		$consultant = user_load($uid);
+		if(isset($consultant)) {
+			$string .= $consultant->name . " ";
+			$string .= $consultant->field_job_title['und'][0]['value']. " ";
+			$string .= $consultant->field_telephone['und'][0]['value']. " ";
+			$string .= $consultant->field_mobile['und'][0]['value']. " ";
+			$string .= $consultant->field_twitter_handle['und'][0]['value']. " ";
+		}
+	}	
+	$entity_field[0]['value'] = $string;
+}
+
+function bp_form_alter(&$form, &$form_state, $form_id)  {
+	switch($form_id) {
+		case "search_api_page_search_form_search":
+			$repon = arg(1);
+			if(arg(0) == 'sitesearch' && isset($repon)) {
+				if(isset($form['keys_1'])) {
+					$form['keys_1']['#default_value'] = $repon;
+					$form['keys_1']['#attributes']['class'] = array('active');
+				}
+				elseif(isset($form['keys'])) {
+					$form['keys']['#default_value'] = $repon;
+					$form['keys']['#attributes']['class'] = array('active');
+				}
+			}
+		break;
+	}
+}
+function bp_truncate($string,$length=100,$append="&hellip;") {
+  $string = trim($string);
+
+  if(strlen($string) > $length) {
+    $string = wordwrap($string, $length);
+    $string = explode("\n",$string);
+    $string = array_shift($string) . $append;
+  }
+
+  return $string;
+}
