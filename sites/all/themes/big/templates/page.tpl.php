@@ -3,9 +3,9 @@
 
 <header class="l-header" id="user-menu-bar">
 	<section class="row">
-	   <?php if ($user_menu): ?>
+	   <?php if ($secondary_user): ?>
         <nav id="secondary-menu" class="navigation" role="navigation">
-          <?php print $user_menu; ?>
+          <?php print $secondary_user; ?>
         </nav> <!-- /#secondary-menu -->
       <?php endif; ?>
 	</section>
@@ -16,6 +16,16 @@
     <section class="row <?php if (!$top_bar) { print $alt_header_classes; } ?>">
 
       <?php if ($linked_logo): print $linked_logo; endif; ?>
+	  
+	  <?php
+		if(isset($page['content']['system_main']['nodes'])) {
+			foreach($page['content']['system_main']['nodes'] as $nid=>$node) {
+				if(in_array($node['#bundle'], bp_notitle_types(), TRUE)) {
+					$title = FALSE;
+				}
+			}
+		}
+		?>
 
       <?php if ($site_name): ?>
         <?php if ($title): ?>
@@ -194,12 +204,22 @@
     </section>
     <!--/.footer-columns-->
   <?php endif; ?>
-
+  
 <?php if (!empty($page['footer'])): ?>  
   <!--.l-footer-->
-  <footer class="l-footer panel row" role="contentinfo">
+  <footer id="fatfooter" class="l-footer panel row" role="contentinfo">
       <div class="footer large-12 columns">
         <?php print render($page['footer']); ?>
+      </div>
+  </footer>
+  <!--/.footer-->
+ <?php endif; ?>   
+
+<?php if (!empty($page['subfooter'])): ?>  
+  <!--.l-footer-->
+  <footer id="subfooter" class="l-footer panel row" role="contentinfo">
+      <div class="footer subfooter large-12 columns">
+        <?php print render($page['subfooter']); ?>
       </div>
   </footer>
   <!--/.footer-->

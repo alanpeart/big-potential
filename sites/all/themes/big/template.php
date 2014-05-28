@@ -17,8 +17,7 @@
  *
  */
 function big_preprocess_page(&$variables) {
-	$menu = menu_navigation_links('menu-user-menu');
-	$variables['user_menu'] = theme('links__menu_user_menu', array('links' => $menu));
+	$variables['secondary_user'] = theme('links', array('links' => menu_navigation_links('user-menu')));
 }
 
 /**
