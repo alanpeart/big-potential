@@ -25,6 +25,7 @@
 				}
 			}
 		}
+		$title = FALSE;
 		?>
 
       <?php if ($site_name): ?>

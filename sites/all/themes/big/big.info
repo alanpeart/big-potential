@@ -30,6 +30,7 @@ base theme = zurb_foundation
 stylesheets[all][] = css/app.css
 ; Comment the app.css file (above) if you're using sass to preprocess css:
 stylesheets[all][] = css/custom.css
+stylesheets[all][] = css/square/square.css
 
 ; Block loading of foundation.min.css from the base theme. This file should either
 ; not exist or be blank in your subtheme. See https://drupal.org/node/263967
@@ -67,6 +68,8 @@ scripts[] = js/foundation.min.js
 ; Theme scripts.
 ; This file is empty, just uncomment this line and start editing!
 scripts[] = js/jquery.cookie.js
+scripts[] = js/icheck.js
+scripts[] = js/scripts.js
 scripts[] = js/docready.js
 
 ; This section lists the regions defined in the page.tpl.php. The name in

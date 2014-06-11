@@ -1,9 +1,11 @@
 (function ($, Drupal) {
 
-  Drupal.behaviors.STARTER = {
-    attach: function(context, settings) {
-      // Get your Yeti started.
-    }
-  };
+Drupal.behaviors.MyProjectButtons = {
+  attach: function (context, settings) {
+    // Update the Prev/Next button labels
+    $('.multipage-link-next').val('Next');
+    $('.multipage-link-previous').val('Previous');
+  }
+};
 
 })(jQuery, Drupal);

@@ -24,12 +24,12 @@ function bp_menu() {
   return $items;
 }
 
-function bp_user_report($uid, $type='nid') {
+function bp_user_report($uid, $type='nid', $nodetype='diagnostic') {
 	$nid = 0;
 	switch($type) {
 		case "nid":
-			$sql = "SELECT nid FROM node WHERE uid = :uid AND type = 'report' ORDER BY created DESC LIMIT 1";
-			$result = db_query($sql, array(':uid' => $uid));
+			$sql = "SELECT nid FROM node WHERE uid = :uid AND type = :nodetype ORDER BY created DESC LIMIT 1";
+			$result = db_query($sql, array(':uid' => $uid, ':nodetype' => $nodetype));
 			foreach($result as $ret) {
 				$nid = $ret->nid;
 			}
@@ -39,14 +39,22 @@ function bp_user_report($uid, $type='nid') {
 }
 
 function bp_node_prepare($node) {
-  	if (empty($node->nid) && $node->type == 'report'/* && $node->uid > 1*/) {
-		$nid = bp_user_report($node->uid, 'nid');
+  	if (empty($node->nid) && $node->type == 'diagnostic'/* && $node->uid > 1*/) {
+		$nid = bp_user_report($node->uid, 'nid', 'diagnostic');
 		if($nid > 0) {
 			// This user already has a report so redirect them to it!
 			// The only user we don't want to do this for is the superuser
 			drupal_goto('node/'.$nid);
 		}
 	}
+  	if (empty($node->nid) && $node->type == 'eligibility'/* && $node->uid > 1*/) {
+		$nid = bp_user_report($node->uid, 'nid', 'eligibility');
+		if($nid > 0) {
+			// This user already has an eligibility check so redirect them to it!
+			// The only user we don't want to do this for is the superuser
+			drupal_goto('node/'.$nid);
+		}
+	}	
 }
 
 function bp_provider_count($nid) {
@@ -97,6 +105,7 @@ function computed_field_field_consultants_compute(&$entity_field, $entity_type, 
 }
 
 function bp_form_alter(&$form, &$form_state, $form_id)  {
+	// dsm($form_id);
 	switch($form_id) {
 		case "search_api_page_search_form_search":
 			$repon = arg(1);
@@ -111,6 +120,9 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 				}
 			}
 		break;
+		case "diagnostic_node_form":
+			// dsm($form);
+		break;
 	}
 }
 function bp_truncate($string,$length=100,$append="&hellip;") {
@@ -123,4 +135,420 @@ function bp_truncate($string,$length=100,$append="&hellip;") {
   }
 
   return $string;
+}
+
+function bp_check_eligibility($node) {
+	$eligible = TRUE; $questions = array();
+	if($node->field_operation['und'][0]['value'] == 0) {
+		$questions[] = array('id'=>'field_operation','message'=>'You must operate in England');
+		$eligible = FALSE;
+	}
+	if($node->field_is_voluntary['und'][0]['value'] == 0) {
+		$questions[] = array('id'=>'field_is_voluntary','message'=>'You must be a voluntary, community or social enterprise organisation');
+		$eligible = FALSE;
+	}
+	if($node->field_how_much_capital['und'][0]['value'] == 0) {
+		$questions[] = array('id'=>'field_how_much_capital','message'=>'You must be looking to raise up to £500,000 of new (repayable) investment');
+		$eligible = FALSE;
+	}	
+	if($node->field_investor_potential['und'][0]['value'] == 0) {
+		$questions[] = array('id'=>'field_investor_potential','message'=>'You must have potential to develop activities that can generate financial and social returns for social investors');
+		$eligible = FALSE;
+	}	
+	if($node->field_track_record['und'][0]['value'] == 0) {
+		$questions[] = array('id'=>'field_track_record','message'=>'You must have a demonstrable track record of delivering social outcomes or health, environment or education benefits');
+		$eligible = FALSE;
+	}	
+	if($node->field_grant_lifetime['und'][0]['value'] == 0) {
+		$questions[] = array('id'=>'field_grant_lifetime','message'=>'Your organisation must be financially healthy and able to cover its core costs during the life of the grant');
+		$eligible = FALSE;
+	}	
+	if($node->field_religious_purpose['und'][0]['value'] == 1) {
+		$questions[] = array('id'=>'field_religious_purpose','message'=>'Funding cannot be granted for a religious or political purpose');
+		$eligible = FALSE;
+	}	
+	if($node->field_understand_contribution['und'][0]['value'] == 0) {
+		$questions[] = array('id'=>'field_understand_contribution','message'=>'You must be prepared to make a contribution to the costs of your project');
+		$eligible = FALSE;
+	}	
+	$eligibility = array('eligible'=>$eligible, 'questions'=>$questions);
+	/* Update computed field for this user */
+	$el = $eligibility['eligible'] ? 1 : 0;
+	$sql = "REPLACE INTO field_data_field_is_eligible(entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_is_eligible_value)";
+	$sql .= "VALUES('user', 'user', 0, :uid, 1, 'und', 0, :el)";
+	db_query($sql, array(':uid' => $node->uid, ':el' => $el));
+	$sql = "REPLACE INTO field_revision_field_is_eligible(entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_is_eligible_value)";
+	$sql .= "VALUES('user', 'user', 0, :uid, 1, 'und', 0, :el)";
+	db_query($sql, array(':uid' => $node->uid, ':el' => $el));	
+	return $eligibility;
+}
+
+function computed_field_field_is_eligible_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+	$ret = FALSE;
+	$eid = bp_user_report($entity->uid, 'nid', 'eligibility');
+	$ein = node_load($eid);
+	if($eid > 0) {
+		$eligible = bp_check_eligibility($ein);
+		$ret = $eligible['eligible'];
+	}
+	$entity_field[0]['value'] = $ret ? 1 : 0;
+}
+
+function bp_diagnostic_process($diagnostic) {
+	$scores = array(); $score=0;
+	$turnoverLastYear = $diagnostic->field_total_turnover_last_year['und'][0]['value'];
+	$currentAssets = $diagnostic->field_bs_current_assets['und'][0]['value'];
+	$totalAssets = $currentAssets + $diagnostic->field_bs_fixed_assets['und'][0]['value'] - $diagnostic->field_bs_creditors_due_less_year['und'][0]['value'] - $diagnostic->field_bs_creditors_due_more_year['und'][0]['value'];
+	foreach($diagnostic as $name=>$value) {
+		switch($name) {
+			case "field_total_turnover_last_year":
+			case "field_bs_current_assets":
+				// Ignore, we already got these figures
+			break;		
+			case "field_turnover_projected":
+				$score = bp_diagnostic_score_projected_turnover($value['und'][0]['value'], $turnoverLastYear);
+			break;	
+			case "field_bs_fixed_assets":
+				$score = bp_diagnostic_score_fixed_assets($value['und'][0]['value']);
+			break;			
+			case "field_total_turnover":
+				$score = bp_diagnostic_score_turnover_change($value['und'][0]['value'], $turnoverLastYear);
+				$name = 'field_total_turnover|field_total_turnover_last_year';
+			break;			
+			case "field_unrestricted_surp_def":
+				$score = bp_diagnostic_score_surplus_deficit($value['und'][0]['value'], $turnoverLastYear);
+			break;
+			case "field_total_unrestricted_funds":
+				$score = bp_diagnostic_score_funds($value['und'][0]['value'], $turnoverLastYear);
+			break;			
+			case "field_bs_creditors_due_less_year":
+				$score = bp_diagnostic_score_liquidity($value['und'][0]['value'], $currentAssets);
+				$name = 'field_bs_current_assets|field_bs_creditors_due_less_year';
+			break;
+			case "field_income_public_sector":
+			case "field_income_other_sources":
+				$score = bp_diagnostic_score_income($value['und'][0]['value']);
+			break;	
+			case "field_investment_need":
+				$score = bp_diagnostic_score_investment_needed($value['und'][0]['value'], $totalAssets);
+			break;	
+			case "field_overall_approach":
+				$score = bp_diagnostic_score_change_culture($value['und'][0]['value']);
+			break;			
+			default:
+				if(is_array($value)) {
+					if(isset($value['und'][0]['value'])) {
+						// Our sliders go from 0-1000 to make them smooth. Compensate for that here.
+						$score = round($value['und'][0]['value'] / 100, 0);
+					}
+				}
+		}
+		$weighted_scores = bp_diagnostic_apply_weights($name, $score);
+
+		foreach($weighted_scores as $area=>$weightedScore) {
+			$scores[$name][$area] = $weightedScore;
+		}
+	}
+	// dsm($scores);
+	bp_diagnostic_report_store($diagnostic->nid, $scores);
+}
+
+function bp_diagnostic_score_surplus_deficit($surplus, $turnover) {
+	$perc = $turnover > 0 ? $surplus / $turnover : 0;
+	if($perc >= 0.05) {
+		$score = 10;
+	}
+	elseif($perc > 0) {
+		$score = 7;
+	}
+	elseif($perc >= -0.05) {
+		$score = 4;
+	}
+	else {
+		$score = 0;
+	}
+	return $score;
+}
+
+function bp_diagnostic_score_funds($surplus, $turnover) {
+	$perc = $turnover > 0 ? $surplus / $turnover : 0;
+	if($perc >= 0.25) {
+		$score = 10;
+	}
+	elseif($perc > 0) {
+		$score = 7;
+	}
+	elseif($perc >= -0.05) {
+		$score = 2;
+	}
+	else {
+		$score = 0;
+	}
+	return $score;
+}
+
+function bp_diagnostic_score_turnover_change($turnoverYearBefore, $turnoverLastYear) {
+	$perc = $turnoverYearBefore > 0 ? $turnoverLastYear / $turnoverYearBefore : 0;
+	if($perc >= 1.1) {
+		$score = 10;
+	}
+	elseif($perc >= 1) {
+		$score = 7;
+	}
+	elseif($perc >= 0.85) {
+		$score = 3;
+	}
+	else {
+		$score = 0;
+	}
+	return $score;
+}
+
+function bp_diagnostic_score_projected_turnover($projectedTurnover, $currentTurnover) {
+	$perc = $currentTurnover > 0 ? $projectedTurnover / $currentTurnover : 0;
+	if($perc >= 1.1) {
+		$score = 10;
+	}
+	elseif($perc >= 1) {
+		$score = 7;
+	}
+	elseif($perc >= 0.85) {
+		$score = 3;
+	}
+	else {
+		$score = 0;
+	}
+	return $score;
+}
+
+function bp_diagnostic_score_liquidity($liabilities, $assets) {
+	$perc = $liabilities > 0 ? $assets / $liabilities : 0;
+	return $perc > 0 ? 10 : 0;
+}
+
+function bp_diagnostic_score_fixed_assets($assets) {
+	if($assets >= 500000) {
+		$score = 10;
+	}
+	elseif($assets >= 100000) {
+		$score = 6;
+	}
+	else {
+		$score = 0;
+	}
+	return $score;
+}
+
+function bp_diagnostic_score_income($perc) {
+	if($perc >= 75) {
+		$score = 0;
+	}
+	elseif($perc >= 50) {
+		$score = 3;
+	}
+	elseif($perc >= 20) {
+		$score = 7;
+	}	
+	else {
+		$score = 10;
+	}
+	return $score;
+}
+function bp_diagnostic_score_investment_needed($needed, $assets) {
+	$perc = $assets > 0 ? $needed / $assets : 0;
+	if($perc < 0.5) {
+		$score = 10;
+	}
+	elseif($perc <= 0.9) {
+		$score = 5;
+	}	
+	else {
+		$score = 0;
+	}
+	return $score;
+}
+
+function bp_diagnostic_score_change_culture($initialScore) {
+	return ($initialScore >= 3 && $initialScore <= 7) ? 7 : 2;
+}
+
+function bp_diagnostic_report_store($nid, $scores) {
+	$delsql = "DELETE FROM `bp_diagnostic_scores` WHERE `nid` = :nid";
+	db_query($delsql, array(':nid' => $nid));
+	foreach($scores as $field=>$areas) {
+		foreach($areas as $area=>$score) {
+			$sql = "INSERT INTO `bp_diagnostic_scores` (`nid`, `field`, `area`, `score`) 
+					VALUES (:nid, :field, :area, :score)";
+			db_query($sql, array('nid'=>$nid, 'field'=>$field, 'area'=>$area, 'score'=>$score));
+		}
+	}
+}
+
+function bp_diagnostic_apply_weights($field, $value) {
+	$scores = array();
+			$sql = "SELECT a.entity_id as nid, a.field_area_nid as area, w.field_weight_value as weight FROM `field_data_field_weight_question_id` wqi 
+			INNER JOIN field_data_field_weight w ON wqi.entity_id = w.entity_id 
+			INNER JOIN field_data_field_area a ON w.entity_id = a.entity_id
+			WHERE wqi.field_weight_question_id_value = :qid";
+	$result = db_query($sql, array(':qid' => $field));
+	foreach($result as $row) {
+		$scores[$row->area] = $value * bp_diagnostic_weight_transform($row->weight);
+	}
+	return $scores;
+}
+
+function bp_diagnostic_weight_transform($weight) {
+	return $weight == 50 ? 0.5 : $weight;
+}
+
+function computed_field_field_maximum_score_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+	switch($entity->title) {
+		case "Financial Performance":
+			$max = 220;
+		break;
+		case "Quality & Impact":
+			$max = 180;
+		break;
+		case "Financial Control":
+			$max = 140;
+		break;
+		case "Market Potential":
+			$max = 297;
+		break;
+		case "Governance & Leadership":
+			$max = 307;
+		break;		
+	}
+	$entity_field[0]['value'] = $max;
+}
+
+function bp_diagnostic_aggregates_summary_get($nid) {
+	$areas = array();
+	$sql = "SELECT bds.area, sum(score) as score 
+		FROM `bp_diagnostic_scores` bds 
+		INNER JOIN node n ON bds.nid = n.nid 
+		WHERE bds.nid = :nid
+		GROUP BY n.title, bds.area";
+	$result = db_query($sql, array(':nid' => $nid));
+	foreach($result as $row) {
+		$areas[$row->area] = $row->score;
+	}
+	return $areas;	
+}
+
+function bp_diagnostic_aggregates_weakest_5($nid) {
+	$fields = array();
+	$sql = "SELECT field, sum(score) as score 
+		FROM `bp_diagnostic_scores`
+		WHERE nid = :nid
+		GROUP BY field
+        ORDER BY sum(score) ASC
+        LIMIT 5";
+	$result = db_query($sql, array(':nid' => $nid));
+	foreach($result as $row) {
+		$fields[$row->field] = array('score'=>$row->score, 'label'=>bp_diagnostic_field_label($row->field));
+	}
+	return $fields;
+}
+
+function bp_diagnostic_field_label($field) {
+	// Because Drupal stores field labels as part of a BLOB we can't extract it as part
+	// of a straight SQL query so we have to do it this way.
+	$entity_type = 'node';
+	$bundle = 'diagnostic';
+	$field_name = explode("|", $field);
+	$field_info = field_info_instance($entity_type, $field_name[0], $bundle);
+	return $field_info['label'];
+}
+
+function bp_diagnostic_aggregates_summary_display($diagnostic) {
+	$areas = bp_diagnostic_aggregates_summary_get($diagnostic->nid);
+	$values = array();
+	foreach($areas as $id=>$score) {
+		$area = node_load($id);
+		$body = $area->body['und'][0]['value'];
+		$msg=""; $level="";
+		$max = $area->field_maximum_score['und'][0]['value'];
+		$perc = round(($score / $max) * 100, 0);
+		$vgood = rtrim($area->field_area_very_good['und'][0]['value'], '%');
+		$good = rtrim($area->field_area_good['und'][0]['value'], '%');
+		$weak = rtrim($area->field_area_weak['und'][0]['value'], '%');
+		if($perc >= $vgood) {
+			$level = 'vgood';
+			$msg = $area->field_area_msg_very_good['und'][0]['value'];
+		}
+		elseif($perc >= $good) {
+			$level = 'good';
+			$msg = $area->field_area_msg_good['und'][0]['value'];
+		}
+		else {
+			$level = 'weak';
+			$msg = $area->field_area_msg_weak['und'][0]['value'];
+		}
+		$values[$id] = array('title'=>$area->title, 'max'=>$max, 'perc'=>$perc, 'msg'=>$msg, 'level'=>$level, 'score'=>$score, 'body'=>$body);
+	}
+	return $values;
+}
+
+function bp_diagnostic_aggregates_detail($diagnostic) {
+	
+}
+
+function bp_diagnostic_pie_chart($container, $title, $colour, $data, $width, $height) {
+	$html = "<script type=\"text/javascript\">
+      function drawVisualization() {
+        // Create and populate the data table.
+        var data = google.visualization.arrayToDataTable([
+			['Score', 'Maximum'],";
+			foreach($data as $key=>$value) {
+				$html .= "['".$key."', ".$value."],";
+			}
+			$html .= "]);
+		var options = {
+			title: '".$title."',
+          legend: 'none',
+          pieSliceText: 'none',
+		  tooltip: { trigger: 'none' },
+		  pieHole: 0.55,
+		  backgroundColor: {stroke:'#666',number: 1,fill:'transparent'},
+          slices: {
+            0: { color: '".$colour."' },
+            1: { color: '#DADADA' }
+          },
+		  width: ".$width.",
+		  height: ".$height.",
+		  chartArea: {left: 0,top: 0, width: '100%', height: '100%'}
+        };
+      
+        // Create and draw the visualization.
+        new google.visualization.PieChart(document.getElementById('".$container."')).
+            draw(data, options);
+      }
+      google.setOnLoadCallback(drawVisualization);
+    </script>";
+	return $html;
+}
+
+function bp_can_user_edit_report($euser, $node) {
+	$edit = FALSE;
+	if($euser->uid == $node->uid) {
+		// Are they the author?
+		$edit = TRUE;
+	}
+	elseif(array_intersect(array('Site Manager', 'administrator'), array_values($euser->roles))) {
+		// Do they have general admin rights?
+		$edit = TRUE;
+	}
+	elseif(array_intersect(array('Consultant'), array_values($euser->roles))) {
+		// Are they a consultant assigned to the user who created the report?
+		$author = user_load($node->uid);
+		if(isset($author->field_connected_providers['und'][0])) {
+			foreach($author->field_connected_providers['und'] as $provider) {
+				if($provider[0]['uid'] == $euser->uid) {
+					$edit = TRUE;
+				}
+			}
+		}
+	}
+	return $edit;
 }
