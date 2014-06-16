@@ -183,4 +183,8 @@
 		radioClass: 'iradio_square',
 		increaseArea: '20%' // optional
 	});	
+	var twitOptions = {
+		"url": "sites/all/themes/big/css/twitter.css"
+	};
+	CustomizeTwitterWidget(twitOptions);	
 });})(jQuery);

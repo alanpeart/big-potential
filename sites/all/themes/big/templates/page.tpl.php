@@ -25,7 +25,9 @@
 				}
 			}
 		}
-		$title = FALSE;
+		if(strtolower(substr($title, 0, 24)) != "are you sure you want to") {
+			$title = FALSE;
+		}
 		?>
 
       <?php if ($site_name): ?>

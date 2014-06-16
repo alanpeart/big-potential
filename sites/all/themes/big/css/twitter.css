@@ -1,0 +1,27 @@
+/* Welcome to Compass. Use this file to write IE specific override styles. */
+
+.u-photo {
+	display: none !important;
+}
+.full-name {
+	display: none !important;
+}
+.stream {
+	background-color: #fff !important;
+	margin-top: 8px !important;
+}
+.p-nickname {
+	color: #000 !important;
+	font-weight: 700 !important;
+}
+.var-chromeless .tweet {
+	padding: 12px 0 12px 0 !important;
+	border-bottom: 1px solid #ccc !important;
+	margin: 0 12px 0 12px !important;
+}
+.custom-timeline-owner-profile, .timeline .e-entry-title, .p-author .p-name, .cards-base h3, .new-tweets-bar button, .load-tweets, .no-more-pane {
+	font-size: 11px !important;
+}
+.p-geo {
+	display: none !important;
+}

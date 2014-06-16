@@ -123,6 +123,9 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 		case "diagnostic_node_form":
 			// dsm($form);
 		break;
+		case "flag_confirm":
+
+		break;
 	}
 }
 function bp_truncate($string,$length=100,$append="&hellip;") {
@@ -172,7 +175,12 @@ function bp_check_eligibility($node) {
 		$eligible = FALSE;
 	}	
 	$eligibility = array('eligible'=>$eligible, 'questions'=>$questions);
-	/* Update computed field for this user */
+
+	return $eligibility;
+}
+
+function bp_update_computed_eligibility_field($node) {
+	$eligibility = bp_check_eligibility($node);
 	$el = $eligibility['eligible'] ? 1 : 0;
 	$sql = "REPLACE INTO field_data_field_is_eligible(entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_is_eligible_value)";
 	$sql .= "VALUES('user', 'user', 0, :uid, 1, 'und', 0, :el)";
@@ -180,7 +188,62 @@ function bp_check_eligibility($node) {
 	$sql = "REPLACE INTO field_revision_field_is_eligible(entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_is_eligible_value)";
 	$sql .= "VALUES('user', 'user', 0, :uid, 1, 'und', 0, :el)";
 	db_query($sql, array(':uid' => $node->uid, ':el' => $el));	
-	return $eligibility;
+	/* Assign status if necessary */
+	bp_update_org_status($node->uid, 'eligibility', $el);
+}
+
+function bp_update_org_status($uid, $type, $value) {
+	/***************************************
+	* Perform any automatic update needed to
+	* a user (organisation) status depending
+	* on the type of action and the result
+	****************************************/
+	$org = user_load($uid);
+	$status = "";
+	$new_weight = 0; $new_tid = 0;
+	$vocab = 'organisation_status';
+	
+	switch($type) {
+		case "eligibility":
+			if($value == 0) {
+				$status = "Ineligible";
+			}
+			elseif($value == 1) {
+				$status = "Eligible";
+			}
+		break;
+		case "diagnostic":
+			if($value == "submitted") {
+				$status = "Diagnostic Submitted";
+			}
+		break;
+		case "funding":
+			if($value == "submitted") {
+				$status = "Funding Application Submitted";
+			}
+		break;
+	}
+	$terms = taxonomy_get_term_by_name($status, $vocab);
+	foreach($terms as $term) {
+		$new_tid = $term->tid;
+		$new_weight = $term->weight;
+	}
+	// Finally we make sure that statuses are never downgraded, only upgraded
+	if(isset($org->field_status['und'][0]) && is_numeric($org->field_status['und'][0]['tid'])) {
+		$old_status = taxonomy_term_load($org->field_status['und'][0]['tid']);
+		if($new_weight >= $old_status->weight) {
+			// $org->field_status['und'][0]['value'] = $new_tid;
+			// We should be able to do user_save here, but Drupal dies for no good reason I can see
+			bp_direct_user_status_update($uid, $new_tid);
+		}
+	}
+}
+
+function bp_direct_user_status_update($uid, $new_tid) {
+	$sql = "UPDATE field_data_field_status SET field_status_tid = :newtid WHERE entity_id = :uid AND entity_type LIKE 'user' AND bundle LIKE 'user' AND deleted = 0";
+	db_query($sql, array(':uid' => $uid, ':newtid' => $new_tid));
+	$sql = "UPDATE field_revision_field_status SET field_status_tid = :newtid WHERE entity_id = :uid AND entity_type LIKE 'user' AND bundle LIKE 'user' AND deleted = 0";
+	db_query($sql, array(':uid' => $uid, ':newtid' => $new_tid));
 }
 
 function computed_field_field_is_eligible_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
@@ -529,9 +592,9 @@ function bp_diagnostic_pie_chart($container, $title, $colour, $data, $width, $he
 	return $html;
 }
 
-function bp_can_user_edit_report($euser, $node) {
+function bp_can_user_edit($euser, $entity) {
 	$edit = FALSE;
-	if($euser->uid == $node->uid) {
+	if($euser->uid == $entity->uid) {
 		// Are they the author?
 		$edit = TRUE;
 	}
@@ -541,7 +604,7 @@ function bp_can_user_edit_report($euser, $node) {
 	}
 	elseif(array_intersect(array('Consultant'), array_values($euser->roles))) {
 		// Are they a consultant assigned to the user who created the report?
-		$author = user_load($node->uid);
+		$author = user_load($entity->uid);
 		if(isset($author->field_connected_providers['und'][0])) {
 			foreach($author->field_connected_providers['und'] as $provider) {
 				if($provider[0]['uid'] == $euser->uid) {
@@ -551,4 +614,22 @@ function bp_can_user_edit_report($euser, $node) {
 		}
 	}
 	return $edit;
+}
+
+function bp_address_string($address) {
+	$relevant=array();
+	foreach($address as $key=>$value) {
+		if(strlen($value) > 0) {
+			switch($key) {
+				case "name":
+				case "street":
+				case "additional":
+				case "city":
+				case "postal_code":
+					$relevant[] = $value;
+				break;
+			}
+		}
+	}
+	return implode(", ", $relevant);
 }

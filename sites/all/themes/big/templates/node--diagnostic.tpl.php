@@ -123,9 +123,22 @@
 		</ul>
 	</div>
 
-	<?php if(bp_can_user_edit_report($user, $node)): ?>
+	<?php if(bp_can_user_edit($user, $node)): ?>
 	<div id="edit-report">
 		<a href="<?php print url('node/'.$node->nid.'/edit'); ?>" class="button back grey">Edit Report</a>
+	</div>
+	
+	<div id="submit-report">
+		<?php
+			$flag = flag_get_flag('submit_diagnostic_report');
+			if($flag->is_flagged($node->nid)) { ?>
+			<p>Your Diagnostic Report has been submitted to our team - thank you.</p>
+		<?php	}
+			else { ?>
+			<p>When you feel you are ready, you can submit your Diagnostic Report to our staff for consideration. It will be emailed to us and we will get back in touch with you within 5 working days.</p>			
+		<?php	}
+		?>
+		<?php print flag_create_link('submit_diagnostic_report', $node->nid); ?>
 	</div>
 	<?php endif; ?>
 </article>

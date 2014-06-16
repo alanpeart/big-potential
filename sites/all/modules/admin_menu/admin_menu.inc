@@ -16,6 +16,7 @@ function admin_menu_tree($menu_name) {
   // implementations.
   module_load_include('inc', 'admin_menu', 'admin_menu.map');
   $expand_map = module_invoke_all('admin_menu_map');
+  
   // Allow modules to alter the expansion map.
   drupal_alter('admin_menu_map', $expand_map);
 
@@ -24,6 +25,7 @@ function admin_menu_tree($menu_name) {
     // Convert named placeholders to anonymous placeholders, since the menu
     // system stores paths using anonymous placeholders.
     $replacements = array_fill_keys(array_keys($data['arguments'][0]), '%');
+	if(is_array($data['parent'])) { $data['parent'] = reset($data['parent']); }
     $data['parent'] = strtr($data['parent'], $replacements);
     $new_map[strtr($path, $replacements)] = $data;
   }
