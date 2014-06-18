@@ -95,10 +95,18 @@ function computed_field_field_consultants_compute(&$entity_field, $entity_type, 
 		$consultant = user_load($uid);
 		if(isset($consultant)) {
 			$string .= $consultant->name . " ";
-			$string .= $consultant->field_job_title['und'][0]['value']. " ";
-			$string .= $consultant->field_telephone['und'][0]['value']. " ";
-			$string .= $consultant->field_mobile['und'][0]['value']. " ";
-			$string .= $consultant->field_twitter_handle['und'][0]['value']. " ";
+			if(isset($consultant->field_job_title['und'][0])) {
+				$string .= $consultant->field_job_title['und'][0]['value']. " ";
+			}
+			if(isset($consultant->field_telephone['und'][0])) {
+				$string .= $consultant->field_telephone['und'][0]['value']. " ";
+			}
+			if(isset($consultant->field_mobile['und'][0])) {
+				$string .= $consultant->field_mobile['und'][0]['value']. " ";
+			}
+			if(isset($consultant->field_twitter_handle['und'][0])) {
+				$string .= $consultant->field_twitter_handle['und'][0]['value']. " ";
+			}
 		}
 	}	
 	$entity_field[0]['value'] = $string;
@@ -125,6 +133,16 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 		break;
 		case "flag_confirm":
 
+		break;
+		case "user_register_form":
+			global $user;
+			if($user->uid > 0 && in_array('Provider Manager', $user->roles)) {
+				// print '<pre>';
+				// print_r($form['field_account_type']);
+				// print '</pre>';
+				$form['field_account_type']['und']['#default_value'] = 'provider';
+				$form['field_account_type']['und']['#title'] = 'Register this user as:';
+			}
 		break;
 	}
 }

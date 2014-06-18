@@ -65,9 +65,9 @@ a:hover, a:focus {
   max-width: 67.5rem;
 }
 #user-menu-bar {
-	height: 30px;
+	height: 36px;
 	overflow: hidden;
-	background-color: #DCDCDC;
+	background-color: #0C304F;
 	margin-bottom: 22px;
 }
 #secondary-menu ul {
@@ -80,8 +80,7 @@ a:hover, a:focus {
 	float: right;
 	display: block;
 	padding: 0px;
-	margin: 0 0 0 8px;
-	background-color: #DCDCDC;
+	margin: 6px 0 0 8px;
 	color: #000;
 	width: auto;
 	font-size: 11px;
@@ -92,12 +91,12 @@ a:hover, a:focus {
 	height: 30px;
 	line-height: 30px;
 	padding: 0px 15px;
-	color: #000;
-	background-color: #DCDCDC;
+	color: #B9D9FB;
+
 }
 #secondary-menu ul li a:hover, #secondary-menu ul li.active a, #secondary-menu ul li.active-trail a {
 	color: #fff;
-	background-color: #353532;
+	background-color: #3D9FF7;
 	text-decoration: none;
 }
 .large-12.columns {
@@ -117,7 +116,7 @@ a:hover, a:focus {
 	max-width: 67.5em;
 	margin: 22px auto 22px auto;
 	padding: 0px 0px;
-	background-color: #DCDCDC;
+	background-color: transparent !important;
 }
 
 #menubar nav li, #menubar nav li a {
@@ -125,13 +124,13 @@ a:hover, a:focus {
 }
 
 #main-menu ul {
-	background-color: #DCDCDC;
+	background-color: transparent !important;
 	width: 100%;
 	margin: 0;
 }
 
 #main-menu li a, #main-menu li a:not(.button) {
-	background-color: #DCDCDC;
+	background-color: transparent;
 }
 
 #main-menu ul li > a {
@@ -149,8 +148,8 @@ a:hover, a:focus {
 #menubar nav li a:hover,
 #menubar nav li.active a,
 #menubar nav li.active-trail a {
-	background-color: #9D9D9C;
-	color: #000;
+	background-color: #FFF !important;
+	color: #0C304F;
 	text-decoration: none;
 }
 
@@ -160,7 +159,7 @@ a:hover, a:focus {
 }
 
 #main-menu li {
-	border-right: 1px solid #EEEEEE;
+	border-right: none;
 	text-transform: uppercase;
 }
 
@@ -171,14 +170,19 @@ a:hover, a:focus {
 aside.sidebar-first {
 	float: left;
 	padding-left: 0;
+	padding-right:0;
 }
 .sidebar section {
-	background-color: #F9F9F9;
 	padding: 0px;
 	margin-bottom: 20px;
 }
+
+.block-menu-block-1  {
+	background-color:#F3F3F3;
+}
+
 .menu-block-wrapper {
-	padding: 7px 7px 15px 7px;
+	padding: 0 0 0 0;
 }
 .sidebar ul.menu {
 	margin: 0px;
@@ -189,18 +193,20 @@ aside.sidebar-first {
 	list-style-type: none;
 	list-style-image: none;
 	padding: 0;
-	border-bottom: 1px solid #9D9D9C;
 	font-size: 15px;
 	font-weight: 600;
+	border-bottom: solid 4px #FFF;
 }
 .sidebar ul.menu li a {
 	color: #000;
-	padding: 8px;
+	padding: 0 0 0 20px;
 	display: block;
+	line-height:46px;
 }
 .sidebar ul.menu li a:hover, .sidebar ul.menu li a:focus, .sidebar ul.menu li.active a, .sidebar ul.menu li a.active {
-	background-color: #9D9D9C;
+	background-color: #0C304F !important;
 	text-decoration: none;
+	color:#DCECFC;
 }
 main.row {
 
@@ -229,7 +235,8 @@ main.row {
 	text-decoration: none;
 }
 .button.grey.arrow {
-	background: #C6C6C6 url('../images/bp_wf_arrow.png') no-repeat right 50%;
+	background: #B64CAA url('../images/bp_wf_arrow.png') no-repeat right 50%;
+	color:#F9E1F6;
 }
 ul.button-group {
 	margin-bottom: 18px;
@@ -334,12 +341,16 @@ ul.button-group li a.active {
 .field-name-field-tags, .field-name-field-categories {
 	margin: 10px 0 15px 0;
 }
+.views-field-field-provider-services {
+	margin-top: 10px;
+}
 main ul.links, 
 .field-name-field-tags ul, 
 .field-name-field-categories ul, 
 .views-field-field-categories ul,
 .views-field-field-tags ul,
-.views-field-field-services ul {
+.views-field-field-services ul,
+.views-field-field-provider-services ul {
 	margin-left: 0;
 	font-size: 11px;
 	font-family: "proxima-nova-condensed", "proxima-nova", Arial, Helvetica, sans-serif;
@@ -351,6 +362,7 @@ main ul.links li,
 .field-name-field-categories ul li,
 .views-field-field-categories ul li,
 .views-field-field-services ul li,
+.views-field-field-provider-services ul li,
 .views-field-field-tags ul li {
 	list-style-type: none;
 	list-style-image: none;
@@ -358,12 +370,14 @@ main ul.links li,
 	width: auto;
 	margin-right: 5px;
 	margin-left: 0;
+	margin-bottom: 10px;
 }
 main ul.links li a, 
 .field-name-field-tags li a,
 .field-name-field-categories li a,
 .views-field-field-categories li a,
 .views-field-field-services li a,
+.views-field-field-provider-services li a,
 .views-field-field-tags li a {
 	color: #000;
 	padding: 3px 5px;
@@ -376,6 +390,7 @@ main ul.links li a:hover,
 .field-name-field-categories li a:hover,
 .views-field-field-categories li a:hover,
 .views-field-field-services li a:hover,
+.views-field-field-provider-services li a:hover,
 .views-field-field-tags li a:hover {
 	background-color: #000;
 	color: #fff;

@@ -1,0 +1,75 @@
+#user-register-form button, #edit-actions {
+	float: left;
+	clear: left;
+}
+#provider-page {
+	min-height: 200px;
+}
+#provider-consultants .view-consultants {
+	max-width: 440px;
+}
+#provider-consultants .view-consultants .views-field-picture img {
+	width: 188px;
+}
+#provider-consultants .view-consultants .views-field-picture {
+	width: 188px;
+	height: 125px;
+	overflow: hidden;
+}
+#provider-consultants .view-consultants .views-row {
+	float: left;
+	clear: none;
+	width: 188px;
+	margin-right: 15px;
+	margin: 15px 15px 15px 0;
+	height: 215px;
+	max-height: 215px;
+	overflow: hidden;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#provider-consultants .view-consultants .views-field-name {
+	color: #000;
+	text-transform: none;
+	font-size: 16px;
+	font-weight: 700 !important;
+	margin: 10px 0;
+}
+
+#provider-consultants .view-consultants .views-field-field-services {
+	display: inline-block;
+	margin-bottom: 5px;
+	margin-top: 0px;
+}
+#provider-consultants .view-consultants .views-field-field-services div,
+#provider-consultants .view-consultants .views-field-field-services ul {
+	display: inline;
+}
+#provider-consultants .view-consultants .views-field-field-services ul li {
+	margin-right: 4px;
+}
+#provider-consultants a.button {
+	margin-top: 20px;
+	position: relative;
+	float: left;
+	clear: left;
+	left: 0;
+	bottom: 0;
+}
+/*
+.page-admin-people #user-register-form .field-name-field-account-type {
+	display: none;
+}
+*/
+.page-admin-people #user-register-form .field-name-field-organisation-name {
+	display: none;
+}
+.field-type-node-reference {
+	float: left;
+	clear: left;
+}
+.node-form .vertical-tabs {
+	float: left;
+	clear: left;
+}

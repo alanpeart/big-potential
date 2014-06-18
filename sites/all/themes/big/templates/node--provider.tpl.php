@@ -76,9 +76,9 @@
  */
 ?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
-
+	<?php $previous_search = isset($_COOKIE['provider-search']) ? $_COOKIE['provider-search'] : ""; ?>
 	<div id="backlink">
-		<a class="button grey noradius" href="<?php print url('directory') . $_COOKIE['provider-search']; ?>" title="Previous search">Previous search</a>
+		<a class="button grey noradius" href="<?php print url('directory') . $previous_search; ?>" title="Previous search">Previous search</a>
 	</div>
 
 	<div id="provider-logo">
@@ -98,7 +98,7 @@
 		<?php print render($title_suffix); ?>
 		<?php print drupal_render($content['field_region']); ?>
 		<div class="no-consultants">Consultants: <?php print bp_provider_count($node->nid); ?></div>
-		<?php print drupal_render($content['field_services']); ?>
+		<?php print drupal_render($content['field_provider_services']); ?>
 		<?php print drupal_render($content['field_address']); ?>
 		<?php print drupal_render($content['field_telephone']); ?>
 		<div class="social">

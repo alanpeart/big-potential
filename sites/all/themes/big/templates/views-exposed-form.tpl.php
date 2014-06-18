@@ -47,7 +47,7 @@
 						$widget->widget = str_replace('- Any -', 'Category', $widget->widget);
 					break;
 					case "edit-field-services-tid":
-						$widget->widget = str_replace('- Any -', 'Category', $widget->widget);
+						$widget->widget = str_replace('- Services -', 'Category', $widget->widget);
 					break;					
 					case "edit-field-format-value":
 						$widget->widget = str_replace('- Any -', 'Resource Type', $widget->widget);

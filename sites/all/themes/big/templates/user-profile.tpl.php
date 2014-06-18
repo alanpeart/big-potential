@@ -7,17 +7,22 @@
 		* If not, show them a link and a text prompt to get started.
 		* If they have, link them to it with some different text.
 		********************************************/
-		global $user; $my=FALSE; $text="";
-		$diagnostic_text = $diagnostic_link = $eligibility_text = $eligibility_link = $eligibility_retake = $diagnostic_retake = $funding_text = $funding_link = $funding_retake = "";
+		global $user; $my=FALSE; $text=""; $address="";
+		$diagnostic_text = $diagnostic_link = $eligibility_text = $eligibility_link = $eligibility_retake = $diagnostic_retake = $funding_text = $funding_link = $funding_retake = $provider_text = $provider_link = $provider_users = "";
+		$is_consultant = $is_admin = $is_pm = FALSE;
 		$el_class = $di_class = $fun_class = "cross";
 
 		if(arg(0) == 'user' && is_numeric(arg(1))) {
 			$profile_uid = arg(1);
 			$account = user_load($profile_uid);
 			$my = $account->uid == $user->uid ? TRUE : FALSE;
+			if(array_intersect(array('Site Manager', 'administrator', 'Site Manager Test Role'), array_values($account->roles))) { $is_admin = TRUE; }
+			if(in_array('Consultant', $account->roles)) { $is_consultant = TRUE; }
+			if(in_array('Provider Manager', $account->roles)) { $is_pm = TRUE; }
+
 			if(bp_can_user_edit($user, $account)) {
 
-				$eligible_nid = bp_user_report($user->uid, 'nid', 'eligibility');
+				$eligible_nid = bp_user_report($account->uid, 'nid', 'eligibility');
 				
 				if($eligible_nid > 0) {
 					$eligible = isset($account->field_is_eligible['und'][0]) ? $account->field_is_eligible['und'][0]['value'] : 0;
@@ -108,7 +113,9 @@
 
 		//dsm($account);
 		//dsm($user_profile);
-		$address = bp_address_string($account->field_address['und'][0]);
+		if(isset($account->field_address['und'])) {
+			$address = bp_address_string($account->field_address['und'][0]);
+		}
 	?>
 	<?php if(bp_can_user_edit($user, $account)): ?>
 		<div id="profile-edit-link"><a href="/user/<?php print $profile_uid; ?>/edit?destination=user/<?php print $profile_uid; ?>" class="button grey">Edit</a></div>
@@ -138,10 +145,12 @@
 				<div class="profile-label">Email:</div>
 				<div class="textbox"><?php print $account->mail; ?></div>
 			</div>	
-			<div class="profile-field">
-				<div class="profile-label">Address:</div>
-				<div class="textbox"><?php print $address; ?></div>
-			</div>	
+			<?php if(strlen($address) > 0): ?>
+				<div class="profile-field">
+					<div class="profile-label">Address:</div>
+					<div class="textbox"><?php print $address; ?></div>
+				</div>	
+			<?php endif; ?>
 			<?php if(isset($account->field_telephone['und'][0])): ?>			
 				<div class="profile-field">
 					<div class="profile-label">Telephone:</div>
@@ -173,56 +182,105 @@
 				</div>		
 			<?php endif; ?>
 		</div>
-		<?php if(bp_can_user_edit($user, $account)): ?>
-			<div class="dashpanel half left">
-				<h2 class="<?php print $el_class; ?>">Eligibility Check</h2>
-				<div class="darkbold">
-					<?php print $eligibility_text; ?>
+		<?php if(!$is_consultant && !$is_pm): ?>
+			<?php if(bp_can_user_edit($user, $account)): ?>
+				<div class="dashpanel half left">
+					<h2 class="<?php print $el_class; ?>">Eligibility Check</h2>
+					<div class="darkbold">
+						<?php print $eligibility_text; ?>
+					</div>
+					<?php if(strlen($eligibility_retake) > 0): ?>
+						<div class="subtext">
+							<?php print $eligibility_retake; ?>
+						</div>
+					<?php endif; ?>
+					<?php print $eligibility_link; ?>
 				</div>
-				<?php if(strlen($eligibility_retake) > 0): ?>
-					<div class="subtext">
-						<?php print $eligibility_retake; ?>
+				<div class="dashpanel half right">
+					<h2 class="<?php print $di_class; ?>">Diagnostic Tool</h2>
+					<div class="darkbold">
+						<?php print $diagnostic_text; ?>
 					</div>
-				<?php endif; ?>
-				<?php print $eligibility_link; ?>
-			</div>
-			<div class="dashpanel half right">
-				<h2 class="<?php print $di_class; ?>">Diagnostic Tool</h2>
-				<div class="darkbold">
-					<?php print $diagnostic_text; ?>
-				</div>
-				<?php if(strlen($diagnostic_retake) > 0): ?>
-					<div class="subtext">
-						<?php print $diagnostic_retake; ?>
-					</div>
-				<?php endif; ?>			
-				<?php print $diagnostic_link; ?>			
-			</div>		
-			<div class="dashpanel" id="funding-status">
-				<h2 class="<?php print $fun_class; ?>">Funding Status</h2>
-				<div class="darkbold">
-					<?php print $funding_text; ?>
-				</div>
-				<?php if(strlen($funding_retake) > 0): ?>
-					<div class="subtext">
-						<?php print $funding_retake; ?>
-					</div>
-				<?php endif; ?>			
-				<?php print $funding_link; ?>			
-			</div>
-			<?php 
-				$checkempty = views_get_view_result('connected_providers', 'block', $account->uid);
-				if(!empty($checkempty)) { ?>
-					<div class="dashpanel" id="connected-providers">
-						<h2>Connected Consultants</h2>
-						<?php print views_embed_view('connected_providers', 'block'); ?>
-					</div>
-			<?php } ?>
-			<?php if(isset($account->field_download['und'][0])): ?>
-				<div class="dashpanel" id="document-library">
-					<h2>Personal Document Library</h2>
-					<?php print views_embed_view('document_library', 'block'); ?>
+					<?php if(strlen($diagnostic_retake) > 0): ?>
+						<div class="subtext">
+							<?php print $diagnostic_retake; ?>
+						</div>
+					<?php endif; ?>			
+					<?php print $diagnostic_link; ?>			
 				</div>		
+				<div class="dashpanel" id="funding-status">
+					<h2 class="<?php print $fun_class; ?>">Funding Status</h2>
+					<div class="darkbold">
+						<?php print $funding_text; ?>
+					</div>
+					<?php if(strlen($funding_retake) > 0): ?>
+						<div class="subtext">
+							<?php print $funding_retake; ?>
+						</div>
+					<?php endif; ?>			
+					<?php print $funding_link; ?>			
+				</div>
+				<?php 
+					$checkempty = views_get_view_result('connected_providers', 'block', $account->uid);
+					if(!empty($checkempty)) { ?>
+						<div class="dashpanel" id="connected-providers">
+							<h2>Connected Consultants</h2>
+							<?php print views_embed_view('connected_providers', 'block'); ?>
+						</div>
+				<?php } ?>
+				<?php if(isset($account->field_download['und'][0])): ?>
+					<div class="dashpanel" id="document-library">
+						<h2>Personal Document Library</h2>
+						<?php print views_embed_view('document_library', 'block'); ?>
+					</div>		
+				<?php endif; ?>
+			<?php endif; ?>
+		<?php endif; ?>
+		<!-- Provider / Consultant Panels -->
+		<?php 
+			if($is_pm) {
+				$provider_nid = bp_user_report($account->uid, 'nid', 'provider');
+				if($provider_nid > 0) {
+					if($my) {
+						$provider_text .= '<p>Click below to view and edit your Provider page.</p>';
+						$provider_users .= '<p>If you want to add or edit Consultants you can do so in the panel below.</p>';
+						$provider_link .= '<p><a class="button big play grey" href="/node/'.$provider_nid.'">Provider Page</a></p>';
+					}
+					else {
+						$provider_text .= '<p>This Manager\'s Provider page is linked below.</p>';
+						$provider_link .= '<p><a class="button big play grey" href="/node/'.$provider_nid.'">Provider Page</a></p>';						
+					}
+				}
+				else {
+					if($my) {
+						$provider_text .= '<p>You have not yet created a Provider page. Click below to get started.</p>';
+						$provider_users .= '<p>Once you have created a Provider page you will be able to add Consultants to it.</p>';
+						$provider_link .= '<p><a class="button big play grey" href="/node/add/provider">Add Provider Page</a></p>';
+					}
+					else {
+						$provider_text .= '<p>This Manager has not yet created a Provider page.</p>';
+						$provider_link .= '<p><a class="button big play grey" href="/node/add/provider">Add Provider Page</a></p>';						
+					}				
+				}
+			}
+		?>
+		<?php if($is_pm): ?>
+			<div class="dashpanel" id="provider-page">
+				<h2>Provider Page</h2>
+				<div class="darkbold">
+					<?php print $provider_text; ?>
+				</div>		
+				<div class="subtext">
+					<?php print $provider_users; ?>
+				</div>
+				<?php print $provider_link; ?>			
+			</div>
+			<?php if($provider_nid > 0): ?>
+				<div class="dashpanel" id="provider-consultants">
+					<h2>Consultants</h2>
+					<?php print views_embed_view('consultants', 'block_1', $provider_nid); ?>
+					<p><a class="button big play grey" href="/admin/people/create?destination=user/<?php print $account->uid; ?>">Add A Consultant</a></p>
+				</div>
 			<?php endif; ?>
 		<?php endif; ?>
 	</div><!-- /dashboard -->
