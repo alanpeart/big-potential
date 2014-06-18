@@ -34,7 +34,8 @@ h2.block-title {
 	text-transform: uppercase;
 	font-weight: 600 !important;
 	font-size: 15px;
-	background: #C6C6C6;
+	background: #b9d9fb;
+	margin-bottom:0;
 }
 .body ul {
 	margin-bottom: 20px;
@@ -231,11 +232,11 @@ main.row {
 	color: #000;
 }
 .button.grey:hover, .button.grey.arrow:hover {
-	background-color: #999;
+	background-color: #82357a;
 	text-decoration: none;
 }
 .button.grey.arrow {
-	background: #B64CAA url('../images/bp_wf_arrow.png') no-repeat right 50%;
+	background: #b64caa url('../images/bp_wf_arrow.png') no-repeat right 50%;
 	color:#F9E1F6;
 }
 ul.button-group {
@@ -275,13 +276,21 @@ ul.button-group li a.active {
 }
 .sidebar section .view-content {
 	padding: 15px;
+	background-color:#dcecfc;
 }
 .sidebar section .views-row {
-	padding: 0 0 15px 0;
+	padding: 0 0 10px 0;
 	font-size: 13px;
 	font-weight: 600;
 	line-height: 1.1;
+	margin-top:10px;
+	border-bottom: solid 1px #FFF;
 }
+
+.views-row-first {
+	margin-top:0 !important;
+}
+
 .sidebar section .views-row a {
 	color: #666;
 }

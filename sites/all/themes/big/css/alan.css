@@ -77,3 +77,9 @@
 .field-name-field-provider-services {
 	margin: 8px 0 15px 0;
 }
+table.fs-openings {
+	width: 100% !important;
+}
+.fs-embed .fs-openings-month-ct {
+	width: 100% !important;
+}
