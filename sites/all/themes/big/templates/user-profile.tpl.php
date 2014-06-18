@@ -16,6 +16,20 @@
 			$profile_uid = arg(1);
 			$account = user_load($profile_uid);
 			$my = $account->uid == $user->uid ? TRUE : FALSE;
+			// dsm($account);
+			$org="";
+			if(!isset($account->field_organisation_name['und'][0]) || strlen($account->field_organisation_name['und'][0]['safe_value']) == 0) {
+				if(isset($account->field_provider_organisation['und'][0])) {
+					$orgnid = $account->field_provider_organisation['und'][0]['nid'];
+					$orgNode = node_load($orgnid);
+					if(isset($orgNode)) {
+						$org = $orgNode->title;
+					}
+				}
+			}
+			else {
+				$org = $account->field_organisation_name['und'][0]['safe_value'];
+			}
 			if(array_intersect(array('Site Manager', 'administrator', 'Site Manager Test Role'), array_values($account->roles))) { $is_admin = TRUE; }
 			if(in_array('Consultant', $account->roles)) { $is_consultant = TRUE; }
 			if(in_array('Provider Manager', $account->roles)) { $is_pm = TRUE; }
@@ -133,7 +147,7 @@
 			</div>
 			<div class="profile-field">
 				<div class="profile-label">Organisation:</div>
-				<div class="textbox"><?php print $account->field_organisation_name['und'][0]['safe_value']; ?></div>
+				<div class="textbox"><?php print $org; ?></div>
 			</div>		
 			<?php if(isset($account->field_job_title['und'][0])): ?>
 				<div class="profile-field">
@@ -264,7 +278,7 @@
 				}
 			}
 		?>
-		<?php if($is_pm): ?>
+		<?php if($is_pm || $is_admin): ?>
 			<div class="dashpanel" id="provider-page">
 				<h2>Provider Page</h2>
 				<div class="darkbold">
@@ -283,6 +297,12 @@
 				</div>
 			<?php endif; ?>
 		<?php endif; ?>
+		<?php if($is_consultant || $is_pm || $is_admin): ?>
+			<div class="dashpanel" id="connected-orgs">
+				<h2>Connected Organisations</h2>	
+				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
+			</div>		
+		<?php endif; ?>			
 	</div><!-- /dashboard -->
 
 </div>
