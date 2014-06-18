@@ -9,7 +9,7 @@
 		********************************************/
 		global $user; $my=FALSE; $text=""; $address="";
 		$diagnostic_text = $diagnostic_link = $eligibility_text = $eligibility_link = $eligibility_retake = $diagnostic_retake = $funding_text = $funding_link = $funding_retake = $provider_text = $provider_link = $provider_users = "";
-		$is_consultant = $is_admin = $is_pm = FALSE;
+		$is_consultant = $is_admin = $is_pm = FALSE; $provider_nid = 0;
 		$el_class = $di_class = $fun_class = "cross";
 
 		if(arg(0) == 'user' && is_numeric(arg(1))) {
