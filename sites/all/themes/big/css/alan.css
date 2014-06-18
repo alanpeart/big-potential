@@ -83,3 +83,20 @@ table.fs-openings {
 .fs-embed .fs-openings-month-ct {
 	width: 100% !important;
 }
+#author, .view-news .views-field-name {
+	color: #000;
+	font-weight: 600 !important;
+	margin: 15px 0 15px 0;
+	text-transform: none;
+}
+.node-article .node-title, .view-news .views-field-title, .view-news .views-field-title a {
+	color: #328BF6;
+	font-weight: 500;
+	font-size: 24px;
+}
+.view-news .views-field-body {
+	margin-top: 15px;
+}
+body {
+	background-image:none;
+}
