@@ -118,6 +118,7 @@ table.fs-openings {
 #diagnostic-node-form .multipage-controls-list #edit-actions button#edit-delete,
 #diagnostic-node-form #edit-actions button#edit-delete {
 	background-color: #B2B2B2;
+	display: none;
 }
 #diagnostic-node-form .multipage-controls-list #edit-actions button#edit-delete:hover,
 #diagnostic-node-form #edit-actions button#edit-delete:hover {
