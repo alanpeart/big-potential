@@ -3,7 +3,7 @@ body {
 	color: #6a6a69;
 	background-image:url(images/top-01.png);
 	background-repeat:no-repeat;
-	background-position: right -131px;
+	background-position: right -136px;
 }
 p {
 	line-height: 1.5;
@@ -913,11 +913,12 @@ h1.node-title {
 	padding-left: 0;
 	padding-right: 0;
 	text-align: right;
+	position:relative;
 }
 #search-api-page-search-form-search .form-type-textfield input {
-	width: 230px;
-	height: 30px;
-	line-height: 30px;
+	width: 37px;
+	height: 33px;
+	line-height: 33px;
 	color: #000;
 	font-family: "proxima-nova-condensed", Arial, Helvetica, sans-serif;
 	font-size: 13px;
@@ -925,10 +926,12 @@ h1.node-title {
 	padding-right: 10px;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	float: left;	
+	box-sizing: border-box;	
 	border: 0px none;
-	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1) inset;	
+	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1) inset;
+	position:absolute;
+	top:0;
+	left:0;
 }
 #search-api-page-search-form-search .form-type-textfield input.active {
 	background-color: #808080;
@@ -938,17 +941,19 @@ h1.node-title {
 #search-api-page-search-form-search .form-type-textfield {
 }
 #search-api-page-search-form-search button {
-	float: left;
-	height: 30px;
-	line-height: 30px;
+	height: 33px;
+	line-height: 33px;
 	display: block;
-	width: 40px;
-	line-height: 30px;
+	width: 37px;
 	text-indent: -9999px;
 	color: #FFF;
-	background: #EDEDED url('images/search.png') no-repeat right 50%;
-	padding: 0px 12px;
+	background: #0C304F url('images/search.png') no-repeat center 50%;
+	padding: 0;
 	margin: 0 0 0 0;
+	position:absolute;
+	top:0;
+	right:0;
+	z-index:1;
 }
 #search-api-page-search-form-search {
 	width: 100%;
@@ -956,10 +961,13 @@ h1.node-title {
 }
 .block-search-api-page-search {
 	float: right;
-	width: 100%;
-	max-width: 270px;
+	width: 37px;
+	height:33px;
 	padding: 0;
-	margin: 20px 0 0 0;	
+	margin: 0 0 0 0;
+	position: absolute;
+	right: 0;
+	top: 50px;	
 }
 .search-api-page-results > h2 {
 	display: none;
@@ -1459,34 +1467,6 @@ fieldset#edit-field-address-und-0 .form-item label,
 .ui-widget-content.sliderfield-container {
 	border: 0px none;
 	background: #C6C6C6;
-}
-
-#diagnostic-node-form .multipage-controls-list #edit-actions {
-	float: right;
-	margin: 0;
-}
-#diagnostic-node-form .multipage-controls-list #edit-actions button {
-	float: right;
-	padding: 20px 25px 20px 25px;
-	color: #000000;
-    font-family: "proxima-nova",Arial,Helvetica,sans-serif;
-    font-size: 17px;
-    font-weight: 600 !important;
-    text-shadow: 0 0 0 #FFFFFF;
-    text-transform: uppercase;	
-	margin-left: 15px;
-}
-#diagnostic-node-form .multipage-controls-list #edit-actions button#edit-delete {
-	background-color: #B2B2B2;
-}
-#diagnostic-node-form .multipage-controls-list #edit-actions button#edit-delete:hover {
-	background-color: #FF0000;
-}
-#diagnostic-node-form .multipage-controls-list #edit-actions button#edit-submit {
-	background-color: #B2B2B2;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0px;
 }
 #diagnostic-summary {
 	background: #F9F9F9;
