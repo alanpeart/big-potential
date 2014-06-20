@@ -8,7 +8,8 @@
 	<div id="diagnostic-summary" class="panel white">
 		<h3>Report Summary</h3>
 		<!--<?php // print drupal_render($content['field_address']); ?>-->
-		<?php print drupal_render($content['field_org_company_name']); ?>		
+		<span class="summary-label">Organisation name:</span> <?php print drupal_render($content['field_org_company_name']); ?>		
+		<br />
 		<span class="summary-label">Assessment completed by:</span> <?php print drupal_render($content['field_name_role']); ?>
 		<p>This report provides an initial summary of the  investment readiness of the organisation. There are five building blocks of investment readiness and these are shown in the diagram below. Governance & Leadership and Market Potential are the "pillars" upon which the other blocks rest.</p>
 		<div class="printlinks">
@@ -86,14 +87,16 @@
 			</div>
 		</div>
 	</div>
-
+<?php
+	$colours = array('governance-leadership'=>'#F9C32B', 'marketpotential'=>'#DD4C2C', 'financialcontrol'=>'#00A173', 'financialperformance'=>'#2668B9', 'quality-impact'=>'#DD43CE');
+?>
 	<div id="areas-detail" class="panel white">
 		<?php 
 			foreach($areas as $id=>$values) { ?>
-				<div class="area-all">
+				<div class="area-all <?php print $values['class']; ?>">
 					<div class="area-chart-individual">
 						<div class="chart-overlay-contain">
-							<?php print bp_diagnostic_pie_chart('area-chart-'.$id, '', '#3C3C3B', array('Score'=>$values['perc'], 'Remainder'=>(100-$values['perc'])), 200, 200); ?>
+							<?php print bp_diagnostic_pie_chart('area-chart-'.$id, '', $colours[$values['class']], array('Score'=>$values['perc'], 'Remainder'=>(100-$values['perc'])), 200, 200); ?>
 							<div id="area-chart-<?php print $id; ?>" class="big-chart">						
 							</div>	
 							<div class="area-chart-overlay">

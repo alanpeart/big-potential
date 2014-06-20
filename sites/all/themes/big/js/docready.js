@@ -1,4 +1,18 @@
 (function ($) {$(document).ready(function() { 
+
+	$('#search-api-page-search-form-search button').on('click',function(e){
+	if( !$('#search-api-page-search-form-search .form-type-textfield input').hasClass('expanded') )
+	{
+	e.preventDefault();
+	}
+	})
+	
+	$('#search-api-page-search-form-search button').on('click',function(){
+        $('#search-api-page-search-form-search .form-type-textfield input').animate({'width':'200px','left':'-200px'});
+		$('#search-api-page-search-form-search .form-type-textfield input').addClass('expanded');
+        $('#search-api-page-search-form-search .form-type-textfield input').focus();
+    });
+	
 	if($('.node-diagnostic-form').length > 0) {
 		$('#j1s1').click(function(){ 
 			$('.multipage-panes > div').each(function() {

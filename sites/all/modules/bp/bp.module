@@ -547,6 +547,7 @@ function bp_diagnostic_aggregates_summary_display($diagnostic) {
 	$values = array();
 	foreach($areas as $id=>$score) {
 		$area = node_load($id);
+		$class = strtolower(str_replace(' ', '', str_replace('&', '-', $area->title)));
 		$body = $area->body['und'][0]['value'];
 		$msg=""; $level="";
 		$max = $area->field_maximum_score['und'][0]['value'];
@@ -566,7 +567,7 @@ function bp_diagnostic_aggregates_summary_display($diagnostic) {
 			$level = 'weak';
 			$msg = $area->field_area_msg_weak['und'][0]['value'];
 		}
-		$values[$id] = array('title'=>$area->title, 'max'=>$max, 'perc'=>$perc, 'msg'=>$msg, 'level'=>$level, 'score'=>$score, 'body'=>$body);
+		$values[$id] = array('title'=>$area->title, 'max'=>$max, 'perc'=>$perc, 'msg'=>$msg, 'level'=>$level, 'score'=>$score, 'body'=>$body, 'class'=>$class);
 	}
 	return $values;
 }

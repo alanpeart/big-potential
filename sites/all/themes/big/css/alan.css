@@ -131,6 +131,430 @@ table.fs-openings {
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
 }
-body {
-	background-image:none;
+
+/* Diagnostic Report */
+
+#diagnostic-summary {
+	background: #F9F9F9;
+	font-size: 15px;
+	line-height: 1.5;
+	margin-bottom: 15px;
+	color: #000;
+}
+#diagnostic-summary p {
+	font-size: 14px;
+	color: #403E39;
+	margin: 15px 0;
+}
+#diagnostic-summary h3 {
+	margin-bottom: 25px;
+	margin-top: 10px;
+	font-size: 28px;
+	font-weight: 600;
+	color: #000;
+}
+.field-name-field-name-role, .field-name-field-org-company-name {
+	display: inline;
+	font-weight: 600;
+}
+.node-diagnostic .panel {
+	border: 0px;
+	padding: 0px;
+	margin: 0;
+}
+.node-diagnostic {
+	padding: 15px;
+	background-color: #F9F9F9;
+}
+
+.node-diagnostic .field-name-field-address {
+	width: auto;
+	float: right;
+	
+}
+
+#diagnostic-bridge {
+	margin: 15px 0 0 0;
+	padding: 30px 15px 25px 15px;
+	overflow: hidden;
+}
+.node-diagnostic .spacer {
+	height: 40px;
+}
+#bridge-diagram {
+	width: 460px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+.bridge-block {
+	width: 150px;
+	height: 150px;
+	background-color: #EDEDED;
+	position: relative;
+	display: inline-block;
+	margin-right: -1px;
+}
+.bridge-block.three, .bridge-block.six {
+	border-right: 0px;
+}
+.bridge-block.blank {
+	background-color: #FFFFFF;
+}
+.bridge-block .fill {
+	vertical-align: bottom;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+}
+#financial-performance-block .fill,
+.fin-perf .square-tint {
+	background-color: #2668B9;
+}
+#quality-impact-block .fill,
+.qual-imp .square-tint {
+	background-color: #DD43CE;
+}
+#financial-control-block .fill,
+.fin-cont .square-tint {
+	background-color: #00A173;
+}
+#governance-leadership-block .fill,
+.gov-lead .square-tint {
+	background-color: #F9C32B;
+}
+#market-potential-block .fill,
+.mark-pot .square-tint {
+	background-color: #DD4C2C;
+}
+.square-tint {
+	height: 21px;
+	width: 21px;
+}
+#bridge-legend table {
+	border: 0px;
+	margin: 0 25px 25px 0;
+	font-size: 12px;
+	color: #000;
+	width: 100%;
+}
+#bridge-legend table tbody {
+	border-top: 0;
+}
+
+#bridge-legend table tr:nth-of-type(2n) {
+	background-color: transparent;
+}
+#bridge-legend table tr th, #bridge-legend table tr td {
+	color: #000000;
+    font-size: 14px;
+    padding: 5px;
+}
+#bridge-legend table tr td.square {
+	padding-left: 0px;
+}
+#bridge-legend table tr td.title {
+	padding-right: 20px;
+}
+#bridge-legend table tr td.perc {
+	text-align: right;
+	color: #000;
+	font-weight: 600;
+}
+#bridge-legend table tr{
+	border-bottom: 1px solid #E2E2E2;
+}
+#bridge-legend table tr:first-child {
+	border-top: 1px solid #E2E2E2;
+}
+#bridge-legend {
+	width: 50%;
+	float: left;
+	height: 
+}
+#overall-score {
+	width: 35%;
+	text-align: center;
+	background-color: #0C233E;
+	padding: 15px 20px;
+	float: left;
+	height: 100%;
+	margin: 0 0 0 15%;
+	line-height: 1;
+}
+#bridge-figures {
+	float: left;
+	width: 100%;
+	clear: both;
+	height: 160px;
+}
+.overall-score-big {
+	font-size: 100px;
+	color: #FFF;
+	display: inline;
+	font-weight: 700;
+}
+.smaller-perc {
+	color: #FFF;
+	font-size: 50px;
+	font-weight: 700;
+}
+.overall-title {
+	text-align: center;
+	font-size: 18px;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #FFF;
+	margin-top: 0px;
+	letter-spacing: 1px;
+}
+#areas-detail {
+	padding: 20px 15px 15px 15px;
+	overflow: hidden;
+}
+.chart-overlay-contain {
+	position: relative;
+	width: 200px;
+	height: 200px;
+}
+.area-chart-overlay {
+	position: absolute;
+	z-index: 100;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding: 50px 50px;
+	top: 0px;
+	left: 0px;
+	vertical-align: middle;
+}
+.area-score-big {
+	font-size: 40px;
+	font-weight: 700;
+	color: #000;
+	margin-top: 30%;
+	margin-left: 6%;
+}
+.area-smaller-perc {
+	font-size: 20px;
+	color: #989898;
+	font-weight: 500;
+}
+.area-all {
+	float: left;
+	clear: left;
+	width: 100%;
+	border-top: 1px solid #C6C6C6;
+	padding: 30px 0;
+}
+.area-chart-individual {
+	width: 200px;
+	float: left;
+	margin-right: 40px;
+}
+.area-text {
+	float: left;
+	width: 400px;
+}
+.area-text h3 {
+	font-size: 18px;
+	font-weight: 700;
+}
+.area-description, .area-description p {
+	line-height: 1.5;
+	font-size: 14px;
+	color: #403E39;
+	margin: 0 0 15px 0;
+}
+.area-message {
+	font-size: 14px;
+	line-height: 1.5;
+	color: #000;
+	background-color: #C6C6C6;
+	padding: 10px;
+}
+.governance-leadership .area-message {
+	background-color: #FEF5DD;
+}
+.marketpotential .area-message {
+	background-color: #F9E2DD;
+}
+.financialcontrol .area-message {
+	background-color: #D6F0E9;
+}
+.financialperformance .area-message {
+	background-color: #DCE7F4;
+}
+.quality-impact .area-message {
+	background-color: #F9E1F7;
+}
+#weakest {
+	float: left;
+	clear: left;
+	width: 100%;
+	overflow: hidden;
+	margin-top: 15px;
+	padding: 15px;
+	font-size: 13px;
+	line-height: 1.5;
+	color: #000;
+}
+#weakest > p {
+	font-size: 14px;
+	line-height: 1.5;
+	color: #000;
+	font-weight: 600;
+}
+#weakest > ul {
+	list-style: none;
+	margin-left: 0px;
+}
+#weakest > ul li {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding: 8px 0;
+	border-bottom: 1px solid #DFDFDF;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #403E39;
+}
+#edit-report {
+	float: left;
+	clear: left;
+	width: 100%;
+	overflow: hidden;
+	margin: 25px 0;
+}
+
+.print_html, .print_mail, .print_pdf, .print_epub {
+	margin-right: 10px;
+	margin-left: 0px;
+}
+.print_html a, .print_mail a, .print_pdf a, .print_epub  a {
+	display: inline-block;
+	width: auto;
+	padding: 5px 10px;
+	background-color: #328BF6;
+	color: #fff;
+	font-size: 12px;	
+	font-family: "proxima-nova", Verdana, Geneva, sans-serif;
+	font-weight: 500;
+	line-height: 18px;
+	transition: background-color 300ms ease-out 0s;
+}
+.printlinks {
+	margin-top: 10px;
+}
+.print_html a:hover, .print_mail a:hover, .print_pdf a:hover, .print_epub  a:hover {
+	background-color: #0C233E;
+	color: #fff;
+	text-decoration: none;
+}
+
+.jumplist {
+	width: 100%;
+	border-top:3px solid #FFF;
+	height: 40px;
+	float: left;
+	clear: both;
+	margin: 20px 0;
+	padding: 0;
+	font-family: "proxima-nova-condensed", Verdana, Geneva, sans-serif;
+	font-weight: 600;
+	background-color: #D6E8FD;
+}
+.jumplist.bar {
+	border-top: 0;
+	height: 45px;
+	margin: 0 0 20px 0;
+}
+.jumplist li {
+	list-style-type: none;
+	list-style-image: none;
+	float: left;
+	width: 11.1%;
+	text-align: left;
+	padding: 0 5px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;	
+	background-color: #D6E8FD;
+}
+.jumplist.bar li {
+	width: 12.5%;
+	text-align: center;
+	padding: 0 0;
+	line-height: 45px;
+	border-right: 1px solid #fff;
+	text-transform: uppercase;
+}
+.jumplist.bar .step-report {
+	border-right: 0;
+}
+.block-block-3, .block-block-8 {
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.jumplist a {
+	display: block;
+	text-align: left;
+	margin-top: -18px;
+	font-size: 10px;
+	color: #1C2229;
+	text-align: center;
+	background-color: #D6E8FD;
+}
+.jumplist.bar a {
+	margin-top: 0px;
+	font-size: 18px;
+	color: #000;
+	text-align: center;
+}
+.jumplist.bar .step-report a {
+	padding-left: 34px;
+	font-size: 14px;
+	background: transparent url(../images/report-icon-normal.png) no-repeat 10px 50%;
+	
+}
+.jumplist a br {
+	line-height: 5px;
+}
+.jumplist.bar a br {
+	line-height: 45px;
+}
+.jumplist a:hover, .jumplist a.active, .jumplist.bar .step-report a:hover, .jumplist.bar .step-report a.active {
+	color: #D6E8FD;
+	text-decoration: none;
+	background-color: #0C233E;
+}
+.jumplist.bar .step-report a:hover, .jumplist.bar .step-report a.active {
+	background-image: url('../images/report-icon-active.png');
+}
+
+article.node-diagnostic {
+	float: left;
+	clear: left;
+}
+.node-diagnostic a.button, 
+.flag-submit-diagnostic-report a.flag, 
+a#edit-cancel,
+button#edit-submit-dialog, 
+button#edit-cancel-dialog {
+   background: #b64caa !important;
+    color: #f9e1f6 !important;
+    font-family: "proxima-nova","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+}
+.flag-submit-diagnostic-report a.flag:hover, a#edit-cancel:hover,
+button#edit-submit-dialog:hover, 
+button#edit-cancel-dialog:hover {
+	background-color: #82357a !important;
+	text-decoration: none !important;
+}
+#submit-report {
+	padding-left: 0;
+	padding-right: 0;
 }
