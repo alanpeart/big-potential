@@ -122,7 +122,7 @@ a:hover, a:focus {
 
 #menubar nav {
 	max-width: 60.625rem;
-	margin: 10px auto 10px auto;
+	margin: 22px auto 20px auto;
 	padding: 0px 0px;
 	background-color: transparent !important;
 }
@@ -1646,210 +1646,6 @@ button.ajax-processed:hover {
 #flagging-form-flagging-form-dialog {
 	margin-top: 12px;
 }
-#dashboard {
-	padding: 15px;
-	background-color: #F9F9F9;
-	float: left;
-	width: 100%;
-}
-#dashboard > h2, .dashpanel h2 {
-	font-size: 16px;
-	margin: 0 0 15px 0;
-}
-#dashboard > h2 {
-	margin: 0 0 15px 15px;
-}
-.dashpanel {
-	background-color: #fff;
-	padding: 15px;
-	float: left;
-	width: 100%;
-	margin-bottom: 30px;
-	position: relative;
-}
-.profile-label {
-	width: 100px;
-	float: left;
-	line-height: 25px;
-	font-size: 12px;
-	display: inline-block;
-	clear: both;
-	color: #000;
-}
-.textbox {
-	float: left;
-	line-height: 25px;
-	font-size: 12px;
-	background-color: #F9F9F9;
-	border: 1px solid #E4E4E4;
-	display: inline-block;
-	width: 340px;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 0 6px;
-	color: #000;
-}
-.profile-field {
-	margin-bottom: 5px;
-	width: 460px;
-	float: left;
-	clear: left;
-}
-#profile-info .user-picture {
-	margin: 0 0 0 0;
-}
-.dashpanel.half {
-	width: 49%;
-	float: left;
-	height: 300px;
-}
-.dashpanel.half.left {
-	margin-right: 2%;
-}
-h2.tick {
-	padding-right: 25px;
-	background: transparent url('../images/tick.png') no-repeat 60% 50%;
-	margin-bottom: 25px;
-}
-h2.cross {
-	padding-right: 25px;
-	background: transparent url('../images/cross.png') no-repeat 60% 50%;
-	margin-bottom: 25px;
-}
-.darkbold {
-	padding: 10px 8px;
-	background-color: #D1D1D1;
-	font-weight: bold;
-}
-.darkbold p {
-	font-weight: bold;
-	line-height: 1.3;
-	margin-bottom: 0px;
-}
-.subtext {
-	margin-top: 12px;
-}
-.subtext p {
-	font-size: 13px;
-	max-width: 420px;
-}
-.dashpanel.half .subtext p {
-	max-width: 300px;
-}
-.dashpanel a.button.big {
-	text-transform: uppercase;
-	position: absolute;
-	bottom: 15px;
-	margin-bottom: 0px;
-	left: 15px;
-}
-#profile-edit-link {
-	width: auto;
-	float: right;
-}
-#profile-edit-link .button.grey {
-	color: #fff;
-	padding: 10px 20px;
-	background-color: #B2B2B2;
-}
-#profile-edit-link .button.grey:hover {
-	background-color: #999;
-}
-.dashpanel#funding-status {
-	min-height: 300px;
-}
-.page-user .main ul.button-group,
-.page-user .main h2.element-invisible {
-	display: none;
-}
-.page-user .main .profile {
-	margin-top: 0;
-}
-.page-user .main .profile h1#page-title {
-	margin-top: 0;
-}
-.view-connected-providers {
-	float: left;
-	width: 100%;
-	max-width: 440px;
-}
-.view-connected-providers img {
-	width: 188px;
-}
-.view-connected-providers .user-picture {
-	width: 188px;
-	height: 125px;
-	overflow: hidden;
-}
-.view-connected-providers .views-row {
-	float: left;
-	clear: none;
-	width: 188px;
-	margin-right: 15px;
-	margin: 0 15px 15px 0;
-	height: 215px;
-	max-height: 215px;
-	overflow: hidden;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	border-bottom: 0px;
-	padding-bottom: 0px;
-}
-.view-connected-providers .views-field-name {
-	color: #000;
-	text-transform: none;
-	font-size: 16px;
-	font-weight: 700 !important;
-	margin: 10px 0;
-}
-#document-library > h2 {
-	padding-bottom: 20px;
-	border-bottom: 1px solid #000;
-	margin-bottom: 20px;
-}
-.view-document-library {
-	float: left;
-	width: 100%;
-}
-.view-document-library .views-row {
-	width: 100%;
-	float: left;
-	clear: left;
-}
-.view-document-library .views-field-field-download {
-	width: 60px;
-	float: left;
-	margin-right: 15px;
-}
-.view-document-library .views-field-field-download img {
-	width: 60px;
-}
-.view-document-library .views-field-field-download-1,
-.view-document-library .views-field-field-download-1 div {
-
-}
-.view-document-library .views-field-field-download-2,
-.view-document-library .views-field-field-download-2 div {
-	font-size: 13px;
-	color: #999;
-	font-family: "proxima-nova-condensed", Arial, Helvetica, sans-serif;
-	margin-top: 10px;
-}
-.view-document-library .views-field-field-download-1 img.file-icon {
-	display: none;
-}
-.view-document-library .views-field-field-download-1 .file,
-.view-document-library .views-field-field-download-1 .file a {
-	font-weight: bold;
-	color: #000;
-}
-span.file-size {
-	font-size: 14px;
-	color: #999;
-	font-weight: normal;
-}
 
 /***************** FRONT PAGE ****************/
 
@@ -1878,17 +1674,20 @@ span.file-size {
 	width: auto;
 	display: block;
 	padding: 15px 20px;
-	background-color: #fff;
-	-moz-opacity: 0.6;
-	-webkit-opacity: 0.6;
-	opacity: 0.6;
-	bottom: 50px;
-	left: 40px;
+	color:#FFF;
+	bottom: 20px;
+	left: 20px;
 	font-size: 28px;
+	margin-bottom:0;
+	background-image: url(images/slider_txt_bg.png);
+}
+
+#hero.flexslider .slides > li .views-field-title a {
+	color:#FFF;
 }
 #hero.flexslider .flex-control-nav {
-	bottom: 15px;
-	right: 15px;
+	bottom: 20px;
+	right: 20px;
 	width: auto;
 	z-index: 10;
 }
@@ -1896,20 +1695,22 @@ span.file-size {
 	margin: 0 4px;
 }
 #hero.flexslider .flex-control-paging li a {
-	background: none repeat scroll 0 0 rgba(178, 178, 178, 1);
+	background: none repeat scroll 0 0 rgba(12, 35, 62, 1);
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;
 	box-shadow: 0 0 0 #000;
+	width:16px;
+	height:16px;
 }
 #hero.flexslider .flex-control-paging li a.flex-active {
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 1);
+	background: none repeat scroll 0 0 rgba(132, 1850, 250, 1);
 }
 .flex-direction-nav a {
 	height: 60px;
 }
 #mini-panel-front_page .panels-flexible-row-2-1 {
-	margin-top: 25px;
+	margin-top: 15px;
 }
 #mini-panel-front_page .panels-flexible-row-2-1 .panels-flexible-region {
 	width: 33.33% !important;
@@ -1957,7 +1758,7 @@ a.icon:hover {
 	opacity: 0.9;
 }
 #mini-panel-front_page .panels-flexible-row-2-2 {
-	margin-top: 25px;
+	margin-top: 15px;
 }
 #mini-panel-front_page .panels-flexible-region-2-slider {
 	width: 66.66% !important;

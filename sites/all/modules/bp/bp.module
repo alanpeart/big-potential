@@ -216,6 +216,8 @@ function bp_update_computed_eligibility_field($node) {
 	db_query($sql, array(':uid' => $node->uid, ':el' => $el));	
 	/* Assign status if necessary */
 	bp_update_org_status($node->uid, 'eligibility', $el);
+	// Now we have to clear the cache for this user
+	cache_clear_all('field:user:'.$node->uid, 'cache_field');
 }
 
 function bp_update_org_status($uid, $type, $value) {
