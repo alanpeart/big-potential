@@ -183,6 +183,11 @@
 			$('.jumplist li.step-finances a').addClass('active');
 		});		
 		$('#edit-actions #edit-delete').after($('#edit-actions #edit-submit'));
+		// Check if we've got a direct link to a step
+		var hash = window.location.hash;
+		if(hash) {
+			$(hash).click();
+		}
 	}	
 
 	if($('#edit-submit-resources').length) {

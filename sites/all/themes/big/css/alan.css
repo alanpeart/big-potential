@@ -536,25 +536,131 @@ article.node-diagnostic {
 	float: left;
 	clear: left;
 }
-.node-diagnostic a.button, 
+.node a.button, 
 .flag-submit-diagnostic-report a.flag, 
+.flag-submit-funding-application- a.flag, 
 a#edit-cancel,
 button#edit-submit-dialog, 
-button#edit-cancel-dialog {
+button#edit-cancel-dialog,
+#funding-application-node-form .button.grey,
+button.ajax-processed {
    background: #b64caa !important;
     color: #f9e1f6 !important;
     font-family: "proxima-nova","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif !important;
     font-size: 13px !important;
     font-weight: 400 !important;
     text-transform: uppercase !important;
+	padding: 1.0625rem 2rem 1rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 300ms ease-out 0s;
 }
-.flag-submit-diagnostic-report a.flag:hover, a#edit-cancel:hover,
+.flag-submit-diagnostic-report a.flag:hover,
+.node a.button:hover,
+.flag-submit-funding-application- a.flag:hover,
+a#edit-cancel:hover,
 button#edit-submit-dialog:hover, 
-button#edit-cancel-dialog:hover {
+button#edit-cancel-dialog:hover,
+#funding-application-node-form .button.grey:hover,
+button.ajax-processed:hover {
 	background-color: #82357a !important;
 	text-decoration: none !important;
 }
 #submit-report {
 	padding-left: 0;
 	padding-right: 0;
+}
+#funding-application-node-form .vertical-tabs {
+	clear: both;
+}
+#funding-application-node-form p {
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.5;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+	color: #000;
+}
+#funding-application-node-form .fieldset-description {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.5;
+	color: #000;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+	padding: 0px 15px;
+	margin-bottom: 25px;
+}
+
+#funding-application-node-form {
+	float: left;
+	width: 100%;
+	clear: left;
+	padding: 30px 15px;
+	background-color: #F9F9F9;
+}
+#funding-application-node-form .form-item {
+	background-color: #fff;
+	padding: 15px;
+}
+#funding-application-node-form .vertical-tabs {
+	display: none;
+}
+#field-introduction-and-download-add-more-wrapper h2 {
+	line-height: 1.2;
+	margin-bottom: 20px;
+	color: #328BF6;
+	font-weight: 500;
+	font-size: 24px;	
+}
+#funding-application-node-form #edit-field-file-upload .description {
+	display: none;
+}
+button.ajax-processed {
+	
+}
+input[type="file"] {
+	width: 340px;
+	font-size: 12px;
+	max-width: 100%;
+}
+#edit-submit, #edit-submit.secondary, #edit-delete {
+   background: #ADD1FB !important;
+    color: #0C233E !important;
+    font-family: "proxima-nova","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+}
+#edit-submit:hover, #edit-submit.secondary:hover {
+	background-color: #0C304F !important;
+	text-decoration: none !important;
+	color: #fff !important;
+}
+#funding-application-node-form #edit-actions {
+	float: right;
+}
+#edit-delete:hover {
+	background-color: #DD4C2C !important;
+	text-decoration: none !important;
+	color: #fff !important;
+}
+.node-funding-application {
+	float: left;
+	clear: left;
+	width: 100%;
+	background-color: #f9f9f9;
+	padding: 15px;
+}
+.node-funding-application .field-name-field-file-upload {
+	padding: 15px;
+	background-color: #fff;
+}
+.flag-submit-funding-application- a.flag {
+	margin-top: 15px;
+}
+.node-funding-application #edit-report {
+	margin-bottom: 0px;
 }
