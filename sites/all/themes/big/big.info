@@ -31,6 +31,7 @@ stylesheets[all][] = css/app.css
 ; Comment the app.css file (above) if you're using sass to preprocess css:
 stylesheets[all][] = css/custom.css
 stylesheets[all][] = css/square/square.css
+stylesheets[all][] = css/ie8-grid-foundation-4.css
 stylesheets[all][] = css/alan.css
 
 ; Block loading of foundation.min.css from the base theme. This file should either

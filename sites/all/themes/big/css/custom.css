@@ -417,7 +417,7 @@ main ul.links li a,
 .views-field-field-tags li a {
 	color: #0C233E;
 	padding: 3px 8px;
-	background-color: #ADD1FB;
+	background-color: #eef6fe;
 	font-weight: 400;
 	text-transform: capitalize;
 }
@@ -580,6 +580,16 @@ a.facebook {
 	padding-bottom: 20px;
 	border-bottom: 1px solid #E7E7E6;
 }
+
+.view-providers-directory .views-row {
+	width:100%;
+}
+
+.view-providers-directory .views-row .views-row-inner {
+	width:100%;
+	max-width:none !important;
+}
+
 .main .views-field-title a {
 	color: #000;
 }
@@ -1144,117 +1154,6 @@ article .field-name-field-introduction, article .field-name-field-introduction p
 	color: #0c304f;
 }
 
-.node-eligibility .alert-box {
-	padding: 25px;
-}
-.node-eligibility p, .node-eligibility h3 {
-	color: #000;
-}
-.node-eligibility strong, .node-eligibility a {
-	font-weight: 700;
-}
-.alert-box.success {
-	background-color: #4CC08F;
-	border-color: #4CC08F;
-	color: #000;
-}
-#eligibility-node-form {
-	float: left;
-	width: 100%;
-	clear: left;
-	padding: 5px 20px 15px 20px;
-	background-color: #F9F9F9;
-}
-#edit-field-years label,
-#edit-field-months label {
-	font-weight: 500;
-	font-size: 15px;
-}
-#eligibility-node-form .form-item, #eligibility-node-form .subgroup {
-	background-color: #fff;
-}
-#eligibility-node-form .subgroup {
-	margin: 15px 0;
-	float: left;
-	clear: left;
-}
-#eligibility-node-form .subgroup > h3 {
-	margin-top: 15px;
-	padding-left: 15px;
-	padding-top: 0;
-	margin-bottom: 0;
-	padding-bottom: 0;	
-	font-size: 18px;
-}
-#eligibility-node-form .form-wrapper {
-	float: left;
-	clear: left;
-	width: 100%;
-}
-#eligibility-node-form #edit-field-sector-und label,
-#eligibility-node-form #edit-field-reach-und label {
-	font-weight: 500;
-	font-size: 14px;
-}
-#eligibility-node-form .vertical-tabs,
-#eligibility-node-form #edit-actions {
-	float: left;
-	clear: left;
-	width: 100%;
-	max-width: 600px;
-}
-#eligibility-node-form .vertical-tabs {
-	display: none;
-}
-#eligibility-node-form .subgroup .form-item {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-#eligibility-node-form .form-item label {
-	margin-bottom: 12px;
-	font-size: 14px;
-}
-#eligibility-node-form input.form-text {
-	margin-bottom: 0;
-}
-#eligibility-node-form .form-wrapper > .form-item {
-	padding: 15px;
-}
-#eligibility-node-form .form-wrapper > .form-item label {
-	font-size: 18px;
-	font-weight: 600;
-	line-height: 1.5;
-	color: #000;
-}	
-#eligibility-node-form .form-item .description {
-	padding: 15px;
-	background-color: #E3E3E3;
-	margin-left: 0;
-	color: #000;
-	margin-top: 10px;
-}
-#eligibility-node-form #edit-actions button {
-	padding: 20px 25px 20px 25px;
-	color: #000000;
-    font-family: "proxima-nova",Arial,Helvetica,sans-serif;
-    font-size: 17px;
-    font-weight: 600 !important;
-    text-shadow: 0 0 0 #FFFFFF;
-    text-transform: uppercase;	
-	margin-right: 15px;
-}
-#eligibility-node-form #edit-actions button#edit-delete {
-	background-color: #B2B2B2;
-}
-#eligibility-node-form #edit-actions button#edit-delete:hover {
-	background-color: #FF0000;
-}
-#eligibility-node-form #edit-actions button#edit-submit {
-	background-color: #B2B2B2;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0px;
-}
 .flag-submit-diagnostic-report a.flag, a#edit-cancel,
 button#edit-submit-dialog, button#edit-cancel-dialog {
     background-color: #C6C6C6;
@@ -1652,13 +1551,17 @@ border-radius: 3px;
 	font-size:13px;
 }
 
-.mailchimp-signup-subscribe-form #edit-submit {
-	height:23px;
-	width:60px;
+.mailchimp-signup-subscribe-form .form-submit,
+.mailchimp-signup-subscribe-form #edit-submit,
+.mailchimp-signup-subscribe-form #edit-submit--1,
+.mailchimp-signup-subscribe-form #edit-submit--2 {
+	height:23px !important;
+	width:60px !important;
 	font-size:12px !important;
-	float:left;
-	padding:0;
+	float:left !important;
+	padding:0 !important;
 	color:#FFF !important;
+	text-transform: none !important;
 }
 
 .mailchimp-signup-subscribe-form .form-type-textfield {

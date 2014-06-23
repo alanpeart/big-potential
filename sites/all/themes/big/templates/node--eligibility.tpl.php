@@ -23,4 +23,9 @@
 		</div>
 	<?php endif; ?>
 
+	<?php if(bp_can_user_edit($user, $node)): ?>
+	<div id="edit-report">
+		<a href="<?php print url('node/'.$node->nid.'/edit'); ?>" class="button back grey">Re-check Eligibility</a>
+	</div>
+	<?php endif; ?>
 </article>
