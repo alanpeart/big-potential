@@ -137,6 +137,20 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 			}
 		break;
 		case "diagnostic_node_form":
+			/*
+			foreach($form as $element) {
+				if(is_array($element)) {
+					if(isset($element['#type']) && $element['#type'] == 'container') {
+						if(isset($element['und'][0]['value']['#type'])) {
+							if($element['und'][0]['value']['#type'] == 'slider') {
+								// Let's add the elements that need to flex
+								dsm($element);
+							}
+						}
+					}
+				}
+			}
+			*/
 			// dsm($form);
 		break;
 		case "flag_confirm":

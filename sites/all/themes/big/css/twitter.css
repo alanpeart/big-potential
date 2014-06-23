@@ -7,9 +7,16 @@
 	display: none !important;
 }
 .stream {
-	background-color: #fff !important;
+	background-color: #D6E8FD !important;
 	margin-top: 8px !important;
+	height: 226px !important;
+	overflow:hidden !important;
 }
+
+.stream .footer {
+	display:none !important;
+}
+
 .p-nickname {
 	color: #000 !important;
 	font-weight: 700 !important;
@@ -24,4 +31,23 @@
 }
 .p-geo {
 	display: none !important;
+}
+
+.var-narrow .tweet .header {
+	position: relative;
+	_height: 36px;
+	min-height: 32px;
+	padding: 0 0 4px 0px !important;
+}
+
+.var-narrow .header .p-nickname {
+line-height: 6px !important;
+}
+
+.var-narrow .tweet .header {
+ min-height: 16px !important; 
+}
+
+#twitter-widget-0 {
+	height:234px;
 }
