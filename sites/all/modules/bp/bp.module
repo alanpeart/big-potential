@@ -672,6 +672,7 @@ function bp_address_string($address) {
 
 function bp_lexicon($text) {
 	// Provides a wrapper around the lexicon function so that we can process whatever text we want without the need for a filter
+	$text = str_replace("’", "'", $text); // Rogue quote marks played havoc with the parser
 	if(strlen($text) > 0) {
 		return _filter_lexicon_process($text, 'Full HTML', NULL, 'en', NULL, NULL);
 	}
