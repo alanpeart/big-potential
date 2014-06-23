@@ -137,7 +137,7 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 			}
 		break;
 		case "diagnostic_node_form":
-			dsm($form);
+			// dsm($form);
 			foreach($form as $key=>$element) {
 				if(is_array($element)) {
 					if(isset($form[$key]['und'][0]['value']['#description']) && strlen($form[$key]['und'][0]['value']['#description']) > 0) {
