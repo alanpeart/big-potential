@@ -1589,10 +1589,13 @@ border-radius: 3px;
 
 .view-providers-directory .view-header {
 	border-bottom: 2px solid #CECECE;
+	margin-bottom:25px;
 }
 
 .view-providers-directory .views-exposed-form {
-	border-bottom:none !important;}
+	border-bottom:none !important;
+	padding-bottom:0;
+}
 
 @media only screen and (min-width: 40.063em) {
 	.contain-to-grid .top-bar {
