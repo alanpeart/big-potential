@@ -568,7 +568,7 @@ a.facebook {
 	color: #0C233E;
 	font-size: 16px;
 	font-weight: 600;
-	margin-bottom: 10px;
+	margin-bottom: 2px;
 }
 .main .view-content {
 	overflow: hidden;
@@ -597,7 +597,7 @@ a.facebook {
 	color: #575756;
 	text-transform: uppercase;
 	font-weight: 400 !important;
-	margin-bottom: 2px;
+	margin-bottom: 8px;
 	font-size: 13px;
 }
 .main .views-field-name a {
