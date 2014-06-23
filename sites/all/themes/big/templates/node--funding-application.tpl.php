@@ -18,7 +18,7 @@
 		}
 		
 	?>
-	<p>Below you can find the funding application form that you have uploaded to our site. If you want to make any changes and re-upload, or download the original Big Potential blank form, you may click the "Edit Report" link underneath.</p>
+	<p><?php print bp_lexicon('Below you can find the funding application form that you have uploaded to our site. If you want to make any changes and re-upload, or download the original Big Potential blank form, you may click the "Edit Report" link underneath.'); ?></p>
   <?php
     // We hide the comments and links now so that we can render them later.
     hide($content['comments']);

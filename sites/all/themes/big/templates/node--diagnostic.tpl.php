@@ -11,7 +11,9 @@
 		<span class="summary-label">Organisation name:</span> <?php print drupal_render($content['field_org_company_name']); ?>		
 		<br />
 		<span class="summary-label">Assessment completed by:</span> <?php print drupal_render($content['field_name_role']); ?>
-		<p>This report provides an initial summary of the  investment readiness of the organisation. There are five building blocks of investment readiness and these are shown in the diagram below. Governance & Leadership and Market Potential are the "pillars" upon which the other blocks rest.</p>
+		<p>
+		<?php print bp_lexicon('This report provides an initial summary of the investment readiness of the organisation. There are five building blocks of investment readiness and these are shown in the diagram below. Governance & Leadership and Market Potential are the "pillars" upon which the other blocks rest.'); ?>
+		</p>
 		<div class="printlinks">
 			<?php print print_insert_link(); ?>
 			<?php print print_pdf_insert_link(); ?>		
@@ -106,8 +108,8 @@
 					</div>	
 					<div class="area-text">
 						<h3><?php print $values['title']; ?></h3>
-						<div class="area-description"><?php print $values['body']; ?></div>
-						<div class="area-message"><?php print $values['msg']; ?></div>
+						<div class="area-description"><?php print bp_lexicon($values['body']); ?></div>
+						<div class="area-message"><?php print bp_lexicon($values['msg']); ?></div>
 					</div>
 				</div>
 			<?php }
@@ -115,7 +117,7 @@
 	</div>	
 	
 	<div id="weakest" class="panel white">
-		<p>Listed below are some questions that based on your answers you may wish to review as a priority as they are the five that will make the most difference in your score. They are shown in order of the weakest score first.</p>
+		<p><?php print bp_lexicon('Listed below are some questions that based on your answers you may wish to review as a priority as they are the five that will make the most difference in your score. They are shown in order of the weakest score first.'); ?></p>
 		<ul>
 		<?php
 			$weakest = bp_diagnostic_aggregates_weakest_5($node->nid);

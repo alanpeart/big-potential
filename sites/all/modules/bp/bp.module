@@ -137,21 +137,14 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 			}
 		break;
 		case "diagnostic_node_form":
-			/*
-			foreach($form as $element) {
+			dsm($form);
+			foreach($form as $key=>$element) {
 				if(is_array($element)) {
-					if(isset($element['#type']) && $element['#type'] == 'container') {
-						if(isset($element['und'][0]['value']['#type'])) {
-							if($element['und'][0]['value']['#type'] == 'slider') {
-								// Let's add the elements that need to flex
-								dsm($element);
-							}
-						}
+					if(isset($form[$key]['und'][0]['value']['#description']) && strlen($form[$key]['und'][0]['value']['#description']) > 0) {
+						$form[$key]['und'][0]['value']['#description'] = bp_lexicon($form[$key]['und'][0]['value']['#description']);
 					}
 				}
 			}
-			*/
-			// dsm($form);
 		break;
 		case "flag_confirm":
 
@@ -675,4 +668,14 @@ function bp_address_string($address) {
 		}
 	}
 	return implode(", ", $relevant);
+}
+
+function bp_lexicon($text) {
+	// Provides a wrapper around the lexicon function so that we can process whatever text we want without the need for a filter
+	if(strlen($text) > 0) {
+		return _filter_lexicon_process($text, 'Full HTML', NULL, 'en', NULL, NULL);
+	}
+	else {
+		return "";
+	}
 }

@@ -16,7 +16,7 @@
 			<h3>Unfortunately, based on the information provided your organisation is not eligible to apply to Big Potential. This is because:</h3>
 			<p><ul><?php 
 				foreach($eligibility['questions'] as $question) {
-					print '<li>'.$question['message'].'</li>';
+					print '<li>'.bp_lexicon($question['message']).'</li>';
 				} ?>
 			</ul></p>
 			<p>Thank you for your interest in Big Potential.</p>
