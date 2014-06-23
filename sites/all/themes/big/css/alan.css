@@ -1649,6 +1649,14 @@ a.lexicon-term {
 	color: #000;
 }
 
+.view-providers-directory .view-header,
+.view-providers-directory .view-content,
+.view-providers-directory .view-filters {
+	float: left;
+	clear: left;
+	width: 100%;
+}
+
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
 		top: -133px;

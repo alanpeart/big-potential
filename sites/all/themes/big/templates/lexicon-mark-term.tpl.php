@@ -43,4 +43,12 @@ print l($text, $term["linkto"], array(
   'absolute' => $term["absolute_link"],
   'data-tooltip'=>'',
 )); */ ?>
-<?php print '<a data-tooltip title="'.$term["term"]->safe_description.'" class="'.$term["term_class"].' has-tip" href="'.$term["linkto"].'">'.$text.'</a>'; ?>
+
+<?php 
+	if(strlen($term["term"]->safe_description) > 0) {
+		print '<a data-tooltip title="'.$term["term"]->safe_description.'" class="'.$term["term_class"].' has-tip" href="'.$term["linkto"].'">'.$text.'</a>'; 
+	}
+	else {
+		print $text;
+	}
+?>
