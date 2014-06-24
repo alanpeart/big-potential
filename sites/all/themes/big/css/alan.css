@@ -1841,6 +1841,52 @@ button.ajax-processed:hover {
 	color: #575756;
 	margin-top: 15px;
 }
+aside section:first-child h2.block-title {
+	margin-top: 0;
+}
+.search-api-page-results #backlink {
+	font-size: 100%;
+}
+.search-api-page-results #backlink .search-performance-inner {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 500;
+	color: #000;
+	background: #EDEDED;
+	width: auto;
+	padding: 10px;
+}
+.search-api-page-results #backlink .search-performance-inner strong {
+	font-weight: 600;
+}
+.search-results li.search-result h3.title {
+	color: #0C233E;
+	font-size: 16px;
+	font-weight: 600;
+	margin-top: 0px;
+}
+.search-results li.search-result h3.title a {
+	color: #0C233E;
+	font-size: 16px;
+	font-weight: 600;
+}
+.search-results .search-snippet-info {
+	margin-left: 0px;
+}
+.search-results .search-snippet-info, .search-results .search-snippet-info p {
+	color: #575756;
+	font-size: 13px;
+	font-family: "proxima nova", Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+}
+.search-image {
+    float: left;
+    width: 140px;
+}
+.search-results li.search-result {
+	max-width: 100%;
+	margin-bottom: 20px;
+}
 
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
