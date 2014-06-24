@@ -104,6 +104,10 @@ table.fs-openings {
 	font-weight: 500;
 	font-size: 24px;
 }
+.view-news .views-row {
+	width: 100%;
+	max-width: 780px;
+}
 .view-news .views-field-body {
 	margin-top: 15px;
 }
@@ -1714,9 +1718,9 @@ a.lexicon-term {
 	text-decoration: none !important;
 }
 
-.view-providers-directory .view-header,
-.view-providers-directory .view-content,
-.view-providers-directory .view-filters {
+.main .view .view-header,
+.main .view .view-content,
+.main .view .view-filters {
 	float: left;
 	clear: left;
 	width: 100%;
