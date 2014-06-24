@@ -1710,8 +1710,8 @@ a.lexicon-term {
 	border-bottom: 1px dotted #666;
 	color: #000;
 }
-.body a.lexicon-term {
-	text-decoration: none;
+.body a.lexicon-term, .body a.lexicon-term:hover {
+	text-decoration: none !important;
 }
 
 .view-providers-directory .view-header,
