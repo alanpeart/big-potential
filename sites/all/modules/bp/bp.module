@@ -184,7 +184,7 @@ function bp_check_eligibility($node) {
 		$eligible = FALSE;
 	}
 	if($node->field_how_much_capital['und'][0]['value'] == 0) {
-		$questions[] = array('id'=>'field_how_much_capital','message'=>'You must be looking to raise up to £500,000 of new (repayable) investment');
+		$questions[] = array('id'=>'field_how_much_capital','message'=>'You must be looking to raise up to &pound;500,000 of new (repayable) investment');
 		$eligible = FALSE;
 	}	
 	if($node->field_investor_potential['und'][0]['value'] == 0) {

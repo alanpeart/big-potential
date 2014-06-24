@@ -329,10 +329,9 @@ ul.button-group li a.active {
 	background: transparent url('../images/link-arrow.png') no-repeat left bottom;
 }
 #backlink {
-	padding: 12px 0 12px 0;
-	border-top: 2px solid #CECECE;
+	padding: 0px 0 15px 0;
 	border-bottom: 2px solid #CECECE;
-	margin-bottom: 12px;
+	margin-bottom: 15px;
 }
 #backlink .button.grey {
 	background: #EDEDED url('../images/backlink-arrow.png') no-repeat 12px 50%;
@@ -584,6 +583,7 @@ a.facebook {
 
 .view-providers-directory .views-row {
 	width:100%;
+	position:relative;
 }
 
 .view-providers-directory .views-row .views-row-inner {
@@ -793,17 +793,17 @@ input#edit-keys {
 }
 .flag-save-provider a.flag {
 	display: block;
-	width: 15px;
+	width: 23px;
 	height: 23px;
-	background: transparent url('../images/flag.png') no-repeat left top;
+	background: transparent url('images/icon_heart_off.png') no-repeat left top;
 	text-indent: -9999px;
 }
 .flag-save-provider a.flagged, .flag-save-provider a.unflag-action, .flag-save-provider a.flag:hover {
-	background: transparent url('../images/flagged.png') no-repeat left top;
+	background: transparent url('images/icon_heart_on.png') no-repeat left top;
 	text-decoration: none;
 }
 .flag-save-provider a.flagged:hover {
-	background: transparent url('../images/flag.png') no-repeat left top;
+	background: transparent url('images/icon_heart_off.png') no-repeat left top;
 	text-decoration: none;
 }
 .flag-save-provider .flag-message {
@@ -849,8 +849,10 @@ input#edit-keys {
 }
 .view-providers-directory .views-field-php {
 	margin-left: 8px;
-	font-size: 11px;
-	color: #000;
+	color: #575756;
+	font-weight: 400;
+	font-size: 13px;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
 }
 .views-field-field-services{
 	margin: 10px 0;
@@ -867,6 +869,7 @@ input#edit-keys {
 	font-size: 13px;
 	line-height: 1.35;
 	font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	margin-bottom:0;
 }
 #provider-logo {
 	float: left;
@@ -886,24 +889,28 @@ input#edit-keys {
 	display: block;
 	width: auto;
 	float: right;
+	margin-right: -150px;
 }
 h1.node-title {
 	font-size: 18px;
 	
 }
 #provider-remain .field-name-field-region {
-	color: #666;
+	color: #575756;
 	text-transform: uppercase;
-	display: inline;
-	margin-right: 10px;
-	font-weight: 500;
+	font-weight: 400;
 	margin-bottom: 8px;
-	font-size: 15px;	
+	font-size: 13px;
+	display: inline;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
 }
 #provider-remain .no-consultants {
-	display: inline;
-	font-size: 11px;
-	color: #000;	
+	margin-left: 8px;
+	color: #575756;
+	font-weight: 400;
+	font-size: 13px;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+	display: inline;	
 }
 .field-name-field-services {
 	margin: 8px 0 15px 0;
@@ -1590,11 +1597,85 @@ border-radius: 3px;
 .view-providers-directory .view-header {
 	border-bottom: 2px solid #CECECE;
 	margin-bottom:25px;
+	font-weight:300;
+	font-size:16px;
+	color:#575756;
+}
+
+.view-providers-directory .view-header p{
+	margin-bottom:25px;
+	font-weight:300;
+	font-size:16px;
+	color:#575756;
+}
+
+.view-providers-directory .view-header h2{
+	font-weight:600;
+	font-size:28px;
+	color:#0C233E;
+}
+
+.view-providers-directory .view-header .left{
+	width:390px;
+}
+
+.view-providers-directory .view-header .right{
+	width:270px;
+	margin-top: 55px;
+	margin-bottom: 25px;
 }
 
 .view-providers-directory .views-exposed-form {
 	border-bottom:none !important;
 	padding-bottom:0;
+}
+
+.view-providers-directory .views-field-ops {
+	position:absolute;
+	top:10px;
+	right:0;
+}
+
+.view-providers-directory .views-field-field-logo {
+	margin-bottom:0;
+}
+
+.panel.callout {
+	border:none !important;
+	margin-bottom: 0;
+	padding: 10px;
+	background: #ADD1FB;
+	font-family: "proxima-nova-condensed", Arial, Helvetica, sans-serif;
+	color:#0C233E;
+	font-size:14px;
+	font-weight:400;
+	line-height:1.4em;
+	background-image:url(images/icon_heart_on.png);
+	background-repeat:no-repeat;
+	background-position: 245px 10px;
+	background-position: 235px 12px;
+	padding-right: 80px;
+}
+
+#backlink .button.grey {
+	background-image:url('../images/backlink-arrow.png') !important;
+background-color: #EDEDED !important;
+background-repeat: no-repeat !important;
+background-position: 12px 50% !important;
+padding: 8px 12px 6px 28px;
+color:#000 !important;
+font-size: 12px;
+font-weight: 400 !important;
+text-transform: uppercase;
+margin-bottom: 0px;
+}
+
+.node-provider .node-title {
+	color: #0C233E;
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 2px;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
 }
 
 @media only screen and (min-width: 40.063em) {

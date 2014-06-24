@@ -1657,6 +1657,38 @@ a.lexicon-term {
 	width: 100%;
 }
 
+.alert-box.alert p {
+	color: #fff;
+}
+.page-user .selectBox-dropdown-menu {
+	min-width: 320px !important;
+}
+.date-clear-selectBox-dropdown-menu {
+	min-width: 100px !important;
+}
+div.alert-box.warning {
+	border-color: #E45E3A;
+	border-width: 0px;
+	background: #E45E3A url(../images/warning.png) no-repeat 30px 10px;
+}
+div.alert-box.warning a {
+	color: #fff;
+	text-decoration: underline;
+}
+#eligibility-warning {
+	text-transform: uppercase;
+	width: 100%;
+	color: #fff;
+	float: left;
+	clear: left;
+	text-indent: 65px;
+	height: 50px;
+	line-height: 50px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
 		top: -133px;
