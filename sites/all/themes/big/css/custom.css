@@ -536,11 +536,11 @@ a.social:hover {
 	text-decoration: none;
 }
 a.twitter {
-	background: transparent url('../images/icon-twitter.png') no-repeat left top;
+	background: transparent url('images/icon_twitter.png') no-repeat left top;
 	margin-left:0;
 }
 a.facebook {
-	background: transparent url('../images/icon-facebook.png') no-repeat left top;
+	background: transparent url('images/icon_fb.png') no-repeat left top;
 }
 
 .block-views-related-resources-block {
