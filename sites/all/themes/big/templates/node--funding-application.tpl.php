@@ -1,5 +1,5 @@
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
-
+	<div class="article-inner">
 	
 	  <?php print render($title_prefix); ?>
 		<?php if(!$page) { ?>
@@ -18,7 +18,8 @@
 		}
 		
 	?>
-	<p><?php print bp_lexicon('Below you can find the funding application form that you have uploaded to our site. If you want to make any changes and re-upload, or download the original Big Potential blank form, you may click the "Edit Report" link underneath.'); ?></p>
+	<div class="funding-wrapper">
+	<p><?php print bp_lexicon('Below you can find the funding application form that you have uploaded to our site. If you want to make any changes and re-upload, or download the original Big Potential blank form, you may click the "Edit" link underneath.'); ?></p>
   <?php
     // We hide the comments and links now so that we can render them later.
     hide($content['comments']);
@@ -29,7 +30,7 @@
 
   	<?php if(bp_can_user_edit($user, $node)): ?>
 		<div id="edit-report">
-			<a href="<?php print url('node/'.$node->nid.'/edit'); ?>" class="button back grey">Edit Application</a>
+			<a href="<?php print url('node/'.$node->nid.'/edit'); ?>" class="button back grey">Edit</a>
 		</div>
 		
 		<div id="submit-report">
@@ -44,8 +45,9 @@
 				<p style="height: 5px !important;"></p>
 			<?php	}
 			?>
-			<?php print flag_create_link('submit_funding_application_', $node->nid); ?>
 		</div>
 	<?php endif; ?>
-
+	</div><!-- //funding-wrapper -->
+	</div><!-- /article-inner -->
+	<?php print flag_create_link('submit_funding_application_', $node->nid); ?>
 </article>

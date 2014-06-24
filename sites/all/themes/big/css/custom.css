@@ -3,7 +3,7 @@ body {
 	color: #6a6a69;
 	background-image:url(images/top-01.png);
 	background-repeat:no-repeat;
-	background-position: right 34px;
+	background-position: right 28px;
 }
 p {
 	line-height: 1.4;
@@ -71,7 +71,7 @@ a:hover, a:focus {
   max-width: 60.625rem;
 }
 #user-menu-bar {
-	height: 36px;
+	height: 30px;
 	overflow: hidden;
 	background-color: #0C304F;
 	margin-bottom: 22px;
@@ -86,7 +86,7 @@ a:hover, a:focus {
 	float: right;
 	display: block;
 	padding: 0px;
-	margin: 6px 0 0 8px;
+	margin: 0 0 0 8px;
 	color: #000;
 	width: auto;
 	font-size: 11px;
@@ -459,7 +459,7 @@ footer.row {
     color: #000;
     background-color: #EDEDED;
     margin-bottom: 0px;
-    padding: 40px 0 25px 0;
+    padding: 40px 0 0 0;
     border: medium none;
 }
 
@@ -486,7 +486,7 @@ footer p a:hover, footer .panel p a:hover, footer a:hover, footer .panel p a:hov
 
 }
 #subfooter p, #subfooter .panel p {
-	color: #fff;
+	color: #ADD1FB;
 	font-size: 12px;
 	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
 	font-weight: 600;
@@ -497,10 +497,10 @@ footer p a:hover, footer .panel p a:hover, footer a:hover, footer .panel p a:hov
 	padding: 0;
 }
 #subfooter p a, #subfooter .panel p a, #subfooter a, #subfooter .panel p a {
-	color: #fff;
+	color: #ADD1FB;
 }
 #subfooter p a:hover, #subfooter .panel p a:hover, #subfooter a:hover, #subfooter .panel p a:hover {
-
+	color:#FFF;
 }
 #fatfooter {
 	margin-top: 40px;
@@ -512,11 +512,12 @@ footer p a:hover, footer .panel p a:hover, footer a:hover, footer .panel p a:hov
 #mini-panel-fat_footer .panels-flexible-region-1-center {
 	width: 26%;
 	text-align: right;
-	margin-left:160px;
+	margin-left:6.2%;
 }
 #mini-panel-fat_footer .panels-flexible-region-last {
-	width: 8%;
+	width: 7%;
 	text-align: right;
+	float:right;
 }
 a.social {
 	margin-left: 8px;
@@ -536,6 +537,7 @@ a.social:hover {
 }
 a.twitter {
 	background: transparent url('../images/icon-twitter.png') no-repeat left top;
+	margin-left:0;
 }
 a.facebook {
 	background: transparent url('../images/icon-facebook.png') no-repeat left top;
@@ -924,10 +926,11 @@ h1.node-title {
 	font-size: 13px;
 }
 #provider-remain .field-name-field-telephone {
-	font-family: "proxima-nova-condensed", "proxima-nova", Arial, Helvetica, sans-serif;	
-	color: #666;
-	margin: 15px 0;
-	font-size: 13px;
+	line-height:1.3rem;
+	font-size:13px;
+	color:#575756;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+	margin-bottom:10px;
 }
 #provider-remain .social {
 	margin: 0 0 15px 0;
@@ -936,20 +939,20 @@ h1.node-title {
 	display: inline-block;
 	width: 20px;
 	height: 21px;
-	margin-right: 5px;
+	margin-right: 3px;
 	text-indent: -9999px;
 }
 .social a.email {
-	background: transparent url('../images/socialemail.png') no-repeat left top;
+	background: transparent url('images/icon_email.png') no-repeat left top;
 }
 .social a.facebook {
-	background: transparent url('../images/socialfacebook.png') no-repeat left top;
+	background: transparent url('images/icon_fb.png') no-repeat left top;
 }
 .social a.twitter {
-	background: transparent url('../images/socialtwitter.png') no-repeat left top;
+	background: transparent url('images/icon_twitter.png') no-repeat left top;
 }
 .social a.linkedin {
-	background: transparent url('../images/sociallinkedin.png') no-repeat left top;
+	background: transparent url('images/icon_linkedin.png') no-repeat left top;
 }
 #provider-remain .field-name-field-introduction {
 	font-family: "proxima-nova-condensed", "proxima-nova", Arial, Helvetica, sans-serif;	
@@ -966,20 +969,26 @@ h1.node-title {
 	line-height: 1.5;
 }
 #provider-remain .body p {
-	font-family: "proxima-nova-condensed", "proxima-nova", Arial, Helvetica, sans-serif;	
-	color: #666;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;	
+	color: #575756;
 	font-size: 13px;
+	font-weight:400;
 }
 .block-views-consultants-block {
 	margin-left: 115px;
 	max-width: 440px;
 }
 .block-views-consultants-block h2.block-title {
-		padding: 10px 0;
-		border-top: 1px solid #C6C6C6;
-		border-bottom: 1px solid #C6C6C6;
-		background: #fff;
-		text-transform: none;
+	padding:0 0 0 10px;
+	height:36px;
+	line-height:36px;
+	background: #EDEDED;
+	text-transform: none;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color:#000;
+	font-weight:600;
+	margin-bottom:25px;
 }
 .block-views-consultants-block .views-field-picture img {
 	width: 188px;
@@ -994,19 +1003,17 @@ h1.node-title {
 	clear: none;
 	width: 188px;
 	margin-right: 15px;
-	margin: 15px 15px 15px 0;
-	height: 215px;
-	max-height: 215px;
-	overflow: hidden;
+	margin: 0 15px 15px 0;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+	border-bottom: solid 2px #C6C6C6;
 }
 .block-views-consultants-block .views-field-name {
 	color: #000;
 	text-transform: none;
 	font-size: 16px;
-	font-weight: 700 !important;
+	font-weight:600 !important;
 	margin: 10px 0;
 }
 
@@ -1015,6 +1022,11 @@ h1.node-title {
 	margin-bottom: 5px;
 	margin-top: 0px;
 }
+
+.block-views-consultants-block .views-field-field-provider-services{
+	height:65px;
+}
+
 .block-views-consultants-block .views-field-field-services div,
 .block-views-consultants-block .views-field-field-services ul {
 	display: inline;
@@ -1028,7 +1040,7 @@ h1.node-title {
 	width: 20px;
 	height: 21px;
 	text-indent: -9999px;
-	background: transparent url('../images/socialemail.png') no-repeat left top;
+	background: transparent url('images/icon_email.png') no-repeat left top;
 }
 .columns.siteheader {
 	float: right;
@@ -1199,14 +1211,15 @@ button#edit-submit-dialog, button#edit-cancel-dialog {
 }
 .flag-connected-consultants a.flag {
 	padding: 5px;
-	color: #000;
-	background-color: #C6C6C6;
+	color: #ADD1FB;
+	background-color: #0C233E;
 	transition: background-color 300ms ease-out 0s;
-	font-size: 11px;
+	font-size: 10px;
 	text-transform: uppercase;
 }
 .flag-connected-consultants a.flag:hover {
-	background-color: #999;
+	background-color: #eef6fe;
+	color:#0C233E;
 	text-decoration: none;
 }
 
@@ -1483,7 +1496,7 @@ a.icon:hover {
 
 .panels-flexible-region-1-left1 {
 	float: left;
-	width: 25.75%;
+	width: 36.75%;
 }
 
 .flex-direction-nav a {
@@ -1575,6 +1588,7 @@ border-radius: 3px;
 	padding:0 !important;
 	color:#FFF !important;
 	text-transform: none !important;
+	background-color:#328BF6 !important;
 }
 
 .mailchimp-signup-subscribe-form .form-type-textfield {
@@ -1582,7 +1596,8 @@ border-radius: 3px;
 }
 #mailchimp-signup-subscribe-block-subscribe-form {
 	margin-top: 12px;
-	float: left;
+	float: right;
+	margin-right:-10px;
 }
 
 #mailchimp-newsletter-421509-mergefields {
@@ -1676,6 +1691,49 @@ margin-bottom: 0px;
 	font-weight: 600;
 	margin-bottom: 2px;
 	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+}
+
+.node-provider .field-name-field-provider-services {
+	margin: 8px 0 8px 0;
+}
+
+
+.node-provider .adr {
+	line-height:1.3rem;
+	font-size:13px;
+	color:#575756;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+}
+
+.node-provider .adr .fn {
+	line-height:1.3rem;
+	font-size:13px;
+	color:#575756;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+	font-weight:600;
+}
+
+img.sponsor {
+	display:inline;
+	float:left;
+	margin-top:-10px;
+}
+
+.sibgroup {
+	width:118px;
+	height:78px;
+}
+
+.biglottery {
+	width:52px;
+	height:52px;
+	margin-left:20px
+}
+
+.nationallottery {
+	width:135px;
+	height:25px;
+	margin-left:10px;
 }
 
 @media only screen and (min-width: 40.063em) {

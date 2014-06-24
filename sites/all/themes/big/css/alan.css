@@ -585,12 +585,22 @@ button.ajax-processed:hover {
 #funding-application-node-form .vertical-tabs {
 	clear: both;
 }
-#funding-application-node-form p {
-	font-size: 14px;
-	font-weight: 600;
+#funding-application-node-form p,
+#funding-application-node-form ol a,
+#funding-application-node-form p a {
+	font-size: 16px;
+	font-weight: 500;
 	line-height: 1.5;
 	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
-	color: #000;
+	color: #575756;
+}
+#funding-application-node-form ol {
+	margin-left: 15px;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.5;
+	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+	color: #575756;	
 }
 #funding-application-node-form .fieldset-description {
 	font-size: 16px;
@@ -617,11 +627,12 @@ button.ajax-processed:hover {
 	display: none;
 }
 #field-introduction-and-download-add-more-wrapper h2 {
-	line-height: 1.2;
+	line-height: 1.3;
 	margin-bottom: 20px;
-	color: #328BF6;
-	font-weight: 500;
-	font-size: 24px;	
+	color: #0C233E;
+	font-weight: 700;
+	font-size: 18px;	
+	max-width: 400px;
 }
 #funding-application-node-form #edit-field-file-upload .description {
 	display: none;
@@ -662,18 +673,69 @@ input[type="file"] {
 	float: left;
 	clear: left;
 	width: 100%;
-	background-color: #f9f9f9;
+	background-color: #FFF;
 	padding: 15px;
 }
+.node-funding-application .article-inner {
+	background-color: #FAFAFA;
+	padding: 30px 15px 15px 15px;
+	float: left;
+	clear: left;
+	width: 100%;	
+}
+.node-funding-application .funding-wrapper {
+	background-color: #FFF;
+	padding: 30px 15px 15px 15px;
+	float: left;
+	clear: left;
+	width: 100%;	
+}
+.node-funding-application .flag-wrapper {
+	float: left;
+	clear: left;
+	width: 100%;
+	display: block;
+	text-align: right;
+	margin-top: 40px;
+}
+
 .node-funding-application .field-name-field-file-upload {
 	padding: 15px;
 	background-color: #fff;
+	width: 80%;
 }
-.flag-submit-funding-application- a.flag {
-	margin-top: 15px;
+.flag-submit-funding-application- a.flag,
+#funding-application-node-form .button.grey {
+	margin-top: 30px !important;
+	background-color: #ADD1FB !important;
+	font-size: 17px !important;
+	color: #0C233E !important;
+}
+#funding-application-node-form .button.grey {
+	margin-top: 15px !important;
+}
+.flag-submit-funding-application- a.flag:hover,
+#funding-application-node-form .button.grey:hover {
+	background-color: #0C233E !important;
+	color: #FFF !important;
 }
 .node-funding-application #edit-report {
 	margin-bottom: 0px;
+	margin-top: 10px;
+	width: 20%;
+	float: left;
+}
+.node-funding-application #edit-report a.button {
+	margin-top: 0px !important;
+	background-color: #ADD1FB !important;
+	font-size: 17px !important;
+	color: #0C233E !important;
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+.node-funding-application #edit-report a.button:hover {
+	background-color: #0C233E !important;
+	color: #FFF !important;
 }
 
 #dashboard {
@@ -1399,10 +1461,10 @@ fieldset#edit-field-address-und-0 .form-item label,
 	font-weight: 500;
 }
 .form-item .description {
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 1.5;
 	padding: 10px;
-	color: #0C233E;
+	color: #575756;
 	background-color: #DDEDFD;
 }
 .form-type-slider.form-item .description {
@@ -1687,7 +1749,91 @@ div.alert-box.warning a {
 	padding-top: 0px;
 	padding-bottom: 0px;
 }
-
+#user-login .form-submit, #user-register-form .form-submit {
+	float: right;
+}
+.page-user-login .large-9 > section, .page-user-register .large-9 > section {
+	background: #FAFAFA;
+	margin-bottom: 0px;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.page-user-login .large-9 > section h2, .page-user-register .large-9 > section h2 {
+	margin-left: 30px;
+	font-size: 28px;
+	margin-top: 30px;
+	color: #0C233E;
+}
+#field-address-add-more-wrapper {
+	position: relative;
+}
+#user-register-form .field-type-location fieldset legend {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 20px;
+}
+#user-register-form .field-type-location .fieldset-wrapper {
+	margin-top: 30px;
+}
+#user-login, #user-register-form {
+	background: #FAFAFA;
+	padding: 15px;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+#user-login .form-item, #user-register-form .form-item:not(.form-type-checkbox) {
+	background: #FFF;
+	padding: 15px;
+}
+#user-login .form-item > label:not(.option), #user-register-form .form-item label:not(.option) {
+	font-size: 18px;
+	margin-bottom: 12px;
+	color: #0C233E;
+}
+#user-register-form #field-address-add-more-wrapper .form-item label {
+	font-size: 16px;
+}
+#user-register-form #field-address-add-more-wrapper .form-item {
+	margin: 10px 0;
+}
+#user-login .form-required {
+	display: none;
+}
+#user-register-form .field-group-div {
+	width: 100%;
+}
+#user-register-form .form-required {
+	color: #0C233E;
+}
+#user-register-form .field-type-location {
+	background: #fff;
+}
+button.ajax-processed {
+   background-color: #ADD1FB !important;
+    color: #0C233E !important;
+    font-family: "proxima-nova","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+	padding: 5px 15px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 300ms ease-out 0s;
+	margin-left: 15px;
+}
+button.ajax-processed:hover {
+	background-color: #0C233E !important;
+	color: #fff !important;
+}
+#field-submission-add-more-wrapper p {
+	font-size: 12px;
+	color: #575756;
+	margin-top: 15px;
+}
 
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
