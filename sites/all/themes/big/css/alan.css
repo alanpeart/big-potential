@@ -1710,6 +1710,9 @@ a.lexicon-term {
 	border-bottom: 1px dotted #666;
 	color: #000;
 }
+.body a.lexicon-term {
+	text-decoration: none;
+}
 
 .view-providers-directory .view-header,
 .view-providers-directory .view-content,
