@@ -1890,6 +1890,9 @@ aside section:first-child h2.block-title {
 .block-block-10 p {
 	margin: 0 30px;
 }
+img.logo {
+	height: 77px;
+}
 
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
@@ -2006,6 +2009,9 @@ aside section:first-child h2.block-title {
 	}
 }
 @media only screen and (max-width: 40em) {
+	img.logo {
+		margin-bottom: 10px;
+	}
 	.form-type-slider.form-item .description {
 		width: 100%;
 	}
