@@ -1818,7 +1818,7 @@ div.alert-box.warning a {
 #user-register-form .field-type-location {
 	background: #fff;
 }
-button.ajax-processed {
+.file-widget button.ajax-processed {
    background-color: #ADD1FB !important;
     color: #0C233E !important;
     font-family: "proxima-nova","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif !important;
@@ -1832,7 +1832,7 @@ button.ajax-processed {
     transition: background-color 300ms ease-out 0s;
 	margin-left: 15px;
 }
-button.ajax-processed:hover {
+.file-widget button.ajax-processed:hover {
 	background-color: #0C233E !important;
 	color: #fff !important;
 }
