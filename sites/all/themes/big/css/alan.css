@@ -1887,6 +1887,9 @@ aside section:first-child h2.block-title {
 	max-width: 100%;
 	margin-bottom: 20px;
 }
+.block-block-10 p {
+	margin: 0 30px;
+}
 
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
