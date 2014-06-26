@@ -961,44 +961,67 @@ h1#page-title {
 	font-weight: 700 !important;
 	margin: 10px 0;
 }
-#document-library > h2 {
+#document-library > h2,
+.view-downloads .view-header h2,
+.field-name-field-related-content .field-label {
 	padding-bottom: 20px;
 	border-bottom: 1px solid #000;
 	margin-bottom: 20px;
+    color: #000;
+    font-family: "proxima-nova","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+	font-size: 22px;
+	width: 100%;
 }
-.view-document-library {
+.field-name-field-related-content {
+	margin-bottom: 30px;
+	width: 100%;
+}
+.view-document-library,
+.view-downloads {
 	float: left;
 	width: 100%;
 }
-.view-document-library .views-row {
+.view-document-library .views-row,
+.view-downloads .views-row {
 	width: 100%;
 	float: left;
 	clear: left;
 }
-.view-document-library .views-field-field-download {
+.view-document-library .views-field-field-download,
+.view-downloads .views-field-field-download {
 	width: 60px;
 	float: left;
 	margin-right: 15px;
 }
-.view-document-library .views-field-field-download img {
+.view-document-library .views-field-field-download img,
+.view-downloads .views-field-field-download img {
 	width: 60px;
 }
 .view-document-library .views-field-field-download-1,
-.view-document-library .views-field-field-download-1 div {
+.view-document-library .views-field-field-download-1 div,
+.view-downloads .views-field-field-download-1,
+.view-downloads .views-field-field-download-1 div {
 
 }
 .view-document-library .views-field-field-download-2,
-.view-document-library .views-field-field-download-2 div {
+.view-document-library .views-field-field-download-2 div,
+.view-downloads .views-field-field-download-2,
+.view-downloads .views-field-field-download-2 div {
 	font-size: 13px;
 	color: #999;
 	font-family: "proxima-nova-condensed", Arial, Helvetica, sans-serif;
 	margin-top: 10px;
 }
-.view-document-library .views-field-field-download-1 img.file-icon {
+.view-document-library .views-field-field-download-1 img.file-icon,
+.view-downloads .views-field-field-download-1 img.file-icon {
 	display: none;
 }
 .view-document-library .views-field-field-download-1 .file,
-.view-document-library .views-field-field-download-1 .file a {
+.view-document-library .views-field-field-download-1 .file a,
+.view-downloads .views-field-field-download-1 .file,
+.view-downloads .views-field-field-download-1 .file a {
 	font-weight: bold;
 	color: #000;
 }
