@@ -1245,6 +1245,7 @@ ul.slider-stages.triple li {
 	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
 	font-size: 17px;
 	font-weight: 500;
+	line-height: 1.5;
 }
 .multipage-pane-wrapper > .form-wrapper, .field-group-div {
 	float: left;
