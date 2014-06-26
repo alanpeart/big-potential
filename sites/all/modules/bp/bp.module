@@ -159,6 +159,12 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 				$form['field_account_type']['und']['#title'] = 'Register this user as:';
 			}
 		break;
+		case "user_login":
+			//print '<pre>';
+			//print_r($form);
+			//print '</pre>';
+			$form['pass']['#description'] = 'Enter the password that accompanies your username. If you have forgotten your password, <a href="/user/password?destination=user/login" title="Password reset form">click here</a> to reset it.';
+		break;
 	}
 }
 function bp_truncate($string,$length=100,$append="&hellip;") {
