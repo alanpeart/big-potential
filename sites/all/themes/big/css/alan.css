@@ -1854,7 +1854,7 @@ div.alert-box.warning a {
     text-align: center;
     text-decoration: none;
     transition: background-color 300ms ease-out 0s;
-	margin-left: 15px;
+	margin-left: 30px;
 }
 .file-widget button.ajax-processed:hover {
 	background-color: #0C233E !important;
