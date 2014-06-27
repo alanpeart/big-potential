@@ -1921,6 +1921,23 @@ img.logo {
 	display: none;
 }
 
+.block-block-11 {
+	background-color: #edf5fd;
+}
+.block-block-11 p {
+	font-size: 14px;
+	padding: 15px;
+	color: #0c304f;
+	font-family: "proxima-nova-condensed",Arial,Helvetica,sans-serif;
+}
+.block-block-11 p a {
+	text-decoration: underline;
+}
+.sidebar section h2.block-title {
+	margin-top: 0;
+}
+    
+
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
 		top: -133px;
