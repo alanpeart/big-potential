@@ -158,6 +158,7 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 				$form['field_account_type']['und']['#default_value'] = 'provider';
 				$form['field_account_type']['und']['#title'] = 'Register this user as:';
 			}
+			$form['#submit'][] = "bp_user_register_submit";
 		break;
 		case "user_login":
 			//print '<pre>';
@@ -171,6 +172,11 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 		break;
 	}
 }
+
+function bp_user_register_submit($form, &$form_state) {
+	$form_state['redirect'] = $_GET['q']; //Adds the current url as redirect.
+}
+
 function bp_truncate($string,$length=100,$append="&hellip;") {
   $string = trim($string);
 
