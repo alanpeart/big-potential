@@ -1917,6 +1917,9 @@ aside section:first-child h2.block-title {
 img.logo {
 	height: 77px;
 }
+#user-profile-form .form-item-pass .description:last-child {
+	display: none;
+}
 
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {

@@ -165,6 +165,10 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 			//print '</pre>';
 			$form['pass']['#description'] = 'Enter the password that accompanies your username. If you have forgotten your password, <a href="/user/password?destination=user/login" title="Password reset form">click here</a> to reset it.';
 		break;
+		case "user_profile_form":
+			$form['account']['mail']['#description'] = '<a name="jumptopass" id="jumptopass"></a>' . $form['account']['mail']['#description']; 
+			//dsm($form);			
+		break;
 	}
 }
 function bp_truncate($string,$length=100,$append="&hellip;") {
