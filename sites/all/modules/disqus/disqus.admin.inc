@@ -60,6 +60,19 @@ function disqus_admin_settings() {
       ),
     ),
   );
+  // Enable by default settings.
+  $form['default_options'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Default options'),
+    '#group' => 'settings',
+  );
+  $form['default_options']['disqus_nodetypes_default'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Node Types'),
+    '#description' => t('Select disqus comments by default to only the following node types.'),
+    '#default_value' => variable_get('disqus_nodetypes_default', array_keys($options)),
+    '#options' => $options,
+  );
   // Behavior settings.
   $form['behavior'] = array(
     '#type' => 'fieldset',
@@ -195,6 +208,7 @@ function disqus_admin_settings() {
       ),
     ),
   );
+
   // Make sure the validation is called to handle the custom sso logo.
   $form['#submit'][] = 'disqus_admin_settings_submit';
   return system_settings_form($form);
