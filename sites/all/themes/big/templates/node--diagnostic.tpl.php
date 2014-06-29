@@ -15,7 +15,6 @@
 		<?php print bp_lexicon('This report provides an initial summary of the investment readiness of the organisation. There are five building blocks of investment readiness and these are shown in the diagram below. Governance & Leadership and Market Potential are the "pillars" upon which the other blocks rest.'); ?>
 		</p>
 		<div class="printlinks">
-			<?php print print_insert_link(); ?>
 			<?php print print_pdf_insert_link(); ?>		
 		</div>		
 	</div>
