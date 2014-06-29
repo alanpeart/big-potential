@@ -168,7 +168,7 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 			}
 			if(isset($form_state['field']['field_account_type']['und']['instance']['default_value'][0]['value'])) {
 				if($form_state['field']['field_account_type']['und']['instance']['default_value'][0]['value'] == 'organisation') {
-					$form['#validate'][] = 'bp_address_validate';
+					$form['#validate'][] = 'bp_account_address_validate';
 				}
 			}			
 			$form['#submit'][] = "bp_user_register_submit";
@@ -181,13 +181,41 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 		break;
 		case "user_profile_form":
 			$form['account']['mail']['#description'] = '<a name="jumptopass" id="jumptopass"></a>' . $form['account']['mail']['#description']; 
-			$form['#validate'][] = 'bp_address_validate';
+			$form['#validate'][] = 'bp_account_address_validate';
 			//dsm($form);			
 		break;
 	}
 }
 
 function bp_address_validate($form, &$form_state) {
+	// dsm($form_state['values']);
+	// Check for special characters in address fields
+	if(isset($form_state['values']['field_address']['und'][0]['city'])) {
+		if(strpbrk($form_state['values']['field_address']['und'][0]['city'], SPECIAL_CHARS)) {
+			form_set_error('field_address', 'Address: You cannot enter special characters in the City field');
+		}
+	}
+	if(isset($form_state['values']['field_address']['und'][0]['additional'])) {
+		if(strpbrk($form_state['values']['field_address']['und'][0]['additional'], SPECIAL_CHARS)) {
+			form_set_error('field_address', 'Address: You cannot enter special characters in the Additional field');
+		}
+	}	
+	if(isset($form_state['values']['field_address']['und'][0]['street'])) {
+		if(strpbrk($form_state['values']['field_address']['und'][0]['street'], SPECIAL_CHARS)) {
+			form_set_error('field_address', 'Address: You cannot enter special characters in the Street field');
+		}
+	}	
+	// Validate postcode
+	if(isset($form_state['values']['field_address']['und'][0]['postal_code'])) {
+		$pcode = $form_state['values']['field_address']['und'][0]['postal_code'];
+		$pcode_validate = postal_code_validation_validate($pcode, 'GB');
+		if($pcode_validate['error']) {
+			form_set_error('field_address', $pcode_validate['error']);
+		}
+	}
+}
+
+function bp_account_address_validate($form, &$form_state) {
 	// dsm($form_state['values']);
 	if(isset($form_state['values']['field_account_type']['und'][0]['value'])) {
 		if($form_state['values']['field_account_type']['und'][0]['value'] == 'organisation') {	
