@@ -2110,6 +2110,10 @@ img.logo {
 	margin-top: 0;
 }
 
+textarea {
+	min-height: 150px;
+}
+
 @media all {
 	.print-page-break	{ display: none; }
 }
