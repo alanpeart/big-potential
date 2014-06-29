@@ -82,6 +82,8 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 .node-form .vertical-tabs {
 	float: left;
 	clear: left;
+	width: 700px;
+	max-width: 100%;
 }
 
 .field-name-field-provider-services {
@@ -2015,7 +2017,9 @@ div.alert-box.warning a {
 #user-register-form .field-type-location {
 	background: #fff;
 }
-.file-widget button.ajax-processed {
+.file-widget button.ajax-processed,
+.image-widget button.ajax-processed,
+.button.launcher {
    background-color: #ADD1FB !important;
     color: #0C233E !important;
     font-family: "proxima-nova","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif !important;
@@ -2029,9 +2033,18 @@ div.alert-box.warning a {
     transition: background-color 300ms ease-out 0s;
 	margin-left: 30px;
 }
-.file-widget button.ajax-processed:hover {
+.file-widget button.ajax-processed:hover,
+.image-widget button.ajax-processed:hover,
+.button.launcher:hover {
 	background-color: #0C233E !important;
 	color: #fff !important;
+}
+.button.launcher {
+	margin-left: 0px;
+	margin-bottom: 20px;
+}
+.form-type-managed-file > .description {
+	margin-top: 10px;
 }
 #field-submission-add-more-wrapper p {
 	font-size: 12px;
@@ -2110,8 +2123,19 @@ img.logo {
 	margin-top: 0;
 }
 
+/* Tidy up node forms */
+
 textarea {
 	min-height: 150px;
+}
+.filter-guidelines-item {
+	display: none !important;
+}
+html.js input.form-autocomplete {
+	height: 24px;
+	padding-top: 0;
+	padding-bottom: 0;
+	line-height: 24px;
 }
 
 @media all {
