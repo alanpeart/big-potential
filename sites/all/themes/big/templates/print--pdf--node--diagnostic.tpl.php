@@ -108,14 +108,17 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="print-page-break">&nbsp;</div>
+<?php
+	$colours = array('governance-leadership'=>'#F9C32B', 'marketpotential'=>'#DD4C2C', 'financialcontrol'=>'#00A173', 'financialperformance'=>'#2668B9', 'quality-impact'=>'#DD43CE');
+?>
 	<div id="areas-detail" class="panel white">
 		<?php 
 			foreach($areas as $id=>$values) { ?>
-				<div class="area-all">
+				<div class="area-all <?php print $values['class']; ?>">
 					<div class="area-chart-individual">
 						<div class="chart-overlay-contain">
-							<?php print bp_diagnostic_pie_chart('area-chart-'.$id, '', '#3C3C3B', array('Score'=>$values['perc'], 100), 200, 200); ?>
+							<?php print bp_diagnostic_pie_chart('area-chart-'.$id, '', $colours[$values['class']], array('Score'=>$values['perc'], 'Remainder'=>(100-$values['perc'])), 200, 200); ?>
 							<div id="area-chart-<?php print $id; ?>" class="big-chart">						
 							</div>	
 							<div class="area-chart-overlay">
@@ -125,13 +128,14 @@
 					</div>	
 					<div class="area-text">
 						<h3><?php print $values['title']; ?></h3>
-						<div class="area-description"><?php print $values['body']; ?></div>
-						<div class="area-message"><?php print $values['msg']; ?></div>
+						<div class="area-description"><?php print bp_lexicon($values['body']); ?></div>
+						<div class="area-message"><?php print bp_lexicon($values['msg']); ?></div>
 					</div>
 				</div>
 			<?php }
 		?>
-	</div>	
+	</div>
+	<div class="print-page-break">&nbsp;</div>
 	<div id="weakest" class="panel white">
 		<p>Listed below are some questions that based on your answers you may wish to review as a priority as they are the five that will make the most difference in your score. They are shown in order of the weakest score first.</p>
 		<ul>
