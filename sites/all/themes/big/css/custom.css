@@ -1573,11 +1573,13 @@ color: #575756;
 border-radius: 3px;
 }
 
-.form-type-textfield.form-item-mergevars-EMAIL label {
+footer .form-type-textfield.form-item-mergevars-EMAIL label {
 	display:none;
 }
 
-#edit-mergevars-email {
+footer #edit-mergevars-email,
+footer #edit-mergevars-email--1,
+footer #edit-mergevars-email--2 {
 	width:170px;
 	height:23px;
 	border: none;
@@ -1587,10 +1589,10 @@ border-radius: 3px;
 	padding-bottom: 0px;
 }
 
-.mailchimp-signup-subscribe-form .form-submit,
-.mailchimp-signup-subscribe-form #edit-submit,
-.mailchimp-signup-subscribe-form #edit-submit--1,
-.mailchimp-signup-subscribe-form #edit-submit--2 {
+footer .mailchimp-signup-subscribe-form .form-submit,
+footer .mailchimp-signup-subscribe-form #edit-submit,
+footer .mailchimp-signup-subscribe-form #edit-submit--1,
+footer .mailchimp-signup-subscribe-form #edit-submit--2 {
 	height:23px !important;
 	width:60px !important;
 	font-size:12px !important;
@@ -1601,7 +1603,7 @@ border-radius: 3px;
 	background-color:#328BF6 !important;
 }
 
-.mailchimp-signup-subscribe-form .form-type-textfield {
+footer .mailchimp-signup-subscribe-form .form-type-textfield {
 	margin-top:0;
 }
 #mailchimp-signup-subscribe-block-subscribe-form {
@@ -1610,8 +1612,14 @@ border-radius: 3px;
 	margin-right:-10px;
 }
 
-#mailchimp-newsletter-421509-mergefields {
+footer #mailchimp-newsletter-421509-mergefields {
 	float:left;
+}
+#mailchimp-signup-subscribe-page-subscribe-to-our-newsletter-form h2 {
+	color: #328bf6;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .center-wrapper {
