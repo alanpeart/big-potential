@@ -223,23 +223,28 @@ table.fs-openings {
 }
 #financial-performance-block .fill,
 .fin-perf .square-tint {
-	background-color: #2668B9;
+	background-color: #2668B9 !important;
+	-webkit-print-color-adjust: exact;
 }
 #quality-impact-block .fill,
 .qual-imp .square-tint {
-	background-color: #DD43CE;
+	background-color: #DD43CE !important;
+	-webkit-print-color-adjust: exact;
 }
 #financial-control-block .fill,
 .fin-cont .square-tint {
-	background-color: #00A173;
+	background-color: #00A173 !important;
+	-webkit-print-color-adjust: exact;
 }
 #governance-leadership-block .fill,
 .gov-lead .square-tint {
-	background-color: #F9C32B;
+	background-color: #F9C32B !important;
+	-webkit-print-color-adjust: exact;
 }
 #market-potential-block .fill,
 .mark-pot .square-tint {
-	background-color: #DD4C2C;
+	background-color: #DD4C2C !important;
+	-webkit-print-color-adjust: exact;
 }
 .square-tint {
 	height: 21px;
@@ -1935,6 +1940,9 @@ img.logo {
 }
 .sidebar section h2.block-title {
 	margin-top: 0;
+}
+.print-page-break {
+	page-break-after: always;
 }
     
 
