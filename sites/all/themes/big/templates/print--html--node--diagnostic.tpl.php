@@ -128,8 +128,8 @@
 					</div>	
 					<div class="area-text">
 						<h3><?php print $values['title']; ?></h3>
-						<div class="area-description"><?php print bp_lexicon($values['body']); ?></div>
-						<div class="area-message"><?php print bp_lexicon($values['msg']); ?></div>
+						<div class="area-description"><?php print $values['body']; ?></div>
+						<div class="area-message"><?php print $values['msg']; ?></div>
 					</div>
 				</div>
 			<?php }

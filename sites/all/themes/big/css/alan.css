@@ -195,6 +195,7 @@ table.fs-openings {
 }
 .node-diagnostic .spacer {
 	height: 40px;
+	clear: both;
 }
 #bridge-diagram {
 	width: 460px;
@@ -213,6 +214,7 @@ table.fs-openings {
 	border-right: 0px;
 }
 .bridge-block.blank {
+	background-color: #FFFFFF;
 	background-color: #FFFFFF;
 }
 .bridge-block .fill {
@@ -1941,8 +1943,16 @@ img.logo {
 .sidebar section h2.block-title {
 	margin-top: 0;
 }
-.print-page-break {
-	page-break-after: always;
+
+@media all {
+	.print-page-break	{ display: none; }
+}
+
+@media print {
+	.print-page-break {
+		page-break-after: always;
+		display: block;
+	}
 }
     
 
