@@ -124,6 +124,9 @@ function computed_field_field_consultants_compute(&$entity_field, $entity_type, 
 function bp_form_alter(&$form, &$form_state, $form_id)  {
 	// dsm($form_id);
 	switch($form_id) {
+		case "mailchimp_signup_subscribe_block_subscribe_form":
+			$form['mergevars']['EMAIL']['#attributes']['placeholder'] = 'Enter email address';
+		break;
 		case "search_api_page_search_form_search":
 			$repon = arg(1);
 			if(arg(0) == 'sitesearch' && isset($repon)) {

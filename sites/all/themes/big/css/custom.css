@@ -1583,6 +1583,8 @@ border-radius: 3px;
 	border: none;
 	background-color: #FFF;
 	font-size:13px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
 .mailchimp-signup-subscribe-form .form-submit,
