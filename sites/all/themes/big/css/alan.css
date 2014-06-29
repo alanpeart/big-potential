@@ -93,6 +93,91 @@ table.fs-openings {
 .fs-embed .fs-openings-month-ct {
 	width: 100% !important;
 }
+.section-book-11-session article {
+	padding: 0 15px 15px 15px;
+	background-color: #FAFAFA;
+}
+.section-book-11-session article .body {
+	background-color: #fff;
+	padding: 15px;
+}
+.section-book-11-session article .field-name-field-introduction {
+	margin: 15px 0;
+	max-width: 520px;
+}
+.section-book-11-session h1.node-title {
+	background: #fff;
+	margin: 0px -15px 20px -15px;
+	padding: 0 15px;
+}
+.fs-embed .fs-instructions {
+	font-size: 16px !important;
+}
+.fs-booking-choices > ul > li > a {
+	display: inline-block;
+	background: #EDEDED url('../images/selectboxArrow.png') no-repeat right 50%;
+	border: 1px solid #575656;
+	height: 30px;
+	line-height: 30px;
+	width: auto;
+	max-width: 100%;
+	min-width: 335px;
+	color: #575656;
+	font-size: 16px;
+	font-weight: 500;
+	text-decoration: none;
+	padding-left: 15px;
+}
+.fs-booking-choices > ul > li > a:hover {
+	font-size: 16px;
+	font-weight: 500;
+	text-decoration: none;
+	color: #000;
+}
+.fs-service-price {
+	display: none;
+}
+.fs-option-summary p{
+	margin-top: 20px;
+}
+#fs-main .fs-booking-state {
+	margin-bottom: 40px;
+	padding-bottom: 20px;
+	border: 0px;
+}
+.fs-embed .fs-booking-state th {
+	color: #0C233E;
+	font-size: 18px;
+	font-weight: 600;
+}
+.fs-change {
+	display: inline-block;
+	padding: 5px 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #0C233E !important;
+	font-size: 18px !important;
+	background-color: #ADD1FB;
+	text-decoration: none;
+	margin-left: 15px;
+}
+.fs-change:hover {
+	background-color: #000;
+	color: #fff !important;
+}
+.fs-primary-description p {
+	margin: 15px 0;
+}
+#fs-main .fs-booking-state tbody {
+	border: 0px;
+}
+.fs-booking-date {
+	background-color: #fff !important;
+}
+.fs-embed .fs-booking-state th {
+	border: 0px;
+}
+
 #author, .view-news .views-field-name {
 	color: #000;
 	font-weight: 600 !important;
@@ -110,6 +195,15 @@ table.fs-openings {
 }
 .view-news .views-field-body {
 	margin-top: 15px;
+}
+.fs-embed div.fs-no-openings {
+	font-size: 16px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	background: none repeat scroll 0 0 rgba(249, 249, 249, 0.9);
+	font-style: normal;
+	color: #0C233E;
 }
 
 #diagnostic-node-form .multipage-controls-list #edit-actions,
