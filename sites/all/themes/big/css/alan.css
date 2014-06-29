@@ -151,18 +151,18 @@ table.fs-openings {
 	font-weight: 600;
 }
 .fs-change {
-	display: inline-block;
-	padding: 5px 10px;
-	font-weight: 600;
-	text-transform: uppercase;
+	display: inline-block !important;
+	padding: 5px 10px !important;
+	font-weight: 500 !important;
+	text-transform: uppercase !important;
 	color: #0C233E !important;
-	font-size: 18px !important;
-	background-color: #ADD1FB;
-	text-decoration: none;
-	margin-left: 15px;
+	font-size: 16px !important;
+	background-color: #ADD1FB !important;
+	text-decoration: none !important;
+	margin-left: 15px !important;
 }
 .fs-change:hover {
-	background-color: #000;
+	background-color: #000 !important;
 	color: #fff !important;
 }
 .fs-primary-description p {
@@ -176,6 +176,13 @@ table.fs-openings {
 }
 .fs-embed .fs-booking-state th {
 	border: 0px;
+}
+.fs-openings-title > table {
+	float: right;
+	margin-right: 15px;
+}
+.fs-embed .fs-booking-state th {
+	padding-top: 5px;
 }
 
 #author, .view-news .views-field-name {
@@ -197,13 +204,78 @@ table.fs-openings {
 	margin-top: 15px;
 }
 .fs-embed div.fs-no-openings {
-	font-size: 16px;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0px;
-	background: none repeat scroll 0 0 rgba(249, 249, 249, 0.9);
-	font-style: normal;
+	font-size: 16px !important;
+	-moz-border-radius: 0px !important;
+	-webkit-border-radius: 0px !important;
+	border-radius: 0px !important;
+	background: none repeat scroll 0 0 rgba(249, 249, 249, 0.9) !important;
+	font-style: normal !important;
+	color: #0C233E !important;
+}
+.fs-embed .fs-openings th {
+	border: 0px;
 	color: #0C233E;
+}
+.fs-embed .fs-openings th.fs-openings-title tbody {
+	border: 0px;
+}
+.fs-embed .fs-openings .fs-openings-days th {
+	color: #0C233E;
+	background-color: #fff;
+}
+.fs-embed tr.fs-booking-service td {
+	padding-bottom: 8px !important;
+}
+.fs-embed .fs-controls {
+	text-align: left;
+}
+.fs-embed form .fs-booking-fields {
+
+}
+.fs-embed form .fs-booking-fields th {
+	text-align: left;
+	width: 100%;
+	float: left;
+	clear: left;
+	background-color: #fff;
+	padding: 15px;
+	color: #575756;
+	font-size: 16px;
+	font-weight: 500;
+	border: 0px;
+}
+.fs-embed form .fs-booking-fields td {
+	text-align: left;
+	width: 100%;
+	float: left;
+	clear: left;
+	background-color: #fff;
+	padding: 0 15px;
+}
+.fs-embed form .fs-instructions {
+	font-size: 12px !important;
+	margin-top: 5px !important;
+}
+.fs-controls input[type="submit"] {
+    background-color: #ADD1FB;
+    border: medium none;
+    color: #0C233E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "proxima-nova",Helvetica,Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: normal !important;
+    line-height: normal;
+    margin: 15px 0;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 300ms ease-out 0s;
+}
+.fs-controls input[type="submit"]:hover {
+	background-color: #000;
+	color: #fff;
 }
 
 #diagnostic-node-form .multipage-controls-list #edit-actions,
