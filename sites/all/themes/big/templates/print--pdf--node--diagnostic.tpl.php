@@ -29,13 +29,13 @@
 
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> printer-friendly pdf"<?php print $attributes; ?>>
 	<?php global $user; ?>
+	<?php $account = user_load($node->uid); ?>
 	<div id="diagnostic-summary" class="panel white">
 		<h3>Report Summary</h3>
 		<!--<?php // print drupal_render($content['field_address']); ?>-->
-		<div class="field field-type-text field-label-inline clearfix field-wrapper">
-			<?php print $node->field_org_company_name['und'][0]['value']; ?>		
-		</div>
-		<span class="summary-label">Assessment completed by:</span> <?php print $node->field_name_role['und'][0]['value']; ?>
+		<span class="summary-label">Organisation name:</span> <strong><?php print $account->field_organisation_name['und'][0]['value']; ?></strong>		
+		<br />
+		<span class="summary-label">Assessment completed by:</span> <strong><?php print $account->name; ?></strong>
 		<p>This report provides an initial summary of the  investment readiness of the organisation. There are five building blocks of investment readiness and these are shown in the diagram below. Governance & Leadership and Market Potential are the "pillars" upon which the other blocks rest.</p>		
 	</div>
 	<?php $areas = bp_diagnostic_aggregates_summary_display($node); ?>

@@ -5,12 +5,13 @@
 
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
 	<?php global $user; ?>
+	<?php $account = user_load($node->uid); ?>
 	<div id="diagnostic-summary" class="panel white">
 		<h3>Report Summary</h3>
 		<!--<?php // print drupal_render($content['field_address']); ?>-->
-		<span class="summary-label">Organisation name:</span> <?php print drupal_render($content['field_org_company_name']); ?>		
+		<span class="summary-label">Organisation name:</span> <strong><?php print $account->field_organisation_name['und'][0]['value']; ?></strong>		
 		<br />
-		<span class="summary-label">Assessment completed by:</span> <?php print drupal_render($content['field_name_role']); ?>
+		<span class="summary-label">Assessment completed by:</span> <strong><?php print $account->name; ?></strong>
 		<p>
 		<?php print bp_lexicon('This report provides an initial summary of the investment readiness of the organisation. There are five building blocks of investment readiness and these are shown in the diagram below. Governance & Leadership and Market Potential are the "pillars" upon which the other blocks rest.'); ?>
 		</p>
