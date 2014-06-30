@@ -592,7 +592,7 @@ function bp_diagnostic_weight_transform($weight) {
 function computed_field_field_maximum_score_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
 	switch($entity->title) {
 		case "Financial Performance":
-			$max = 235;
+			$max = 215;
 		break;
 		case "Quality & Impact":
 			$max = 162;
