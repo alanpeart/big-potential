@@ -92,7 +92,7 @@
 			$('.jumplist li a').each(function() {
 				$(this).removeClass('active');
 			});
-			$('.jumplist li.step-financial a').addClass('active');
+			$('.jumplist li.step-financials a').addClass('active');
 		});	
 		$('.group-step3-financial .multipage-link-next').click(function(){  
 			$('.jumplist li a').each(function() {
