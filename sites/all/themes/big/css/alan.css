@@ -671,7 +671,7 @@ table.fs-openings {
 	background-color: #D6E8FD;
 }
 .jumplist.bar li {
-	width: 12.5%;
+	width: 14.285%;
 	text-align: center;
 	padding: 0 0;
 	line-height: 45px;
@@ -1687,6 +1687,9 @@ fieldset#edit-field-address-und-0 .form-item label,
 	margin-right: 10px;
 }
 .field-type-datetime .form-item label {
+	display: none;
+}
+#edit-important-info-wrapper {
 	display: none;
 }
 
