@@ -426,7 +426,7 @@ function bp_diagnostic_process($diagnostic) {
 			default:
 				if(is_array($value)) {
 					if(isset($value['und'][0]['value'])) {
-						// Our sliders go from 0-1000 to make them smooth. Compensate for that here.
+						// Our sliders go from 0-900 to make them smooth. Compensate for that here.
 						$score = round($value['und'][0]['value'] / 100, 0);
 					}
 				}
@@ -592,19 +592,19 @@ function bp_diagnostic_weight_transform($weight) {
 function computed_field_field_maximum_score_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
 	switch($entity->title) {
 		case "Financial Performance":
-			$max = 220;
+			$max = 235;
 		break;
 		case "Quality & Impact":
-			$max = 180;
+			$max = 162;
 		break;
 		case "Financial Control":
-			$max = 140;
+			$max = 129;
 		break;
 		case "Market Potential":
-			$max = 297;
+			$max = 275;
 		break;
 		case "Governance & Leadership":
-			$max = 307;
+			$max = 262;
 		break;		
 	}
 	$entity_field[0]['value'] = $max;
