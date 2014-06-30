@@ -23,16 +23,6 @@
 				$(this).removeClass('active');
 			});
 			$(this).addClass('active');
-		});
-		$('#j1s3').click(function(){ 
-			$('.multipage-panes > div').each(function() {
-				$(this).hide();
-			});
-			$('.group-step2-organisation').show(); 
-			$('#diagnostic-nav li a').each(function() {
-				$(this).removeClass('active');
-			});
-			$(this).addClass('active');
 		});		
 		$('#j1s4').click(function(){ 
 			$('.multipage-panes > div').each(function() {
@@ -102,20 +92,8 @@
 			$('.jumplist li a').each(function() {
 				$(this).removeClass('active');
 			});
-			$('.jumplist li.step-organisation a').addClass('active');
+			$('.jumplist li.step-financial a').addClass('active');
 		});	
-		$('.group-step2-organisation .multipage-link-next').click(function(){  
-			$('.jumplist li a').each(function() {
-				$(this).removeClass('active');
-			});
-			$('.jumplist li.step-financials a').addClass('active');
-		});
-		$('.group-step2-organisation .multipage-link-previous').click(function(){  
-			$('.jumplist li a').each(function() {
-				$(this).removeClass('active');
-			});
-			$('.jumplist li.step-survey a').addClass('active');
-		});
 		$('.group-step3-financial .multipage-link-next').click(function(){  
 			$('.jumplist li a').each(function() {
 				$(this).removeClass('active');
@@ -126,7 +104,7 @@
 			$('.jumplist li a').each(function() {
 				$(this).removeClass('active');
 			});
-			$('.jumplist li.step-organisation a').addClass('active');
+			$('.jumplist li.step-survey a').addClass('active');
 		});	
 		$('.group-step4-people .multipage-link-next').click(function(){  
 			$('.jumplist li a').each(function() {
