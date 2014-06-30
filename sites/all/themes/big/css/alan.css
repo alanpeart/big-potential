@@ -1686,9 +1686,6 @@ fieldset#edit-field-address-und-0 .form-item label,
 	min-width: 100px;
 	margin-right: 10px;
 }
-.field-type-datetime {
-	padding: 0;
-}
 .field-type-datetime .form-item label {
 	display: none;
 }

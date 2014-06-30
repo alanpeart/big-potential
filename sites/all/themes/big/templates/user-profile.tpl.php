@@ -79,7 +79,7 @@
 						$eligibility_link .= '<p><a class="button big navy" href="#">Eligibility Check</a></p>';	
 					}
 				}
-				$diagnostic_nid = bp_user_report($user->uid, 'nid', 'diagnostic');
+				$diagnostic_nid = bp_user_report($account->uid, 'nid', 'diagnostic');
 				if($diagnostic_nid > 0) {
 					$di_panel_class = "green";
 					if($my) {
@@ -106,7 +106,7 @@
 						$diagnostic_link .= '<p><a class="button big navy" href="#">Diagnostic Tool</a></p>';					
 					}
 				}	
-				$funding_nid = bp_user_report($user->uid, 'nid', 'funding_application');
+				$funding_nid = bp_user_report($account->uid, 'nid', 'funding_application');
 				if($funding_nid > 0) {
 					$fu_panel_class = "green";
 					if($my) {
