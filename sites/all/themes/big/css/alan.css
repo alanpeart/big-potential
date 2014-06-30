@@ -1505,7 +1505,7 @@ h2.multipage-pane-title {
 	background-color: #fff;
 	margin-bottom: 15px;
 }
-.multipage-pane-wrapper > .form-wrapper {
+.multipage-pane-wrapper > .form-wrapper, .field-type-list-boolean, .field-type-datetime {
 	padding: 15px;
 	background-color: #fff;
 	margin-bottom: 15px;
@@ -2136,6 +2136,11 @@ html.js input.form-autocomplete {
 	padding-top: 0;
 	padding-bottom: 0;
 	line-height: 24px;
+}
+
+.form-checkboxes .form-item, .form-radios .form-item {
+	margin-top: 0.8em;
+	margin-bottom: 0.8em;
 }
 
 @media all {
