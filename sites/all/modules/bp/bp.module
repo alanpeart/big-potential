@@ -592,19 +592,19 @@ function bp_diagnostic_weight_transform($weight) {
 function computed_field_field_maximum_score_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
 	switch($entity->title) {
 		case "Financial Performance":
-			$max = 215;
+			$max = 220;
 		break;
 		case "Quality & Impact":
-			$max = 162;
+			$max = 180;
 		break;
 		case "Financial Control":
-			$max = 129;
+			$max = 140;
 		break;
 		case "Market Potential":
-			$max = 275;
+			$max = 297;
 		break;
 		case "Governance & Leadership":
-			$max = 262;
+			$max = 307;
 		break;		
 	}
 	$entity_field[0]['value'] = $max;
