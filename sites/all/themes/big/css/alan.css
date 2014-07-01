@@ -2153,6 +2153,9 @@ html.js input.form-autocomplete {
 		display: block;
 	}
 }
+.fivestar-static-item .form-item .description {
+	display: none;
+}
     
 
 @media only screen and (max-width: 64.063em) {
