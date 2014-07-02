@@ -178,40 +178,24 @@
 			chunk = 33;
 		}
 		if(value < chunk) {
-			$(blink).find("li.one").addClass("active");
-			$(blink).find("li.two").removeClass("active");
-			$(blink).find("li.three").removeClass("active");
-			$(blink).find("li.four").removeClass("active");
 			$(stages).find("li:eq(0)").addClass("active");
 			$(stages).find("li:eq(1)").removeClass("active");
 			$(stages).find("li:eq(2)").removeClass("active");
 			$(stages).find("li:eq(3)").removeClass("active");			
 		}
 		else if(value < (chunk * 2)) {
-			$(blink).find("li.one").removeClass("active");
-			$(blink).find("li.two").addClass("active");
-			$(blink).find("li.three").removeClass("active");
-			$(blink).find("li.four").removeClass("active");
 			$(stages).find("li:eq(0)").removeClass("active");
 			$(stages).find("li:eq(1)").addClass("active");
 			$(stages).find("li:eq(2)").removeClass("active");
 			$(stages).find("li:eq(3)").removeClass("active");			
 		}
 		else if(value <= (chunk * 3)) {
-			$(blink).find("li.one").removeClass("active");
-			$(blink).find("li.two").removeClass("active");
-			$(blink).find("li.three").addClass("active");
-			$(blink).find("li.four").removeClass("active");
 			$(stages).find("li:eq(0)").removeClass("active");
 			$(stages).find("li:eq(1)").removeClass("active");
 			$(stages).find("li:eq(2)").addClass("active");
 			$(stages).find("li:eq(3)").removeClass("active");			
 		}	
 		else if(chunk == 25) {
-			$(blink).find("li.one").removeClass("active");
-			$(blink).find("li.two").removeClass("active");
-			$(blink).find("li.three").removeClass("active");
-			$(blink).find("li.four").addClass("active");
 			$(stages).find("li:eq(0)").removeClass("active");
 			$(stages).find("li:eq(1)").removeClass("active");
 			$(stages).find("li:eq(2)").removeClass("active");
