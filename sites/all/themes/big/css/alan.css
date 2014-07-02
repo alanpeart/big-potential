@@ -1768,6 +1768,8 @@ article.printer-friendly {
 	width: 100%;
 	height: 8px;
 	margin: 5px 0;
+	/* Hidden for now! Could be reinstated. */
+	display: none;
 }
 .slider-blink li {
 	float: left;
