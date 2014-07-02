@@ -106,7 +106,14 @@
 		// We hide the comments and links now so that we can render them later.
 		hide($content['comments']);
 		hide($content['links']);
+		hide($content['field_tags']);
+		hide($content['field_rating']);
 		print render($content);
+		if(isset($node->field_slideshare['und'][0])) {
+			print '<div class="pdf-download"><a href="/sites/default/files/'.str_replace('public://', '', $node->field_slideshare['und'][0]['uri']).'" title="Download file" class="pdf-download-link">Click to download</a></div>';
+		}
+		print render($content['field_tags']);
+		print render($content['field_rating']);
 	  ?>
 
 	  <?php print render($content['links']); ?>
