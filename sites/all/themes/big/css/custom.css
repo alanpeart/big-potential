@@ -551,6 +551,8 @@ a.facebook {
 }
 .view-related-resources {
 	margin-top: 20px;
+	float: left;
+	clear: left;
 }
 .view-related-resources .views-field-field-image,
 .main .view-resources .views-field-field-image {

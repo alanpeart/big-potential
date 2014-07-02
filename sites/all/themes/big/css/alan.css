@@ -2165,6 +2165,15 @@ html.js input.form-autocomplete {
 	background-size: cover;
 	background-color: transparent;
 }
+.pdf-download {
+	float: left;
+	clear: left;
+	width: 100%;
+	margin: 10px 0 20px 0;
+}
+.pdf-download-link {
+	color: #0c304f;
+}
     
 
 @media only screen and (max-width: 64.063em) {
