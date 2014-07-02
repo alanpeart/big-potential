@@ -29,7 +29,7 @@
 			else {
 				$org = $account->field_organisation_name['und'][0]['safe_value'];
 			}
-			if(array_intersect(array('Site Manager', 'administrator', 'Site Manager Test Role'), array_values($account->roles))) { $is_admin = TRUE; }
+			if(array_intersect(array('Site Manager', 'administrator', 'Site Manager Test Role'), array_values($user->roles))) { $is_admin = TRUE; }
 			if(in_array('Consultant', $account->roles)) { $is_consultant = TRUE; }
 			if(in_array('Provider Manager', $account->roles)) { $is_pm = TRUE; }
 
@@ -261,7 +261,7 @@
 		<?php endif; ?>
 		<!-- Provider / Consultant Panels -->
 		<?php 
-			if($is_pm || $is_admin) {
+			if($is_pm) {
 				$provider_nid = bp_user_report($account->uid, 'nid', 'provider');
 				if($provider_nid > 0) {
 					if($my) {
@@ -287,23 +287,27 @@
 				}
 			}
 		?>
-		<?php if($is_pm || $is_admin): ?>
-			<div class="dashpanel" id="provider-page">
-				<h2>Provider Page</h2>
-				<div class="darkbold">
-					<?php print $provider_text; ?>
-				</div>		
-				<div class="subtext">
-					<?php print $provider_users; ?>
+		<?php if($is_pm): ?>
+			<?php if($my || $is_admin): ?>
+				<div class="dashpanel" id="provider-page">
+					<h2>Provider Page</h2>
+					<div class="darkbold">
+						<?php print $provider_text; ?>
+					</div>		
+					<div class="subtext">
+						<?php print $provider_users; ?>
+					</div>
+					<?php print $provider_link; ?>			
 				</div>
-				<?php print $provider_link; ?>			
-			</div>
-			<?php if($provider_nid > 0): ?>
-				<div class="dashpanel" id="provider-consultants">
-					<h2>Consultants</h2>
-					<?php print views_embed_view('consultants', 'block_1', $provider_nid); ?>
-					<p><a class="button big navy" href="/admin/people/create?destination=user/<?php print $account->uid; ?>">Add A Consultant</a></p>
-				</div>
+			<?php endif; ?>
+			<?php if($my || $is_admin): ?>			
+				<?php if($provider_nid > 0): ?>
+					<div class="dashpanel" id="provider-consultants">
+						<h2>Consultants</h2>
+						<?php print views_embed_view('consultants', 'block_1', $provider_nid); ?>
+						<p><a class="button big navy" href="/admin/people/create?destination=user/<?php print $account->uid; ?>">Add A Consultant</a></p>
+					</div>
+				<?php endif; ?>
 			<?php endif; ?>
 		<?php endif; ?>
 		<?php if($my && $is_consultant): ?>
@@ -312,7 +316,7 @@
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
 			</div>		
 		<?php endif; ?>		
-		<?php if(!$my): ?>
+		<?php if(!$my && $is_consultant && $is_admin): ?>
 			<div class="dashpanel" id="connected-orgs">
 				<h2>Connected Organisations</h2>	
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
