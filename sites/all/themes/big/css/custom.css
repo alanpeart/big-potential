@@ -556,6 +556,7 @@ a.facebook {
 .main .view-resources .views-field-field-image {
 	width: 145px;
 	float: right;
+	margin-left: 20px;
 }
 .view-related-resources .views-field-field-image img,
 .main .view-resources .views-field-field-image img {
