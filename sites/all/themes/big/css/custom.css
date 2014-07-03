@@ -1089,7 +1089,7 @@ h1.node-title {
 	width: 37px;
 	text-indent: -9999px;
 	color: #FFF;
-	background: #0C304F url('images/search.png') no-repeat center 50%;
+	background: #0C304F url('../images/searchIcon.png') no-repeat center 50%;
 	padding: 0;
 	margin: 0 0 0 0;
 	position:absolute;
