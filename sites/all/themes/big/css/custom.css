@@ -737,6 +737,9 @@ a.facebook {
     z-index: 99999;
 	width: auto !important;
 }
+.node-type-webform .selectBox-dropdown-menu {
+	min-width: 400px !important;
+}
 .selectBox-options LI A {
     background: none no-repeat scroll 6px center rgba(0, 0, 0, 0);
     line-height: 1.5;
