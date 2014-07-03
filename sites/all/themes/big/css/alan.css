@@ -1265,6 +1265,9 @@ span.file-size {
 .admin-menu .block-search-api-page-search {
 	top: 30px;
 }
+.flex-direction-nav a:before {
+	color: #0c304f;
+}
 
 /* DIAGNOSTIC TOOL */
 
