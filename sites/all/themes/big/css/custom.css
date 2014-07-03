@@ -315,6 +315,7 @@ ul.button-group li a.active {
 .sidebar section .views-row a {
 	color: #0c304f;
 	font-family: "proxima-nova-condensed", Arial, Helvetica, sans-serif;
+	line-height: 1.3;
 }
 
 .sidebar section .views-row a:hover {
