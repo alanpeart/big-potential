@@ -1266,7 +1266,7 @@ span.file-size {
 	top: 30px;
 }
 .flex-direction-nav a:before {
-	color: #0c304f;
+
 }
 
 /* DIAGNOSTIC TOOL */
@@ -2257,7 +2257,7 @@ html.js input.form-autocomplete {
 		margin-top: 20px;
 		padding-top: 20px;
 	}
-	#mini-panel-fat_footer .panels-flexible-region-1-center {
+	#mini-panel-fat_footer .panels-flexible-region-1-left1 {
 		margin-left: 0px;
 		text-align: left;
 		clear: left;
@@ -2267,12 +2267,24 @@ html.js input.form-autocomplete {
 		text-align: left;
 		width: 100% !important;
 	}
+	#mailchimp-signup-subscribe-block-subscribe-form {
+		float: left;
+		text-align: left;
+		margin-top: 20px;
+	}
 	a.social {
-		margin-left: 0px;
+		margin-left: 8px;
 		margin-right: 8px;
 	}
 	#subfooter.row {
 		padding: 10px 10px;
+	}
+	#subfooter .left {
+		width: 100%;
+	}
+	#subfooter .right {
+		width: 100%;
+		text-align: left;
 	}
 	.main .view .views-row {
 		width: 100%;
