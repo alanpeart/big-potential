@@ -125,7 +125,7 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 	// dsm($form_id);
 	switch($form_id) {
 		case "mailchimp_signup_subscribe_block_subscribe_form":
-			$form['mergevars']['EMAIL']['#attributes']['placeholder'] = 'Enter email address';
+			$form['mergevars']['EMAIL']['#attributes']['placeholder'] = 'Enter email';
 		break;
 		case "search_api_page_search_form_search":
 			$repon = arg(1);

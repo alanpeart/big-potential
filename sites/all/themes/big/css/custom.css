@@ -472,7 +472,7 @@ footer.row section {
 #subfooter.row {
 	background-color: #0c304f;
 	color: #fff;
-	padding: 10px 0;
+	padding: 4px 0 4px 0;
 }
 footer p, footer .panel p {
 	color: #000;
@@ -491,6 +491,7 @@ footer p a:hover, footer .panel p a:hover, footer a:hover, footer .panel p a:hov
 	font-size: 12px;
 	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
 	font-weight: 600;
+	line-height: 30px;
 }
 .block-block-1 p {
 	font-size: 12px;
@@ -506,17 +507,18 @@ footer p a:hover, footer .panel p a:hover, footer a:hover, footer .panel p a:hov
 #fatfooter {
 	margin-top: 40px;
 	background-image:url(images/footer-01.png);
+	padding-bottom: 15px;
 }
 .spacer {
-	margin-right: 10px;
+	margin: 0 5px;
+	text-align: center;
 }
-#mini-panel-fat_footer .panels-flexible-region-1-center {
-	width: 26%;
+#mini-panel-fat_footer .panels-flexible-region-1-left1 {
+	width: 50%;
 	text-align: right;
-	margin-left:6.2%;
 }
 #mini-panel-fat_footer .panels-flexible-region-last {
-	width: 7%;
+	width: 23%;
 	text-align: right;
 	float:right;
 }
@@ -538,7 +540,6 @@ a.social:hover {
 }
 a.twitter {
 	background: transparent url('../images/icon-twitter.png') no-repeat left top;
-	margin-left:0;
 }
 a.facebook {
 	background: transparent url('../images/icon-facebook.png') no-repeat left top;
@@ -1587,13 +1588,14 @@ footer .form-type-textfield.form-item-mergevars-EMAIL label {
 footer #edit-mergevars-email,
 footer #edit-mergevars-email--1,
 footer #edit-mergevars-email--2 {
-	width:170px;
+	width:130px;
 	height:23px;
 	border: none;
 	background-color: #FFF;
 	font-size:13px;
 	padding-top: 0px;
 	padding-bottom: 0px;
+	color: #328BF6;
 }
 
 footer .mailchimp-signup-subscribe-form .form-submit,
@@ -1614,9 +1616,7 @@ footer .mailchimp-signup-subscribe-form .form-type-textfield {
 	margin-top:0;
 }
 #mailchimp-signup-subscribe-block-subscribe-form {
-	margin-top: 12px;
 	float: right;
-	margin-right:-10px;
 }
 
 footer #mailchimp-newsletter-421509-mergefields {
@@ -1741,21 +1741,21 @@ margin-bottom: 0px;
 img.sponsor {
 	display:inline;
 	float:left;
-	margin-top:-10px;
+
 }
 
 .sibgroup {
-	width:103px;
+	margin-top: -16px;
 }
 
 .biglottery {
-	width:54.5px;
+	margin-top: -28px;
 	margin-left:20px
 }
 
 .nationallottery {
-	width:133.5px;
-	margin-left:10px;
+	margin-top: 2px;
+	margin-left:20px;
 }
 
 @media only screen and (min-width: 40.063em) {
