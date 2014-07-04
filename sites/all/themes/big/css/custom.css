@@ -513,7 +513,8 @@ footer p a:hover, footer .panel p a:hover, footer a:hover, footer .panel p a:hov
 	margin: 0 5px;
 	text-align: center;
 }
-#mini-panel-fat_footer .panels-flexible-region-1-left1 {
+#mini-panel-fat_footer .panels-flexible-region-1-left1,
+#mini-panel-fat_footer .panels-flexible-region-3-left1 {
 	width: 50%;
 	text-align: right;
 }
