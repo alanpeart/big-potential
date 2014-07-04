@@ -198,6 +198,9 @@ table.fs-openings {
 	font-weight: 500;
 	font-size: 24px;
 }
+.node-article .node-title, .view-news .views-field-title {
+	margin-bottom: 15px;
+}
 .view-news .views-row {
 	width: 100%;
 	max-width: 780px;
