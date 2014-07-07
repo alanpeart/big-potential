@@ -22,7 +22,7 @@
 	  <?php print render($title_suffix); ?>
 
 	  <div id="author" class="field clearfix">
-		<?php print render($content['field_attribution']; ?>
+		<?php print render($content['field_attribution']); ?>
 	  </div>
 
 	  <?php
