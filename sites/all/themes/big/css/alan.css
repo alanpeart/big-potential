@@ -211,6 +211,13 @@ table.fs-openings {
 	background-color: #DDEDFD;
 	margin-top: 15px;
 }
+#edit-field-introductory-message-fu {
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+#edit-field-introductory-message-fu p {
+	margin-bottom: 0px;
+}
 #date {
 	margin: 15px 0;
 	text-transform: uppercase;
