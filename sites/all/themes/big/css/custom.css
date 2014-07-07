@@ -363,7 +363,7 @@ ul.button-group li a.active {
 #author {
 	margin: 5px 0;
 }
-#author a {
+#author a, #author .field-name-field-attribution {
 	color: #666;
 	text-transform: uppercase;
 	font-weight: 600 !important;
@@ -602,7 +602,7 @@ a.facebook {
 .main .views-field-title a {
 	color: #0C233E;
 }
-.main .views-field-name {
+.main .views-field-name, .main .views-field-field-attribution {
 	color: #575756;
 	text-transform: uppercase;
 	font-weight: 400 !important;
@@ -617,6 +617,7 @@ a.facebook {
 }
 .view-related-resources .views-field-title,
 .view-related-resources .views-field-name,
+.view-related-resources .views-field-field-attribution,
 .view-related-resources .views-field-field-categories,
 .main .view-resources .views-field-title,
 .main .view-resources .views-field-name,
