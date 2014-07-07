@@ -13,6 +13,9 @@
 		<?php } ?>
 	<?php print render($title_suffix); ?>
 	<?php $author = user_load($node->uid); ?>
+	<div id="date">
+		<?php print date("j F Y", $node->created); ?>
+	</div>
 	
 	<?php 
 		if(isset($content['field_image'])) {

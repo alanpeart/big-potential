@@ -197,6 +197,13 @@ table.fs-openings {
 	color: #328BF6;
 	font-weight: 500;
 	font-size: 24px;
+	line-height: 1.2;
+}
+#date {
+	margin: 15px 0;
+	text-transform: uppercase;
+	color: #666;
+	font-weight: 600;
 }
 .node-article .node-title, .view-news .views-field-title {
 	margin-bottom: 15px;
