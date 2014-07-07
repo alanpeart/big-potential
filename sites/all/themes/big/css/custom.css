@@ -610,6 +610,9 @@ a.facebook {
 	margin-bottom: 8px;
 	font-size: 13px;
 }
+.view-news .views-field-created {
+	margin-bottom: 15px;
+}
 .main .views-field-name a {
 	color: #666;
 }
