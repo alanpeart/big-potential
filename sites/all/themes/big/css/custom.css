@@ -685,6 +685,9 @@ a.facebook {
 	min-width: 420px;
 	max-width: 100%;
 }
+.views-exposed-form .selectBox-dropdown .selectBox-label {
+	min-width: 100%;
+}
 .selectBox-dropdown{
 	width: 480px;
 	min-width: 480px;
