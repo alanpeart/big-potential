@@ -2215,6 +2215,11 @@ html.js input.form-autocomplete {
 .view-providers-directory .view-header .right {
 	max-width: 100%;
 }
+fieldset.captcha {
+	margin-top: 15px;
+	float: left;
+	clear: left;
+}
     
 
 @media only screen and (max-width: 64.063em) {
