@@ -46,7 +46,12 @@ print l($text, $term["linkto"], array(
 
 <?php 
 	if(strlen($term["term"]->safe_description) > 0) {
-		print '<a data-tooltip title="'.$term["term"]->safe_description.'" class="'.$term["term_class"].' has-tip" href="/'.$term["linkto"].'">'.$text.'</a>'; 
+		if(strpos('\'!"£$%^&*()<>,.-_=+{}[];:@#~?/\\|', (substr($text, 0, 1)))) {
+			echo $text;
+		}
+		else {
+			print '<a data-tooltip title="'.$term["term"]->safe_description.'" class="'.$term["term_class"].' has-tip" href="/'.$term["linkto"].'">'.$text.'</a>'; 
+		}
 	}
 	else {
 		print $text;

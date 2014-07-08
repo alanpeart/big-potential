@@ -851,7 +851,7 @@ button.ajax-processed {
 input[type="file"] {
 	width: 340px;
 	font-size: 12px;
-	max-width: 100%;
+	max-width: 80%;
 }
 #edit-submit, #edit-submit.secondary, #edit-delete {
    background: #ADD1FB !important;
@@ -2206,15 +2206,24 @@ html.js input.form-autocomplete {
 .pdf-download-link {
 	color: #0c304f;
 }
+.view-related-resources {
+	max-width: 100%;
+}
+.view-providers-directory .view-header .left {
+	max-width: 100%;
+}
+.view-providers-directory .view-header .right {
+	max-width: 100%;
+}
     
 
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
-		top: -133px;
+		top: -140px;
 		right: 65px;
 	}	
 	.admin-menu .block-search-api-page-search {
-		top: -113px;
+		top: -140px;
 		right: 65px;
 	}
 	.logged-in .block-search-api-page-search {
@@ -2335,6 +2344,44 @@ html.js input.form-autocomplete {
 	}
 }
 @media only screen and (max-width: 40em) {
+	fieldset {
+
+	}
+	.page-user .selectBox-dropdown-menu {
+		min-width: 80% !important;
+	}
+	.field-type-datetime .selectBox-dropdown {
+		min-width: 60px;
+		width: 80px !important;
+	}
+	.field-type-datetime select {
+		width: 90px;
+		min-width: 90px;
+	}
+	.selectBox-dropdown .selectBox-label {
+		min-width: 100%;
+		max-width: 100%;
+	}
+	#user-login .form-type-date-select,
+	#user-register-form .form-type-date-select,
+	#user-register-form .form-type-date-select .form-item	{
+		padding: 0px !important;
+	}
+	fieldset {
+		max-width: 100%;
+		min-width: 90%;
+	}
+	.block-search-api-page-search {
+		top: -150px;
+		right: 65px;
+	}	
+	.admin-menu .block-search-api-page-search {
+		top: -150px;
+		right: 65px;
+	}
+	.logged-in .block-search-api-page-search {
+		right: 100px;
+	}
 	img.logo {
 		margin-bottom: 10px;
 	}
@@ -2441,5 +2488,44 @@ html.js input.form-autocomplete {
 	.location .form-item input {
 		max-width: 100% !important;
 		width: 100%;
+	}	
+	.main .view-resources .views-field-field-image,
+	.view-related-resources .views-field-field-image	{
+		float: left;
+		margin-left: 0px;
+		width: 240px;
+		margin-bottom: 15px;
+	}
+	.main .views-field-field-format {
+		float: right;
+	}
+	.view-related-resources .views-field-title, .view-related-resources .views-field-name, .view-related-resources .views-field-field-attribution, .view-related-resources .views-field-field-categories, .main .view-resources .views-field-title, .main .view-resources .views-field-name, .main .view-resources .views-field-field-categories {
+		margin-left: 0px;
+		clear: both;
+	}
+	.view-related-resources .views-field-body, .main .view-resources .views-field-body {
+		margin-left: 0px;
+		clear: both;		
+	}
+	.view-related-resources .views-field-field-rating, .main .view-resources .views-field-field-rating {
+		margin-left: 0px;
+	}
+	.view-related-resources .views-field-field-tags, .main .view-resources .views-field-field-tags {
+		margin-right: 0px;
+	}
+	.view-related-resources .views-field-title, .main .view-resources .views-field-title {
+
+	}
+	.view-related-resources .views-field-field-image img, .main .view-resources .views-field-field-image img {
+		width: 240px;
+	}
+	.main .views-field-field-format, .view-related-resources .views-field-field-format {
+		width: 30px;
+	}
+	.main .views-field-field-format img, .view-related-resources .views-field-field-format img {
+		width: 30px;
+	}
+	.view-providers-directory .view-header .right {
+		margin-bottom: 25px;
 	}	
 }
