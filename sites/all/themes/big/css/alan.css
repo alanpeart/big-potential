@@ -2347,6 +2347,9 @@ html.js input.form-autocomplete {
 	fieldset {
 
 	}
+	#fatfooter .panels-flexible-region {
+		width: 100% !important;
+	}
 	.page-user .selectBox-dropdown-menu {
 		min-width: 80% !important;
 	}
