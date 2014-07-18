@@ -64,6 +64,14 @@ function bp_node_prepare($node) {
 			drupal_goto('node/'.$nid);
 		}
 	}	
+  	if (empty($node->nid) && $node->type == 'application'/* && $node->uid > 1*/) {
+		$nid = bp_user_report($node->uid, 'nid', 'application');
+		if($nid > 0) {
+			// This user already has an eligibility check so redirect them to it!
+			// The only user we don't want to do this for is the superuser
+			drupal_goto('node/'.$nid);
+		}
+	}	
 }
 
 function bp_provider_count($nid) {
