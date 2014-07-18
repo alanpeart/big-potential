@@ -106,18 +106,18 @@
 						$diagnostic_link .= '<p><a class="button big navy" href="#">Diagnostic Tool</a></p>';					
 					}
 				}	
-				$funding_nid = bp_user_report($account->uid, 'nid', 'funding_application');
+				$funding_nid = bp_user_report($account->uid, 'nid', 'application');
 				if($funding_nid > 0) {
 					$fu_panel_class = "green";
 					if($my) {
 						$funding_text .= '<p>You have saved a funding application on our site.</p>';
 						$funding_retake .= '<p>If you want to view your application you can do so by clicking the link below.</p>';
-						$funding_link .= '<p><a class="button big navy" href="#">Funding Application</a></p>';	
+						$funding_link .= '<p><a class="button big navy" href="/application/'.$funding_nid.'">Funding Application</a></p>';	
 					}
 					else {
 						$funding_text .= '<p>This user has saved a funding application on our site.</p>';
 						$funding_retake .= '<p>If you want to view their application you can do so by clicking the link below.</p>';
-						$funding_link .= '<p><a class="button big navy" href="#">Funding Application</a></p>';				
+						$funding_link .= '<p><a class="button big navy" href="/application/'.$funding_nid.'">Funding Application</a></p>';				
 					}
 				}
 				else {
