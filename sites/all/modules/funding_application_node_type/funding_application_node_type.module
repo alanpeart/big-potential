@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Funding Application Node Type feature.
+ */
+
+include_once 'funding_application_node_type.features.inc';
