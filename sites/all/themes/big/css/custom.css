@@ -4732,6 +4732,13 @@ button.field-add-more-submit {
 		width: 100%;
 		text-align: left;
 	}
+	#buttons .buttons a.flag,
+	#buttons .buttons a.button.grey,
+	#buttons-bottom .buttons a.flag,
+	#buttons-bottom .buttons a.button.grey {
+		float: left !important;
+		margin-top: 10px !important;
+	}
 	.file > a {
 		word-wrap: break-word;
 	}
