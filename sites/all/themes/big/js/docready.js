@@ -167,6 +167,228 @@
 			$(hash).click();
 		}
 	}	
+	
+	if($('.node-application-form').length > 0) {
+		$('#fs1').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-intro').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});		
+		$('#fs2').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-a').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});	
+		$('#fs3').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-b').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});	
+		$('#fs4').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-c').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});	
+		$('#fs5').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-d').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});	
+		$('#fs6').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-e').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});
+		$('#fs7').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-f').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});		
+		$('#fs8').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-g').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});		
+		$('#fs9').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-h').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});		
+		$('#fs10').click(function(){ 
+			$('.multipage-panes > div').each(function() {
+				$(this).hide();
+			});
+			$('.group-ap-section-i').show(); 
+			$('#funding-nav li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$(this).addClass('active');
+		});		
+		
+		/*
+		* Building manual navigation
+		*/
+		$('.group-ap-section-intro .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-a a').addClass('active');
+		});	
+		$('.group-ap-section-a .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-b a').addClass('active');
+		});
+		$('.group-ap-section-a .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-intro a').addClass('active');
+		});	
+		$('.group-ap-section-b .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-c a').addClass('active');
+		});
+		$('.group-ap-section-b .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-a a').addClass('active');
+		});
+		$('.group-ap-section-c .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-d a').addClass('active');
+		});
+		$('.group-ap-section-c .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-b a').addClass('active');
+		});		
+		$('.group-ap-section-d .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-e a').addClass('active');
+		});
+		$('.group-ap-section-d .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-c a').addClass('active');
+		});	
+		$('.group-ap-section-e .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-f a').addClass('active');
+		});
+		$('.group-ap-section-e .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-d a').addClass('active');
+		});	
+		$('.group-ap-section-f .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-g a').addClass('active');
+		});
+		$('.group-ap-section-f .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-e a').addClass('active');
+		});	
+		$('.group-ap-section-g .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-h a').addClass('active');
+		});
+		$('.group-ap-section-g .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-f a').addClass('active');
+		});		
+		$('.group-ap-section-h .multipage-link-next').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-i a').addClass('active');
+		});
+		$('.group-ap-section-h .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-g a').addClass('active');
+		});		
+		$('.group-ap-section-i .multipage-link-previous').click(function(){  
+			$('.jumplist li a').each(function() {
+				$(this).removeClass('active');
+			});
+			$('.jumplist li.step-h a').addClass('active');
+		});		
+		$('#edit-actions #edit-delete').after($('#edit-actions #edit-submit'));
+		// Check if we've got a direct link to a step
+		var hash = window.location.hash;
+		if(hash) {
+			$(hash).click();
+		}
+	}
+	
 	$(".sliderfield-container").bind("slide", function() {
 		var slider = $(this).parents('.sliderfield');
 		var field = $(this).parents('.sliderfield').parents('.form-type-slider');
