@@ -602,7 +602,7 @@ a.facebook {
 .main .views-field-title a {
 	color: #0C233E;
 }
-.main .views-field-name, .main .views-field-field-attribution,
+.main .views-field-name:not(th.views-field-name), .main .views-field-field-attribution,
 .main .views-field-created {
 	color: #575756;
 	text-transform: uppercase;
@@ -861,7 +861,7 @@ input#edit-keys {
 	width: 100%;
 	max-width: 530px;
 }
-.views-field-field-region {
+.views-field-field-region:not(th.views-field-field-region) {
 	color: #575756;
 	text-transform: uppercase;
 	font-weight: 400;
