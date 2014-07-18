@@ -12,12 +12,16 @@
     <?php print $css; ?>
 	<?php global $base_url; ?>
 	<style>
+*, *:before, *:after {
+    box-sizing: border-box;
+}
 body {
 	font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 	color: #6a6a69;
 	background-image:url(images/top-01.png);
 	background-repeat:no-repeat;
 	background-position: right 28px;
+	font-size: 100%;
 }
 p {
 	line-height: 1.4;
@@ -4420,15 +4424,17 @@ button.field-add-more-submit {
 	padding: 8px;
 	font-size: 15px;
 }
-#buttons {
-display: none;
+#buttons, #buttons-bottom {
+	display: none;
 }
 .panel {
     border-color: #d8d8d8;
     border-style: solid;
     border-width: 1px;
     margin-bottom: 1.25rem;
-    padding: 1.25rem;
+    padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	max-width: 100%;
 }
 
 @media only screen and (max-width: 64.063em) {
