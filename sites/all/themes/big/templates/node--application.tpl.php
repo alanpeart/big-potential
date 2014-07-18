@@ -1,5 +1,4 @@
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
-	<div class="article-inner">
 	<h2 class="page-title"><?php print $node->title; ?></h2>
 	<?php 
 		global $user; 
@@ -27,23 +26,31 @@
 			}
 		}
 	?>
-	<div class="panel white" id="buttons">
-		<?php print flag_create_link('submit_funding_application_', $node->nid); ?>
-		<?php if(bp_can_user_edit($user, $node)) {
-			print '<a href="' . url('node/'.$node->nid.'/edit') . '" class="button back grey" id="edit-application">Edit Application</a>';
-		} ?>
+	<div class="panel white nopadding" id="buttons">
 		<div class="printlinks">
 			<?php print print_pdf_insert_link(); ?>		
-		</div>	
+		</div>
+		<div class="buttons">
+			<?php print flag_create_link('submit_funding_application_', $node->nid); ?>
+			<?php if(bp_can_user_edit($user, $node)) {
+				print '<a href="' . url('node/'.$node->nid.'/edit') . '" class="button back grey" id="edit-application">Edit</a>';
+			} ?>	
+		</div>
 	</div>
 	
+	<div class="article-inner">
+		<div class="save-note">
+			<p>Please review all details below to ensure they are correct and then 'submit'.</p>
+		</div>
 	<?php print render($content); ?>
 	
 	</div><!-- /article-inner -->
-	<div class="panel white" id="buttons">
-		<?php print flag_create_link('submit_funding_application_', $node->nid); ?>
-		<?php if(bp_can_user_edit($user, $node)) {
-			print '<a href="' . url('node/'.$node->nid.'/edit') . '" class="button back grey" id="edit-application">Edit Application</a>';
-		} ?>
+	<div class="panel white nopadding" id="buttons-bottom">
+		<div class="buttons">
+			<?php print flag_create_link('submit_funding_application_', $node->nid); ?>
+			<?php if(bp_can_user_edit($user, $node)) {
+				print '<a title="Edit your funding application" href="' . url('node/'.$node->nid.'/edit') . '" class="button back grey" id="edit-application">Edit</a>';
+			} ?>	
+		</div>
 	</div>
 </article>

@@ -33,6 +33,20 @@ function big_preprocess_field(&$vars, $hook) {
   ) {
     $vars['items'][0]['#markup'] = nl2br($vars['items'][0]['#markup']);
   }
+  if($vars['element']['#bundle'] == 'application') {
+		//dsm($vars);
+		switch($vars['element']['#field_name']) {
+			case "field_sectors_you_work_in":
+			case "field_areas_included":
+			case "field_ap_identify_inv_readiness":
+			
+			break;
+			default:
+			  foreach($vars['items'] as &$item) {
+				$item['#markup'] = '<div class="field-value-wrapper">'.$item['#markup'].'</div>';
+			  }		
+		}
+	}
 }
 
 /**
