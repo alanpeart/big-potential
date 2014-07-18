@@ -4730,6 +4730,9 @@ button.field-add-more-submit {
 	#buttons .buttons {
 		float: left;
 		width: 100%;
-		text-align: right;
+		text-align: left;
+	}
+	.file > a {
+		word-wrap: break-word;
 	}
 }
