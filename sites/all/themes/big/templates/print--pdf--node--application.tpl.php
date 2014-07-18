@@ -4420,7 +4420,9 @@ button.field-add-more-submit {
 	padding: 8px;
 	font-size: 15px;
 }
-
+#buttons {
+display: none;
+}
 
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
@@ -4737,14 +4739,10 @@ button.field-add-more-submit {
 		margin-bottom: 25px;
 	}	
 	#buttons .printlinks {
-		float: left;
-		width: 100%;
-		text-align: left;
+		display: none;
 	}
 	#buttons .buttons {
-		float: left;
-		width: 100%;
-		text-align: right;
+		display: none;
 	}
 }
 	</style>
