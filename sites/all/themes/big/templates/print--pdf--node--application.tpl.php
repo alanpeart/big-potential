@@ -4423,6 +4423,13 @@ button.field-add-more-submit {
 #buttons {
 display: none;
 }
+.panel {
+    border-color: #d8d8d8;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 1.25rem;
+    padding: 1.25rem;
+}
 
 @media only screen and (max-width: 64.063em) {
 	.block-search-api-page-search {
