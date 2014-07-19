@@ -244,7 +244,7 @@ function bp_account_address_validate($form, &$form_state) {
 				}
 			}	
 			// Validate postcode
-			if(isset($form_state['values']['field_address']['und'][0]['postal_code'])) {
+			if(isset($form_state['values']['field_address']['und'][0]['postal_code']) && strlen($form_state['values']['field_address']['und'][0]['postal_code']) > 0) {
 				$pcode = $form_state['values']['field_address']['und'][0]['postal_code'];
 				$pcode_validate = postal_code_validation_validate($pcode, 'GB');
 				if($pcode_validate['error']) {
