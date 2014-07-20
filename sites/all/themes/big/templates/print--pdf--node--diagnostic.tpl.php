@@ -1,4 +1,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>">
+	<?php 
+		global $user; 
+		$owner = user_load($node->uid);
+		if($user->uid == $node->uid) {
+			$my = TRUE;
+		}
+	?>
+	<?php
+		$access = FALSE;
+		if($user->uid > 0) {
+			if($my) {
+				$access = TRUE;
+			}
+			else {
+				foreach($user->roles as $role) {
+					switch(strtolower($role)) {
+						case "administrator":
+						case "site manager":
+						case "site manager test role":
+						case "provider manager":
+						case "consultant":
+							$access = TRUE;
+						break;
+					}
+				}
+			}
+		}
+		if(!$access) {
+			drupal_goto('r4032login');
+		}
+	?>
   <head>
     <?php print $head; ?>
     <base href='<?php print $url ?>' />
