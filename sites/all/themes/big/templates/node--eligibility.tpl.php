@@ -1,5 +1,35 @@
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
-
+	<?php 
+		global $user; 
+		$owner = user_load($node->uid);
+		if($user->uid == $node->uid) {
+			$my = TRUE;
+		}
+	?>
+	<?php
+		$access = FALSE;
+		if($user->uid > 0) {
+			if($my) {
+				$access = TRUE;
+			}
+			else {
+				foreach($user->roles as $role) {
+					switch(strtolower($role)) {
+						case "administrator":
+						case "site manager":
+						case "site manager test role":
+						case "provider manager":
+						case "consultant":
+							$access = TRUE;
+						break;
+					}
+				}
+			}
+		}
+		if(!$access) {
+			drupal_goto('r4032login');
+		}
+	?>
 	<?php
 		$eligibility = bp_check_eligibility($node);
 	?>
