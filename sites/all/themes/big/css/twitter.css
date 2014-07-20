@@ -51,3 +51,8 @@ line-height: 6px !important;
 #twitter-widget-0 {
 	height:234px;
 }
+@media only screen and (max-width: 64.063em) {
+	iframe#twitter-widget-0, .timeline .stream {
+		width: 100% !important;
+	}
+}

@@ -1439,6 +1439,9 @@ a.icon:hover {
 .pane-guide-slider {
 	background-color: #D6D7D6;
 	background-image:url(images/guide_slider_bg-01.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	float: left;
 }
 #guide.flexslider {
 	background-color: transparent;
@@ -3996,6 +3999,7 @@ html.js input.form-autocomplete {
 .fivestar-static-item .form-item .description {
 	display: none;
 }
+/*
 #guide.flexslider ul.slides {
 	background-image: url(../images/guidebg.png);
 	background-repeat: no-repeat;
@@ -4003,6 +4007,7 @@ html.js input.form-autocomplete {
 	background-size: cover;
 	background-color: transparent;
 }
+*/
 .pdf-download {
 	float: left;
 	clear: left;
@@ -4409,6 +4414,11 @@ button.field-add-more-submit {
 
 
 @media only screen and (max-width: 64.063em) {
+	
+	body {
+		background-repeat:no-repeat;
+		background-position: 50% 28px;
+	}
 	.block-search-api-page-search {
 		top: -140px;
 		right: 65px;
@@ -4454,27 +4464,6 @@ button.field-add-more-submit {
 		padding-left: 0px !important;
 		padding-right: 0px !important;
 	}
-	#guide.flexslider .slides .views-field-title {
-		font-size: 20px;
-		margin: 10px 0px 10px 0px;
-	}
-	#guide.flexslider .slides .views-field-field-description	{
-		float: left;
-		clear: left;
-		margin-left: 0px;
-		margin-right: 0px;
-	}
-	#guide.flexslider .slides .views-field-field-image {
-		margin-left: 40px;
-		margin-bottom: 15px;
-	}
-	#guide.flexslider .slides .views-field-field-slide-link {
-		margin-left: 0px;
-		margin-top: 15px;
-	}
-	#fatfooter .panels-flexible-region {
-		width: 50% !important;
-	}
 	#fatfooter .panels-flexible-region {
 		padding-left: 0px;
 		padding-right: 0px;
@@ -4486,16 +4475,6 @@ button.field-add-more-submit {
 		margin-top: 20px;
 		padding-top: 20px;
 	}
-	#mini-panel-fat_footer .panels-flexible-region-1-left1 {
-		margin-left: 0px;
-		text-align: left;
-		clear: left;
-		width: 100% !important;
-	}
-	#mini-panel-fat_footer .panels-flexible-region-last {
-		text-align: left;
-		width: 100% !important;
-	}
 	#mailchimp-signup-subscribe-block-subscribe-form {
 		float: left;
 		text-align: left;
@@ -4504,16 +4483,6 @@ button.field-add-more-submit {
 	a.social {
 		margin-left: 8px;
 		margin-right: 8px;
-	}
-	#subfooter.row {
-		padding: 10px 10px;
-	}
-	#subfooter .left {
-		width: 100%;
-	}
-	#subfooter .right {
-		width: 100%;
-		text-align: left;
 	}
 	.main .view .views-row {
 		width: 100%;
@@ -4533,10 +4502,80 @@ button.field-add-more-submit {
 		clear: both;
 		margin-left: 0px;
 	}
+	#subfooter.row, #fatfooter.row {
+		padding: 10px 10px;
+	}
+	#mini-panel-fat_footer .panels-flexible-region-last {
+		width: 20%;
+		padding-right: 10px;
+	}
+	.panels-flexible-region-1-left2 {
+		width: 25%;
+	}
 }
 @media only screen and (max-width: 40em) {
-	fieldset {
+	.pane-guide-slider {
+		background-repeat: no-repeat;
+		background-size: cover;
+		float: left;
+		width: 100%;
+		padding-bottom: 20px;
+	}
+	#guide.flexslider .slides .views-field-title {
 
+	}
+	#mini-panel-fat_footer .panels-flexible-region-1-left1 {
+		margin-left: 0px;
+		text-align: left;
+		clear: left;
+		width: 100% !important;
+	}
+	#mini-panel-fat_footer .panels-flexible-region-last {
+		text-align: left;
+		width: 100% !important;
+	}
+	#subfooter.row {
+		padding: 10px 10px;
+	}
+	#subfooter .left {
+		width: 100%;
+	}
+	#subfooter .right {
+		width: 100%;
+		text-align: left;
+	}
+	#guide.flexslider .slides .views-field-title {
+		margin: 15px 0px 20px 40px;
+		font-size: 28px;
+		text-align: left;
+		line-height: 1.2;
+		float: left;
+	}
+	#guide.flexslider .slides .views-field-field-description	{
+		float: left;
+		clear: left;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	#guide.flexslider .slides .views-field-field-image {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		margin-bottom: 15px;
+		width: 100%;
+	}
+	#guide.flexslider .slides .views-field-field-image img {
+		display: inline-block;
+	}
+	#guide.flexslider .slides .views-field-field-description {
+		float: left;
+		clear: left;
+		margin-left: 40px;
+		margin-right: 40px;
+	}	
+	#guide.flexslider .slides .views-field-field-slide-link {
+		margin-left: 40px;
+		margin-top: 20px;
 	}
 	#fatfooter .panels-flexible-region {
 		width: 100% !important;
