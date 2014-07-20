@@ -64,7 +64,15 @@
 	
 	<div class="article-inner">
 		<div class="save-note">
-			<p>Please review all details below to ensure they are correct and then 'submit'.</p>
+		<?php
+			$flag = flag_get_flag('submit_funding_application_');
+			if($flag->is_flagged($node->nid)) { ?>
+			<p>Your Funding Application has been submitted to our team - thank you. We will review your application and confirm our decision to you within a maximum of eight weeks.</p>
+			<p>If you have any questions in the meantime, please call our enquiry line on weekdays between 9am and 5pm on 0207 842 7788 or email bigpotential@sibgroup.org.uk.</p>
+		<?php	}
+			else { ?>
+			<p>Please review all details below to ensure they are correct and then 'submit'.</p>			
+		<?php	} ?>
 		</div>
 	<?php print render($content); ?>
 	
