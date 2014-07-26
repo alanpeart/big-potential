@@ -3762,10 +3762,15 @@ a.lexicon-term {
 
 .main .view .view-header,
 .main .view .view-content,
-.main .view .view-filters {
+.main .view .view-filters
+.main .view .feed-icon {
 	float: left;
 	clear: left;
 	width: 100%;
+}
+
+.main .view .feed-icon {
+	margin-bottom: 15px;
 }
 
 .alert-box.alert p {
