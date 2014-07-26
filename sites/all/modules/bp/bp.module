@@ -162,6 +162,16 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 			}
 			$form['#validate'][] = 'bp_address_validate';
 		break;
+		case "application_node_form":
+			// dsm($form);
+			foreach($form as $key=>$element) {
+				if(is_array($element) && isset($element['und']['#field_name']) && $element['und']['#field_name'] == 'field_ap_able_contribute') {
+					$new_title = '(For investment plans only) '.$form[$key]['und']['#title'];
+					$form[$key]['und']['#title'] = $new_title;
+					$form[$key]['und'][0]['#title'] = $new_title;
+					$form[$key]['und'][0]['value']['#title'] = $new_title;
+				}
+			}
 		case "flag_confirm":
 
 		break;
