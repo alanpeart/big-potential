@@ -186,6 +186,12 @@
 					<div class="textbox"><?php print $account->field_mobile['und'][0]['safe_value']; ?></div>
 				</div>
 			<?php endif; ?>
+			<?php if(isset($account->field_website['und'][0])): ?>
+				<div class="profile-field">
+					<div class="profile-label">Website:</div>
+					<div class="textbox"><?php print $account->field_website['und'][0]['url']; ?></div>
+				</div>
+			<?php endif; ?>			
 			<?php if(isset($account->field_twitter_handle['und'][0])): ?>
 				<div class="profile-field">
 					<div class="profile-label">Twitter:</div>
