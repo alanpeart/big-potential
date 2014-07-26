@@ -318,8 +318,7 @@ function template_preprocess_views_data_export_msoffice_body(&$vars) {
   }
 
 
-  // $vars['tbody'] = preg_replace('/<\/?(a|span) ?.*?>/', '', $output); // strip 'a' and 'span' tags
-  $vars['tbody'] = preg_replace('/<\/?span ?.*?>/', '', $output); // strip 'span' tags
+$vars['tbody'] = preg_replace('/<\/?span ?.*?>/', '', $output); // strip 'span' tags
 
 }
 
