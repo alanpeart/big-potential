@@ -33,7 +33,6 @@
 	?>
 
 	<?php hide($content['links']); ?>
-	<?php dsm('fuckbox'); ?>
 	<?php
 		foreach($content as &$group) {
 			foreach($group as &$field) {
