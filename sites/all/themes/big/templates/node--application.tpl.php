@@ -28,7 +28,8 @@
 			}
 		}
 		if(!$access) {
-			drupal_goto('r4032login');
+			// Something weird here - disable for now!
+			// drupal_goto('r4032login');
 		}
 	?>
 
