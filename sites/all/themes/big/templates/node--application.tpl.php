@@ -55,7 +55,15 @@
 			<?php print print_pdf_insert_link(); ?>		
 		</div>
 		<div class="buttons">
-			<?php print flag_create_link('submit_funding_application_', $node->nid); ?>
+			<?php 
+				$dr = bp_user_report($app->uid, 'nid', 'diagnostic');
+				if($dr > 0) {
+					print flag_create_link('submit_funding_application_', $node->nid);
+				}
+				else {
+					print '<a class="button grey has-tip" href="/diagnostic-tool" title="You need to complete a diagnostic report on this website before submitting your funding application. Click this button to proceed to the diagnostic tool.">Diagnostic Tool</a>';
+				}
+			?>
 			<?php if(bp_can_user_edit($user, $node)) {
 				print '<a href="' . url('node/'.$node->nid.'/edit') . '" class="button back grey" id="edit-application">Edit</a>';
 			} ?>	
@@ -79,7 +87,15 @@
 	</div><!-- /article-inner -->
 	<div class="panel white nopadding" id="buttons-bottom">
 		<div class="buttons">
-			<?php print flag_create_link('submit_funding_application_', $node->nid); ?>
+			<?php 
+				$dr = bp_user_report($app->uid, 'nid', 'diagnostic');
+				if($dr > 0) {
+					print flag_create_link('submit_funding_application_', $node->nid);
+				}
+				else {
+					print '<a class="button grey has-tip" href="/diagnostic-tool" title="You need to complete a diagnostic report on this website before submitting your funding application. Click this button to proceed to the diagnostic tool.">Diagnostic Tool</a>';
+				}
+			?>
 			<?php if(bp_can_user_edit($user, $node)) {
 				print '<a title="Edit your funding application" href="' . url('node/'.$node->nid.'/edit') . '" class="button back grey" id="edit-application">Edit</a>';
 			} ?>	
