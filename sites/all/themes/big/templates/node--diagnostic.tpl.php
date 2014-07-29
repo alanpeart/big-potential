@@ -30,7 +30,7 @@
 			}
 		}
 		if(!$access) {
-			drupal_goto('r4032login');
+			// weirdness drupal_goto('r4032login');
 		}
 	?>
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
