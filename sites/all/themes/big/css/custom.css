@@ -1873,8 +1873,8 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 	clear: left;
 }
 .field-type-taxonomy-term-reference {
-	float: left;
 	clear: left;
+	width: 100%;
 }
 .node-form .vertical-tabs {
 	float: left;
