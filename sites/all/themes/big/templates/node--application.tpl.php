@@ -57,7 +57,7 @@
 		</div>
 		<div class="buttons">
 			<?php 
-				$dr = bp_user_report($app->uid, 'nid', 'diagnostic');
+				$dr = bp_user_report($node->uid, 'nid', 'diagnostic');
 				if($dr > 0) {
 					print flag_create_link('submit_funding_application_', $node->nid);
 				}
