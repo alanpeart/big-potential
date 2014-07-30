@@ -449,10 +449,10 @@
 			bob = $(this).parent().find('input').attr('id');
 			switch(bob) {
 				case "edit-field-ap-statutory-services-und-0":
-					$('#edit-field-ap-statutory-perc').show();
+					$('#edit-field-ap-statutory-perc').show(200);
 				break;
 				case "edit-field-ap-statutory-services-und-1":
-					$('#edit-field-ap-statutory-perc').hide();
+					$('#edit-field-ap-statutory-perc').hide(200);
 				break;p
 			}
 		});
