@@ -444,5 +444,18 @@
 	var twitOptions = {
 		"url": "sites/all/themes/big/css/twitter.css"
 	};
+	if($('#edit-field-ap-statutory-services-und').length) {
+		$('#edit-field-ap-statutory-services-und .iCheck-helper').click(function() {
+			bob = $(this).parent().find('input').attr('id');
+			switch(bob) {
+				case "edit-field-ap-statutory-services-und-0":
+					$('#edit-field-ap-statutory-perc').show();
+				break;
+				case "edit-field-ap-statutory-services-und-1":
+					$('#edit-field-ap-statutory-perc').hide();
+				break;p
+			}
+		});
+	}
 	CustomizeTwitterWidget(twitOptions);	
 });})(jQuery);
