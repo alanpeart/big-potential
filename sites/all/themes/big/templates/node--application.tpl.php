@@ -37,7 +37,7 @@
 	<?php
 		foreach($content as &$group) {
 			foreach($group as &$field) {
-				if(isset($field['#field_type'])) {
+				if(is_array($field) && isset($field['#field_type'])) {
 					switch($field['#field_name']) {
 						case "field_sectors_you_work_in":
 						case "field_areas_included":
