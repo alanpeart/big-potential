@@ -737,7 +737,7 @@ function bp_diagnostic_pie_chart($container, $title, $colour, $data, $width, $he
 }
 
 function bp_can_user_edit($euser, $entity) {
-	$edit = FALSE;
+	$edit = FALSE;	
 	if($euser->uid == $entity->uid) {
 		// Are they the author?
 		$edit = TRUE;
@@ -748,14 +748,24 @@ function bp_can_user_edit($euser, $entity) {
 	}
 	elseif(array_intersect(array('Consultant'), array_values($euser->roles))) {
 		// Are they a consultant assigned to the user who created the report?
-		$author = user_load($entity->uid);
-		if(isset($author->field_connected_providers['und'][0])) {
+		$flags = flag_get_user_flags('user', NULL, $entity->uid);
+		//print '<pre>';
+		//print_r($flags);
+		//print '</pre>';
+		if(isset($flags['connected_consultants'])) {
+			foreach($flags['connected_consultants'] as $cc) {
+				if($cc->entity_id == $euser->uid) {
+					$edit = TRUE;
+				}
+			}
+		}
+		/* if(isset($author->field_connected_providers['und'][0])) {
 			foreach($author->field_connected_providers['und'] as $provider) {
 				if($provider[0]['uid'] == $euser->uid) {
 					$edit = TRUE;
 				}
 			}
-		}
+		} */
 	}
 	return $edit;
 }
