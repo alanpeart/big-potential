@@ -36,7 +36,7 @@
 	<?php if($eligibility['eligible'] == TRUE): ?>
 		<div class="alert-box success eligible">
 			<h3>Congratulations! Your organisation is eligible to apply to Big Potential.</h3>
-			<p>You can now start the next step of the application process. We recommend that you read the <a href="#">Big Potential programme guidance</a> before starting the process.</p>
+			<p>You can now start the next step of the application process. We recommend that you read the <a href="/apply">Big Potential programme guidance</a> before starting the process.</p>
 			<p>What next? Complete the <a href="<?php print url('diagnostic-tool'); ?>">diagnostic tool</a> to assess if you are ready for investment and browse our suite of <a href="/accessing-support">useful resources</a>.</p>
 			<p>Question? If you have any questions please call our enquiry line on <strong>0207 842 7788</strong> or email <a href="mailto:bigpotential@sibgroup.org.uk">bigpotential@sibgroup.org.uk</a>.</p>
 			<p>Thank you for taking time to register your interest.</p>
