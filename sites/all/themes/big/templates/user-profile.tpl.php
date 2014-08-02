@@ -327,7 +327,7 @@
 		<?php endif; ?>
 		<?php if($my && $is_consultant): ?>
 			<div class="dashpanel" id="connected-orgs">
-				<h2>Connected Organisations one</h2>	
+				<h2>Connected Organisations</h2>	
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
 			</div>		
 		<?php endif; ?>
@@ -337,12 +337,18 @@
 				<?php print views_embed_view('connected_organisations_for_advisors', 'block', $account->uid); ?>			
 			</div>		
 		<?php endif; ?>			
-		<?php if(!$my && ($is_consultant || $is_admin)): ?>
+		<?php if(!$my && && !$is_admin && $is_consultant)): ?>
 			<div class="dashpanel" id="connected-orgs">
 				<h2>Connected Organisations two</h2>	
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
 			</div>		
 		<?php endif; ?>	
+		<?php if(!$my && && !$is_consultant && $is_admin)): ?>
+			<div class="dashpanel" id="connected-orgs">
+				<h2>Connected Organisations two</h2>	
+				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
+			</div>		
+		<?php endif; ?>			
 	</div><!-- /dashboard -->
 
 </div>
