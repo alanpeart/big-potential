@@ -259,13 +259,13 @@
 						</div>
 				<?php } ?>				
 				<?php 
-					$ce2 = views_get_view_result('connected_advisors', 'block', $account->uid);
-					if(!empty($ce2)) { ?>
+					//$ce2 = views_get_view_result('connected_advisors', 'block', $account->uid);
+					//if(!empty($ce2)) { ?>
 						<div class="dashpanel" id="connected-advisors">
 							<h2>Connected Advisors</h2>
 							<?php print views_embed_view('connected_advisors', 'block'); ?>
 						</div>
-				<?php } ?>
+				<?php //} ?>
 				<?php if(isset($account->field_download['und'][0])): ?>
 					<div class="dashpanel" id="document-library">
 						<h2>Personal Document Library</h2>
