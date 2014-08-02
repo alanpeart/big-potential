@@ -9,7 +9,7 @@
 		********************************************/
 		global $user; $my=FALSE; $text=""; $address="";
 		$diagnostic_text = $diagnostic_link = $eligibility_text = $eligibility_link = $eligibility_retake = $diagnostic_retake = $funding_text = $funding_link = $funding_retake = $provider_text = $provider_link = $provider_users = "";
-		$is_consultant = $is_admin = $is_pm = FALSE; $provider_nid = 0;
+		$is_consultant = $is_advisor = $is_admin = $is_pm = FALSE; $provider_nid = 0;
 
 		if(arg(0) == 'user' && is_numeric(arg(1))) {
 			$profile_uid = arg(1);
@@ -31,6 +31,7 @@
 			}
 			if(array_intersect(array('Site Manager', 'administrator', 'Site Manager Test Role'), array_values($user->roles))) { $is_admin = TRUE; }
 			if(in_array('Consultant', $account->roles)) { $is_consultant = TRUE; }
+			if(in_array('Advisor', $account->roles)) { $is_advisor = TRUE; }
 			if(in_array('Provider Manager', $account->roles)) { $is_pm = TRUE; }
 
 			if(bp_can_user_edit($user, $account)) {
@@ -211,7 +212,7 @@
 				</div>		
 			<?php endif; ?>
 		</div>
-		<?php if(!$is_consultant && !$is_pm): ?>
+		<?php if(!$is_consultant && !$is_advisor && !$is_pm): ?>
 			<?php if(bp_can_user_edit($user, $account)): ?>
 				<div class="dashpanel onethird left <?php print $el_panel_class; ?>">
 					<h2>Eligibility Check</h2>
@@ -250,11 +251,11 @@
 					<?php print $funding_link; ?>			
 				</div>
 				<?php 
-					$checkempty = views_get_view_result('connected_providers', 'block', $account->uid);
+					$checkempty = views_get_view_result('connected_advisors', 'block', $account->uid);
 					if(!empty($checkempty)) { ?>
 						<div class="dashpanel" id="connected-providers">
-							<h2>Connected Consultants</h2>
-							<?php print views_embed_view('connected_providers', 'block'); ?>
+							<h2>Connected Advisors</h2>
+							<?php print views_embed_view('connected_advisors', 'block'); ?>
 						</div>
 				<?php } ?>
 				<?php if(isset($account->field_download['und'][0])): ?>
@@ -321,8 +322,14 @@
 				<h2>Connected Organisations</h2>	
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
 			</div>		
-		<?php endif; ?>		
-		<?php if(!$my && $is_consultant && $is_admin): ?>
+		<?php endif; ?>
+		<?php if($my && $is_advisor): ?>
+			<div class="dashpanel" id="connected-orgs">
+				<h2>Advising Organisations:</h2>	
+				<?php print views_embed_view('connected_organisations_for_advisors', 'block', $account->uid); ?>			
+			</div>		
+		<?php endif; ?>			
+		<?php if(!$my && ($is_consultant || $is_admin)): ?>
 			<div class="dashpanel" id="connected-orgs">
 				<h2>Connected Organisations</h2>	
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			

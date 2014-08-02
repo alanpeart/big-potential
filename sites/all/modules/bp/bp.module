@@ -774,13 +774,16 @@ function bp_can_user_edit($euser, $entity) {
 				}
 			}
 		}
-		/* if(isset($author->field_connected_providers['und'][0])) {
-			foreach($author->field_connected_providers['und'] as $provider) {
-				if($provider[0]['uid'] == $euser->uid) {
+	}
+	elseif(array_intersect(array('Advisor'), array_values($euser->roles))) {
+		// Are they an advisor assigned to the user who created the report?
+		if(isset($author->field_connected_advisor['und'][0])) {
+			foreach($author->field_connected_advisor['und'] as $advisor) {
+				if($advisor[0]['uid'] == $euser->uid) {
 					$edit = TRUE;
 				}
 			}
-		} */
+		}
 	}
 	return $edit;
 }
