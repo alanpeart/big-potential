@@ -89,6 +89,21 @@ function bp_provider_count($nid) {
 	return $cnt;
 }
 
+function bp_advisor_count($nid) {
+	/* Return the number of advisors associated with a partner organisation */
+	$cnt=0;
+	$sql = "SELECT COUNT(DISTINCT f.entity_id) AS usercount 
+			FROM {field_data_field_partner_organisation} f
+			INNER JOIN {users} u ON f.entity_id = u.uid 
+			WHERE f.field_partner_organisation_nid = :nid 
+			AND f.entity_type = 'user' AND u.status = 1";
+	$result = db_query($sql, array(':nid' => $nid));
+	foreach($result as $ret) {
+		$cnt = $ret->usercount;
+	}
+	return $cnt;
+}
+
 function bp_notitle_types() {
 	return array('resource', 'provider');
 }
