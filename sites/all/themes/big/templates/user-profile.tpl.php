@@ -251,9 +251,17 @@
 					<?php print $funding_link; ?>			
 				</div>
 				<?php 
+					$checkempty = views_get_view_result('connected_consultants', 'block', $account->uid);
+					if(!empty($checkempty)) { ?>
+						<div class="dashpanel" id="connected-consultants">
+							<h2>Connected Consultants</h2>
+							<?php print views_embed_view('connected_consultants', 'block'); ?>
+						</div>
+				<?php } ?>				
+				<?php 
 					$checkempty = views_get_view_result('connected_advisors', 'block', $account->uid);
 					if(!empty($checkempty)) { ?>
-						<div class="dashpanel" id="connected-providers">
+						<div class="dashpanel" id="connected-advisors">
 							<h2>Connected Advisors</h2>
 							<?php print views_embed_view('connected_advisors', 'block'); ?>
 						</div>
@@ -319,7 +327,7 @@
 		<?php endif; ?>
 		<?php if($my && $is_consultant): ?>
 			<div class="dashpanel" id="connected-orgs">
-				<h2>Connected Organisations</h2>	
+				<h2>Connected Organisations one</h2>	
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
 			</div>		
 		<?php endif; ?>
@@ -331,7 +339,7 @@
 		<?php endif; ?>			
 		<?php if(!$my && ($is_consultant || $is_admin)): ?>
 			<div class="dashpanel" id="connected-orgs">
-				<h2>Connected Organisations</h2>	
+				<h2>Connected Organisations two</h2>	
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
 			</div>		
 		<?php endif; ?>	
