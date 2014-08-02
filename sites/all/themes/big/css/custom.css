@@ -1000,11 +1000,13 @@ h1.node-title {
 	font-size: 13px;
 	font-weight:400;
 }
-.block-views-consultants-block {
+.block-views-consultants-block,
+.block-views-advisors-block-1 {
 	margin-left: 115px;
 	max-width: 440px;
 }
-.block-views-consultants-block h2.block-title {
+.block-views-consultants-block h2.block-title,
+.block-views-advisors-block-1 h2.block-title {
 	padding:0 0 0 10px;
 	height:36px;
 	line-height:36px;
@@ -1016,15 +1018,18 @@ h1.node-title {
 	font-weight:600;
 	margin-bottom:25px;
 }
-.block-views-consultants-block .views-field-picture img {
+.block-views-consultants-block .views-field-picture img,
+.block-views-advisors-block-1 .views-field-picture img {
 	width: 188px;
 }
-.block-views-consultants-block .views-field-picture {
+.block-views-consultants-block .views-field-picture,
+.block-views-providers-block-1 .views-field-picture {
 	width: 188px;
 	height: 125px;
 	overflow: hidden;
 }
-.block-views-consultants-block .views-row {
+.block-views-consultants-block .views-row,
+.block-views-advisors-block-1 .views-row {
 	float: left;
 	clear: none;
 	width: 188px;
@@ -1035,7 +1040,8 @@ h1.node-title {
 	box-sizing: border-box;
 	border-bottom: solid 2px #C6C6C6;
 }
-.block-views-consultants-block .views-field-name {
+.block-views-consultants-block .views-field-name,
+.block-views-advisors-block-1 .views-field-name {
 	color: #000;
 	text-transform: none;
 	font-size: 16px;
@@ -1043,21 +1049,26 @@ h1.node-title {
 	margin: 10px 0;
 }
 
-.block-views-consultants-block .views-field-field-services {
+.block-views-consultants-block .views-field-field-services,
+.block-views-advisors-block-1 .views-field-field-services {
 	display: inline-block;
 	margin-bottom: 5px;
 	margin-top: 0px;
 }
 
-.block-views-consultants-block .views-field-field-provider-services{
+.block-views-consultants-block .views-field-field-provider-services,
+.block-views-advisors-block-1 .views-field-field-provider-services {
 	height:65px;
 }
 
 .block-views-consultants-block .views-field-field-services div,
-.block-views-consultants-block .views-field-field-services ul {
+.block-views-consultants-block .views-field-field-services ul,
+.block-views-advisors-block-1 .views-field-field-services div,
+.block-views-advisors-block-1 .views-field-field-services ul {
 	display: inline;
 }
-.block-views-consultants-block .views-field-field-services ul li {
+.block-views-consultants-block .views-field-field-services ul li,
+.block-views-advisors-block-1 .views-field-field-services ul li {
 	margin-right: 4px;
 }
 .views-field-mail a {
