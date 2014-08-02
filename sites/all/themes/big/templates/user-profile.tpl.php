@@ -259,8 +259,8 @@
 						</div>
 				<?php } ?>				
 				<?php 
-					$checkempty = views_get_view_result('connected_advisors', 'block', $account->uid);
-					if(!empty($checkempty)) { ?>
+					$ce2 = views_get_view_result('connected_advisors', 'block', $account->uid);
+					if(!empty($ce2)) { ?>
 						<div class="dashpanel" id="connected-advisors">
 							<h2>Connected Advisors</h2>
 							<?php print views_embed_view('connected_advisors', 'block'); ?>
