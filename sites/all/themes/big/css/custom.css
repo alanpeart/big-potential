@@ -589,12 +589,14 @@ a.facebook {
 	border-bottom: 1px solid #E7E7E6;
 }
 
-.view-providers-directory .views-row {
+.view-providers-directory .views-row,
+.view-partners-directory .views-row {
 	width:100%;
 	position:relative;
 }
 
-.view-providers-directory .views-row .views-row-inner {
+.view-providers-directory .views-row .views-row-inner,
+.view-partners-directory .views-row .views-row-inner {
 	width:100%;
 	max-width:none !important;
 }
@@ -870,7 +872,8 @@ input#edit-keys {
 	display: inline;
 	font-family: "proxima-nova", Arial, Helvetica, sans-serif;
 }
-.view-providers-directory .views-field-php {
+.view-providers-directory .views-field-php,
+.view-partners-directory .views-field-php {
 	margin-left: 8px;
 	color: #575756;
 	font-weight: 400;
@@ -880,14 +883,16 @@ input#edit-keys {
 .views-field-field-services{
 	margin: 10px 0;
 }
-.view-providers-directory .views-field-body {
+.view-providers-directory .views-field-body,
+.view-partners-directory .views-field-body {
 	margin-left: 0;
 	font-family: "proxima-nova-condensed", Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #666;
 	line-height: 1.3;
 }
-.view-providers-directory .views-field-body p {
+.view-providers-directory .views-field-body p,
+.view-partners-directory .views-field-body p {
 	color: #575756;
 	font-size: 13px;
 	line-height: 1.35;
@@ -1646,7 +1651,8 @@ footer #mailchimp-newsletter-421509-mergefields {
 	width:83%;
 }
 
-.view-providers-directory .view-header {
+.view-providers-directory .view-header,
+.view-partners-directory .view-header {
 	border-bottom: 2px solid #CECECE;
 	margin-bottom:25px;
 	font-weight:300;
@@ -1654,14 +1660,16 @@ footer #mailchimp-newsletter-421509-mergefields {
 	color:#575756;
 }
 
-.view-providers-directory .view-header p{
+.view-providers-directory .view-header p,
+.view-partners-directory .view-header p {
 	margin-bottom:15px;
 	font-weight:300;
 	font-size:16px;
 	color:#575756;
 }
 
-.view-providers-directory .view-header h2{
+.view-providers-directory .view-header h2,
+.view-partners-directory .view-header h2 {
 	font-weight:600;
 	font-size:28px;
 	color:#0C233E;
@@ -1677,7 +1685,8 @@ footer #mailchimp-newsletter-421509-mergefields {
 	margin-bottom: 25px;
 }
 
-.view-providers-directory .views-exposed-form {
+.view-providers-directory .views-exposed-form,
+.view-partners-directory .views-exposed-form {
 	border-bottom:none !important;
 	padding-bottom:0;
 }
@@ -1688,7 +1697,8 @@ footer #mailchimp-newsletter-421509-mergefields {
 	right:0;
 }
 
-.view-providers-directory .views-field-field-logo {
+.view-providers-directory .views-field-field-logo,
+.view-partners-directory .views-field-field-logo {
 	margin-bottom:0;
 }
 
@@ -4508,7 +4518,8 @@ button.field-add-more-submit {
 	.views-field-field-provider-services {
 		clear: left;
 	}
-	.view-providers-directory .views-field-body {
+	.view-providers-directory .views-field-body,
+	.view-partners-directory .views-field-body	{
 		margin-left: 0px;
 	}
 	.main .view-resources .views-field-field-categories,
