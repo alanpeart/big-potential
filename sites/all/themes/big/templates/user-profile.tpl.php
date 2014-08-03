@@ -141,7 +141,7 @@
 			$address = bp_address_string($account->field_address['und'][0]);
 		}
 	?>
-	<?php if(bp_can_user_edit($user, $account)): ?>
+	<?php if($my || $is_admin): ?>
 		<div id="profile-edit-link"><a href="/user/<?php print $profile_uid; ?>/edit?destination=user/<?php print $profile_uid; ?>" class="button blue">Edit</a></div>
 	<?php endif; ?>
 	<h1 id="page-title"><?php print $user->uid == $profile_uid ? 'My account' : $account->name; ?></h1>
