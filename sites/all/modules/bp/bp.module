@@ -776,7 +776,8 @@ function bp_can_user_edit($euser, $entity) {
 		}
 	}
 	elseif(array_intersect(array('Advisor'), array_values($euser->roles))) {
-		gromber();
+		$author = user_load($entity->uid);
+		dsm($author);
 		// Are they an advisor assigned to the user who created the report?
 		if(isset($author->field_connected_advisor['und'][0])) {
 			foreach($author->field_connected_advisor['und'] as $advisor) {
