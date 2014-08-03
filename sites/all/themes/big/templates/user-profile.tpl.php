@@ -35,7 +35,7 @@
 			if(in_array('Provider Manager', $account->roles)) { $is_pm = TRUE; }
 
 			if(bp_can_user_edit($user, $account)) {
-
+				gromber();
 				$eligible_nid = bp_user_report($account->uid, 'nid', 'eligibility');
 				
 				if($eligible_nid > 0) {
