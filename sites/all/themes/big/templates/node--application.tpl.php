@@ -21,6 +21,7 @@
 						case "site manager test role":
 						case "provider manager":
 						case "consultant":
+						case "advisor":
 							$access = TRUE;
 						break;
 					}
