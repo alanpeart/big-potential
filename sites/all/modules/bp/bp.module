@@ -841,3 +841,14 @@ function bp_has_advisor_changed($account_unchanged, $account) {
 	}
 	return false;
 }
+
+function bp_get_advising_vcse_names($uid) {
+	$names=array();
+	$sql = "SELECT DISTINCT u.uid, u.name FROM users u INNER JOIN field_data_field_connected_advisor fdfca ON u.uid = fdfca.entity_id WHERE field_connected_advisor_uid = :uid";
+	$result = db_query($sql, array(':uid' => $uid));
+	foreach($result as $row) {
+		$names[] = '<a href="/user/'.$row->uid.'" title="'.$row->name.'">'.$row->name.'</a>';
+	}
+	$string = implode(', ', $names);
+	return $string;
+}
