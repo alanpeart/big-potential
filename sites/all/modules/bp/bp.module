@@ -824,3 +824,20 @@ function bp_lexicon($text) {
 function gromber() {
 	print '<h1>GROMBER</h1>';
 }
+
+function bp_has_advisor_changed($account_unchanged, $account) {
+	/* 
+	* Rules was having trouble comparing data values
+	* if the Connected Advisor field wasn't populated
+	* to start with. So we do it ourselves
+	*/
+	if(isset($account->field_connected_advisor['und'][0][uid])) {
+		if(!isset($account_unchanged->field_connected_advisor['und'][0]['uid']) {
+			return true;
+		}
+		elseif($account_unchanged->field_connected_advisor['und'][0]['uid'] != $account->field_connected_advisor['und'][0]['uid']) {
+			return true;
+		}
+	}
+	return false;
+}

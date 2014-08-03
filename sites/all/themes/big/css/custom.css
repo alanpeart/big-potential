@@ -1889,7 +1889,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 .page-admin-people #user-register-form .field-name-field-organisation-name {
 	display: none;
 }
-.field-type-node-reference, .field-type-user-reference {
+.field-type-node-reference, .field-type-user-reference, #edit-metatags {
 	float: left;
 	clear: left;
 }
