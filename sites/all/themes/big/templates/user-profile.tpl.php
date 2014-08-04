@@ -333,7 +333,7 @@
 		<?php endif; ?>
 		<?php if($is_advisor): ?>
 			<div class="dashpanel" id="connected-orgs">
-				<h2>Advising Organisations:</h2>	
+				<h2>Key Contacts for Advising Organisations:</h2>	
 				<?php print views_embed_view('connected_organisations_for_advisors', 'block', $account->uid); ?>			
 			</div>		
 		<?php endif; ?>			
