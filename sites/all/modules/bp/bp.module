@@ -852,3 +852,45 @@ function bp_get_advising_vcse_names($uid) {
 	$string = implode(', ', $names);
 	return $string;
 }
+ 
+function bp_export_bs_data($users) {
+  $count = 0;
+  $data = array();
+  foreach ($users as $user) {
+    $data[$count][] = $user->uid;
+    $data[$count][] = $user->mail;
+    $data[$count][] = empty($user->field_xxx[LANGUAGE_NONE][0]['value'])?"":$user->field_xxx[LANGUAGE_NONE][0]['value'];
+    // multiple values
+    $loc_str = '';
+    if (!empty($user->field_location[LANGUAGE_NONE])) {
+      foreach ($user->field_location[LANGUAGE_NONE] as $loc_key => $loc_val) {
+        $loc_arr[] = $loc_val['postal_code'] . ' ' . $loc_val['street']  . ' ' . $loc_val['city'] . ' ' . $loc_val['province'] . ' ' . $loc_val['country'];
+      }
+      if (!empty($loc_arr)) {
+        $loc_str = implode (' | ', $loc_arr);
+      }
+    }
+    $data[$count][] = $loc_str;
+    $count++;
+  }
+ 
+  $header = array('uid','field xxx','multiple values location string');
+  $output ='';
+  foreach($header as $k => $v) {
+    $output .= $v.',';
+  }
+  $output .= "\r\n";
+ 
+  for($i=0 ; $i<count($data);$i++) {
+    foreach($data[$i] as $k => $v) {
+      $output .= str_replace(array("\r\n","\n\r", "\r", "\n" ,"\t","\"","'" ,","), ' ',$v) . ',';
+    }
+    $output .= "\r\n";
+  }
+  $filename =  'bs_data_export' . time() . '.csv';
+ 
+  header('Content-type: text/csv;charset=utf-8');
+  header('Content-disposition: attachment; filename='.$filename);
+  echo "\xEF\xBB\xBF".$output;
+  exit;
+}

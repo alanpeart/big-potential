@@ -348,7 +348,13 @@
 				<h2>Connected Organisations</h2>	
 				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
 			</div>		
-		<?php endif; ?>			
+		<?php endif; ?>	
+		<?php if(!$my && $is_consultant && $is_admin): ?>
+			<div class="dashpanel" id="connected-orgs">
+				<h2>Connected Organisations</h2>	
+				<?php print views_embed_view('connected_organisations', 'block', $account->uid); ?>			
+			</div>		
+		<?php endif; ?>		
 	</div><!-- /dashboard -->
 
 </div>
