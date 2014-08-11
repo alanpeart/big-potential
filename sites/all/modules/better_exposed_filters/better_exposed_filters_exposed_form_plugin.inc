@@ -581,7 +581,7 @@ Title Desc|Z -> A</pre> Leave the replacement value blank to remove an option al
     // needed. Eventually, much of that functionality worked its way into the
     // normal usage of BEF so that we now turn those Jvaascript behaviors on
     // by default. (See https://drupal.org/node/1807114).
-    $bef_add_js = TRUE;
+    $bef_add_js = FALSE;
     $bef_js = array(
       'datepicker' => FALSE,
       'slider' => FALSE,
