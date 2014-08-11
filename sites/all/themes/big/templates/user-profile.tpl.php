@@ -251,11 +251,11 @@
 					<?php print $funding_link; ?>			
 				</div>
 				<?php 
-					$checkempty = views_get_view_result('connected_consultants', 'block', $account->uid);
+					$checkempty = views_get_view_result('connected_providers', 'block', $account->uid);
 					if(!empty($checkempty)) { ?>
 						<div class="dashpanel" id="connected-consultants">
 							<h2>Connected Consultants</h2>
-							<?php print views_embed_view('connected_consultants', 'block'); ?>
+							<?php print views_embed_view('connected_providers', 'block'); ?>
 						</div>
 				<?php } ?>				
 				<?php 
