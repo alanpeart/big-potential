@@ -205,6 +205,7 @@ function bp_form_alter(&$form, &$form_state, $form_id)  {
 				}
 			}			
 			$form['#submit'][] = "bp_user_register_submit";
+			$form['#validate'][] = 'bp_user_register_validate';
 		break;
 		case "user_login":
 			//print '<pre>';
@@ -275,6 +276,17 @@ function bp_account_address_validate($form, &$form_state) {
 				if($pcode_validate['error']) {
 					form_set_error('field_address', $pcode_validate['error']);
 				}
+			}
+		}
+	}
+}
+
+function bp_user_register_validate($form, &$form_state) {
+	// Check for special characters in address fields
+	if(isset($form_state['values']['field_first_name']['und'][0]['value'])) {
+		if(isset($form_state['values']['field_last_name']['und'][0]['value'])) {
+			if($form_state['values']['field_first_name']['und'][0]['value'] == $form_state['values']['field_last_name']['und'][0]['value']) {
+				form_set_error('field_first_name', 'First name and last name should be different');
 			}
 		}
 	}
@@ -854,27 +866,31 @@ function bp_get_advising_vcse_names($uid) {
 }
  
 function bp_export_bs_data($users) {
-  $count = 0;
-  $data = array();
-  foreach ($users as $user) {
-    $data[$count][] = $user->uid;
-    $data[$count][] = $user->mail;
-    $data[$count][] = empty($user->field_xxx[LANGUAGE_NONE][0]['value'])?"":$user->field_xxx[LANGUAGE_NONE][0]['value'];
-    // multiple values
-    $loc_str = '';
-    if (!empty($user->field_location[LANGUAGE_NONE])) {
-      foreach ($user->field_location[LANGUAGE_NONE] as $loc_key => $loc_val) {
-        $loc_arr[] = $loc_val['postal_code'] . ' ' . $loc_val['street']  . ' ' . $loc_val['city'] . ' ' . $loc_val['province'] . ' ' . $loc_val['country'];
-      }
-      if (!empty($loc_arr)) {
-        $loc_str = implode (' | ', $loc_arr);
-      }
-    }
-    $data[$count][] = $loc_str;
-    $count++;
-  }
+	global $base_url;
+  	$count = 0;
+  	$data = array();
+	foreach ($users as $user) {
+		dsm($users);
+	    	$data[$count][] = $user->uid;
+	    	$data[$count][] = $user->name;
+	    	$data[$count][] = $user->mail;
+		$data[$count][] = implode(", ", $user->roles);
+	    	$data[$count][] = empty($user->field_organisation_name[LANGUAGE_NONE][0]['value'])?"":$user->field_organisation_name[LANGUAGE_NONE][0]['value'];
+		$loc_str = ""; $loc_array = array();
+		if(isset($user->field_address[LANGUAGE_NONE][0])) {
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['street'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['street']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['additional'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['additional']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['city'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['city']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['province_name'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['province_name']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['postal_code'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['postal_code']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['country_name'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['country_name']; }
+			$loc_str = implode(", ", $loc_array);
+		}
+	    $data[$count][] = $loc_str;
+	    $count++;
+	}
  
-  $header = array('uid','field xxx','multiple values location string');
+  $header = array('uid', 'Name', 'Email', 'Roles', 'Organisation Name', 'Address');
   $output ='';
   foreach($header as $k => $v) {
     $output .= $v.',';
@@ -883,11 +899,12 @@ function bp_export_bs_data($users) {
  
   for($i=0 ; $i<count($data);$i++) {
     foreach($data[$i] as $k => $v) {
-      $output .= str_replace(array("\r\n","\n\r", "\r", "\n" ,"\t","\"","'" ,","), ' ',$v) . ',';
+      $output .= '"' . str_replace(array("\r\n","\n\r", "\r", "\n" ,"\t","\""), ' ',$v) . '",';
     }
     $output .= "\r\n";
   }
   $filename =  'bs_data_export' . time() . '.csv';
+	// $filepath = $base_url . '/sites/default/files/'.$filename;
  
   header('Content-type: text/csv;charset=utf-8');
   header('Content-disposition: attachment; filename='.$filename);
