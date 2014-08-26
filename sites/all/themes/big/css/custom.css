@@ -2806,6 +2806,9 @@ input[type="file"] {
 	margin-bottom: 30px;
 	position: relative;
 }
+.node .dashpanel {
+	height: 230px;
+}
 .profile-label {
 	width: 100px;
 	float: left;
@@ -3066,7 +3069,7 @@ span.file-size {
 	color: #999;
 	font-weight: normal;
 }
-.button.navy {
+.button.navy, .node .button.navy {
 	background-color: #0C233E !important;
 	color: #fff !important;
 	font-size: 16px !important;
@@ -3080,7 +3083,7 @@ span.file-size {
 	box-sizing: border-box;
 	text-align: center;
 }
-.button.navy:hover {
+.button.navy:hover, .node .button.navy:hover {
 	background-color: #000 !important;
 	text-decoration: none !important;
 }
