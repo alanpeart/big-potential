@@ -436,7 +436,7 @@
 	$('.multipage-link-next').val('Next');
 	$('.multipage-link-previous').val('Back');
 	
-	$("input:not('.vertical-tabs input')").iCheck({
+	$("input:not('.vertical-tabs input'):not('.vbo-views-form input')").iCheck({
 		checkboxClass: 'icheckbox_square',
 		radioClass: 'iradio_square',
 		increaseArea: '20%' // optional

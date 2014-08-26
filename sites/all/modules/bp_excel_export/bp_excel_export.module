@@ -1,0 +1,462 @@
+<?php
+
+function bp_excel_export_status_from_tid($tid) {
+	$term = taxonomy_term_load($tid);
+	$name = $term->name;
+	return $name?$name:"";
+}
+ 
+function bp_excel_export_profile($users) {
+	global $base_url;
+  	$count = 0;
+  	$data = array();
+	foreach ($users as $user) {
+	    $data[$count][] = $user->uid;
+	    $data[$count][] = empty($user->field_first_name[LANGUAGE_NONE][0]['value'])?"":$user->field_first_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_last_name[LANGUAGE_NONE][0]['value'])?"":$user->field_last_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = '=HYPERLINK(""http://www.bigpotential.org.uk/user/'.$user->uid.'"", ""'.$user->name.'"")';
+		$data[$count][] = '=HYPERLINK(""'.$user->mail.'"")';
+	    $data[$count][] = empty($user->field_status[LANGUAGE_NONE][0]['tid'])?"":bp_excel_export_status_from_tid($user->field_status[LANGUAGE_NONE][0]['tid']);
+		$data[$count][] = implode(", ", $user->roles);
+	    $data[$count][] = empty($user->field_organisation_name[LANGUAGE_NONE][0]['value'])?"":$user->field_organisation_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_job_title[LANGUAGE_NONE][0]['value'])?"":$user->field_job_title[LANGUAGE_NONE][0]['value'];
+		$loc_str = ""; $loc_array = array();
+		if(isset($user->field_address[LANGUAGE_NONE][0])) {
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['street'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['street']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['additional'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['additional']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['city'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['city']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['province_name'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['province_name']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['postal_code'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['postal_code']; }
+			if(strlen($user->field_address[LANGUAGE_NONE][0]['country_name'])>0) { $loc_array[] = $user->field_address[LANGUAGE_NONE][0]['country_name']; }
+			$loc_str = implode(", ", $loc_array);
+		}
+	    $data[$count][] = $loc_str;
+		$data[$count][] = empty($user->field_telephone[LANGUAGE_NONE][0]['value'])?"":$user->field_telephone[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_mobile[LANGUAGE_NONE][0]['value'])?"":$user->field_mobile[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_facebook_page[LANGUAGE_NONE][0]['value'])?"":$user->field_facebook_page[LANGUAGE_NONE][0]['url'];
+		$data[$count][] = empty($user->field_twitter_handle[LANGUAGE_NONE][0]['value'])?"":$user->field_twitter_handle[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_linkedin_page[LANGUAGE_NONE][0]['value'])?"":$user->field_linkedin_page[LANGUAGE_NONE][0]['url'];
+		$data[$count][] = empty($user->field_region[LANGUAGE_NONE][0]['value'])?"":$user->field_region[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_intend_apply[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($user->field_intend_apply[LANGUAGE_NONE][0]['value']);
+		$data[$count][] = empty($user->field_reg_charity[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($user->field_reg_charity[LANGUAGE_NONE][0]['value']);
+		$data[$count][] = empty($user->field_org_reach[LANGUAGE_NONE][0]['value'])?"":$user->field_org_reach[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_organisation_type[LANGUAGE_NONE][0]['value'])?"":$user->field_organisation_type[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_woman_led[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($user->field_woman_led[LANGUAGE_NONE][0]['value']);
+		$data[$count][] = empty($user->field_minority_led[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($user->field_minority_led[LANGUAGE_NONE][0]['value']);
+		$data[$count][] = empty($user->field_date_established[LANGUAGE_NONE][0]['value'])?"":$user->field_date_established[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_financial_yearend[LANGUAGE_NONE][0]['value'])?"":$user->field_financial_yearend[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_website[LANGUAGE_NONE][0]['value'])?"":$user->field_website[LANGUAGE_NONE][0]['url'];
+		$data[$count][] = empty($user->field_connected_advisor[LANGUAGE_NONE][0]['uid'])?"":$user->field_connected_advisor[LANGUAGE_NONE][0]['uid'];
+	    $count++;
+	}
+ 
+  $header = array('uid', 'First Name', 'Last Name', 'Link', 'Email', 'Status', 'Roles', 'Organisation Name', 'Job Title', 'Address', 'Telephone', 'Mobile', 'Facebook', 'Twitter', 'LinkedIn', 'Region', 'Intend To Apply', 'Registered Charity', 'Reach', 'Org Type', 'Woman Led', 'Minority Led', 'Date Established', 'Financial Yearend', 'Website', 'Advisor');
+  $output ='';
+  foreach($header as $k => $v) {
+    $output .= $v.',';
+  }
+  $output .= "\r\n";
+ 
+  for($i=0 ; $i<count($data);$i++) {
+    foreach($data[$i] as $k => $v) {
+		if(strlen($v) > 0 && substr($v, 0, 1) == "0") {
+			$output .= '="' . $v . '",';
+		}
+		else {
+			$output .= '"' . $v . '",';
+		}
+    }
+    $output .= "\r\n";
+  }
+  $filename =  'big_potential_user_profile_export_' . date("YmdHis", time()) . '.xls';
+	// $filepath = $base_url . '/sites/default/files/'.$filename;
+ 
+  header('Content-type: application/vnd.ms-excel');
+  header('Content-disposition: attachment; filename='.$filename);
+  echo "\xEF\xBB\xBF".$output;
+  exit;
+}
+
+function bp_excel_export_yesOrNo($val) {
+	switch($val) {
+		case 1:
+		case "yes":
+		case "Yes":
+		case "true":
+		case "TRUE":
+		case TRUE:
+			return "Yes";
+		break;
+		default:
+			return "No";
+	}
+}
+
+function bp_excel_export_getUsername($uid, $hyper=true) {
+	$u = user_load($uid);
+	if($u) {
+		if($hyper) {
+			return 'http://www.bigpotential.org.uk/user/'.$u->uid;
+		}
+		else {
+			return $u->name;
+		}
+	}
+	else {
+		return "";
+	}
+}
+
+function bp_excel_export_eligibility($users) {
+	global $base_url;
+  	$count = 0;
+  	$data = array();
+	foreach ($users as $user) {
+		// Check if eligibility check exists for this user
+		$nid = bp_user_report($user->uid, 'nid', 'eligibility');
+		$report = node_load($nid);
+	    $data[$count][] = $user->uid;
+	    $data[$count][] = empty($user->field_first_name[LANGUAGE_NONE][0]['value'])?"":$user->field_first_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_last_name[LANGUAGE_NONE][0]['value'])?"":$user->field_last_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = '=HYPERLINK(""http://www.bigpotential.org.uk/user/'.$user->uid.'"", ""'.$user->name.'"")';
+		$data[$count][] = '=HYPERLINK(""'.$user->mail.'"")';
+		if($nid > 0) {
+			$yearsOld = empty($report->field_years[LANGUAGE_NONE][0]['value'])?0:$report->field_years[LANGUAGE_NONE][0]['value'];
+			$monthsOld = empty($report->field_months[LANGUAGE_NONE][0]['value'])?0:$report->field_months[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = $yearsOld . " years " . $monthsOld . " months";
+			$sectors = array();
+			foreach($report->field_sector[LANGUAGE_NONE] as $sector) {
+				$sectors[] = $sector['value'];
+			}
+			$data[$count][] = implode(", ", $sectors);
+			$data[$count][] = empty($report->field_reach[LANGUAGE_NONE][0]['value'])?"":$report->field_reach[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_full_time_employees[LANGUAGE_NONE][0]['value'])?"":$report->field_full_time_employees[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_part_time_employees[LANGUAGE_NONE][0]['value'])?"":$report->field_part_time_employees[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_volunteers[LANGUAGE_NONE][0]['value'])?"":$report->field_volunteers[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_turnover[LANGUAGE_NONE][0]['value'])?"":number_format($report->field_turnover[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_profit[LANGUAGE_NONE][0]['value'])?"":number_format($report->field_profit[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_operation[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_profit[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_is_voluntary[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_is_voluntary[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_how_much_capital[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_how_much_capital[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_investor_potential[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_investor_potential[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_track_record[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_track_record[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_grant_lifetime[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_grant_lifetime[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_religious_purpose[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_religious_purpose[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_understand_contribution[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_understand_contribution[LANGUAGE_NONE][0]['value']);
+		}
+		else {
+			$data[$count][] = 'NO ELIGIBILITY CHECK FOUND';
+		}
+	    $count++;
+	}
+ 
+  $header = array('uid', 'First Name', 'Last Name', 'Link', 'Email', 'How old is your organisation?', 'What sector do you operate in?', 'What is your organisational reach?', 'Full time employees', 'Part time employees', 'Volunteers', 'Turnover', 'Surplus/Deficit', 'Does your organisation operate in England?', 'Is your organisation a voluntary community or social enterprise organisation?', 'Is your organisation looking to raise up to 500k of new (repayable) investment?', 'Does your organisation have potential to develop activities that can generate financial and social returns for social investors?', 'Can your organisation show a track record of delivering social outcomes or health environment or education benefits?', 'Is your organisation financially healthy and able to cover its core costs during the life of the grant?', 'Is your organisation seeking a grant for a religious or political purpose?', 'Do you understand that your organisation may need to make a contribution to the costs of your project?');
+  $output ='';
+  foreach($header as $k => $v) {
+    $output .= $v.',';
+  }
+  $output .= "\r\n";
+ 
+  for($i=0 ; $i<count($data);$i++) {
+    foreach($data[$i] as $k => $v) {
+		if(strlen($v) > 0 && substr($v, 0, 1) == "0") {
+			$output .= '="' . $v . '",';
+		}
+		else {
+			$output .= '"' . $v . '",';
+		}
+    }
+    $output .= "\r\n";
+  }
+  $filename =  'big_potential_user_eligibility_check_export_' . date("YmdHis", time()) . '.xls';
+	// $filepath = $base_url . '/sites/default/files/'.$filename;
+ 
+  header('Content-type: application/vnd.ms-excel');
+  header('Content-disposition: attachment; filename='.$filename);
+  echo "\xEF\xBB\xBF".$output;
+  exit;
+}
+
+function bp_excel_export_diagnostic($users) {
+	global $base_url;
+  	$count = 0;
+  	$data = array();
+	foreach ($users as $user) {
+		// Check if it exists for this user
+		$nid = bp_user_report($user->uid, 'nid', 'diagnostic');
+		$report = node_load($nid);
+	    $data[$count][] = $user->uid;
+	    $data[$count][] = empty($user->field_first_name[LANGUAGE_NONE][0]['value'])?"":$user->field_first_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_last_name[LANGUAGE_NONE][0]['value'])?"":$user->field_last_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = '=HYPERLINK(""http://www.bigpotential.org.uk/user/'.$user->uid.'"", ""'.$user->name.'"")';
+		$data[$count][] = '=HYPERLINK(""'.$user->mail.'"")';
+		if($nid > 0) {
+			/* Step 1 */
+			$data[$count][] = empty($report->field_survey_sustainable[LANGUAGE_NONE][0]['value'])?0:$report->field_survey_sustainable[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_survey_robust_governance[LANGUAGE_NONE][0]['value'])?0:$report->field_survey_robust_governance[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_survey_skillsets[LANGUAGE_NONE][0]['value'])?0:$report->field_survey_skillsets[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_survey_impact[LANGUAGE_NONE][0]['value'])?0:$report->field_survey_impact[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_survey_investment_ready[LANGUAGE_NONE][0]['value'])?0:$report->field_survey_investment_ready[LANGUAGE_NONE][0]['value'];
+			$data[$count][] = empty($report->field_survey_additional_comments[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_survey_additional_comments[LANGUAGE_NONE][0]['value']);
+			/* Step 2 */
+			$data[$count][] = empty($report->field_total_turnover[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_total_turnover[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_total_turnover_last_year[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_total_turnover_last_year[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_turnover_projected[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_turnover_projected[LANGUAGE_NONE][0]['value']);
+			
+			$data[$count][] = empty($report->field_unrestricted_surp_def[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_unrestricted_surp_def[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_restricted_surp_def[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_restricted_surp_def[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_total_unrestricted_funds[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_total_unrestricted_funds[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_total_restricted_funds[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_total_restricted_funds[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_net_profit_after_tax[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_net_profit_after_tax[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_accumulated_profit_loss[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_accumulated_profit_loss[LANGUAGE_NONE][0]['value']);
+			
+			$data[$count][] = empty($report->field_bs_fixed_assets[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_bs_fixed_assets[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_bs_current_assets[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_bs_current_assets[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_bs_creditors_due_less_year[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_bs_creditors_due_less_year[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_bs_creditors_due_more_year[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_bs_creditors_due_more_year[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_income_public_sector[LANGUAGE_NONE][0]['value'])?"":number_format($report->field_income_public_sector[LANGUAGE_NONE][0]['value'])."%";
+			$data[$count][] = empty($report->field_income_other_sources[LANGUAGE_NONE][0]['value'])?"":number_format($report->field_income_other_sources[LANGUAGE_NONE][0]['value'])."%";
+			
+			$data[$count][] = empty($report->field_full_time_staff[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_full_time_staff[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_part_time_staff[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_full_time_staff[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_number_of_volunteers[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_number_of_volunteers[LANGUAGE_NONE][0]['value']);
+			
+			$data[$count][] = empty($report->field_main_products_services[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_main_products_services[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_investment_need[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_investment_need[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_investment_purpose[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_investment_purpose[LANGUAGE_NONE][0]['value']);
+			/* Step 3 */
+			$data[$count][] = empty($report->field_skills_marketing[LANGUAGE_NONE][0]['value'])?0:round(($report->field_skills_marketing[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_skills_business_dev[LANGUAGE_NONE][0]['value'])?0:round(($report->field_skills_business_dev[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_skills_human_resources[LANGUAGE_NONE][0]['value'])?0:round(($report->field_skills_human_resources[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_skills_legal[LANGUAGE_NONE][0]['value'])?0:round(($report->field_skills_legal[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			
+			$data[$count][] = empty($report->field_balance_representation[LANGUAGE_NONE][0]['value'])?0:round(($report->field_balance_representation[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_balance_financial[LANGUAGE_NONE][0]['value'])?0:round(($report->field_balance_financial[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			
+			$data[$count][] = empty($report->field_board_description[LANGUAGE_NONE][0]['value'])?0:round(($report->field_board_description[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_board_marketing[LANGUAGE_NONE][0]['value'])?0:round(($report->field_board_marketing[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_org_fin_skills[LANGUAGE_NONE][0]['value'])?0:round(($report->field_org_fin_skills[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			/* Step 4 */
+			$data[$count][] = empty($report->field_how_clear_products[LANGUAGE_NONE][0]['value'])?0:round(($report->field_how_clear_products[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_how_many_customers[LANGUAGE_NONE][0]['value'])?0:round(($report->field_how_many_customers[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_what_is_the_competition[LANGUAGE_NONE][0]['value'])?0:round(($report->field_what_is_the_competition[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_customer_base[LANGUAGE_NONE][0]['value'])?0:round(($report->field_customer_base[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_how_far_from_market[LANGUAGE_NONE][0]['value'])?0:round(($report->field_how_far_from_market[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_overall_approach[LANGUAGE_NONE][0]['value'])?0:round(($report->field_overall_approach[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_networks_partnerships[LANGUAGE_NONE][0]['value'])?0:round(($report->field_networks_partnerships[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			/* Step 5 */
+			$data[$count][] = empty($report->field_clear_vision[LANGUAGE_NONE][0]['value'])?0:round(($report->field_clear_vision[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_do_staff_have_the_capacity[LANGUAGE_NONE][0]['value'])?0:round(($report->field_do_staff_have_the_capacity[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_existing_track_record[LANGUAGE_NONE][0]['value'])?0:round(($report->field_existing_track_record[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_how_engage[LANGUAGE_NONE][0]['value'])?0:round(($report->field_how_engage[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_impact_measurement[LANGUAGE_NONE][0]['value'])?0:round(($report->field_impact_measurement[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_correct_fair[LANGUAGE_NONE][0]['value'])?0:round(($report->field_correct_fair[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_how_report[LANGUAGE_NONE][0]['value'])?0:round(($report->field_how_report[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			/* Step 6 */
+			$data[$count][] = empty($report->field_financial_systems[LANGUAGE_NONE][0]['value'])?0:round(($report->field_financial_systems[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_financial_procedures[LANGUAGE_NONE][0]['value'])?0:round(($report->field_financial_procedures[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_cashflow[LANGUAGE_NONE][0]['value'])?0:round(($report->field_cashflow[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_cashflow_next12[LANGUAGE_NONE][0]['value'])?0:round(($report->field_cashflow_next12[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+			$data[$count][] = empty($report->field_financial_reporting[LANGUAGE_NONE][0]['value'])?0:round(($report->field_financial_reporting[LANGUAGE_NONE][0]['value'])/10, 0)."%";
+		}
+		else {
+			$data[$count][] = 'NO DIAGNOSTIC REPORT FOUND';
+		}
+	    $count++;
+	}
+ 
+  $header = array('uid', 'First Name', 'Last Name', 'Link', 'Email', 'I understand what is required to be financially sustainable', 'I understand what constitutes a robust governance structure', 'I understand what is required to achieve broad & complimentary management skillsets', 'I understand what is meant by sustainable & scalable social impact', 'I am fully committed to seeking investment & becoming investment ready', 'If you have any additional comments to make about your knowledge of social investment please enter them into the box provided', 'What was your total turnover (or total income/incoming resources) two years ago?', 'What was your total turnover (or total income/incoming resources) last year?', 'What is your projected turnover (or total income) for the current financial year?', 'Unrestricted Surplus or deficit', 'Restricted Surplus or deficit', 'Total unrestricted funds at the balance sheet date', 'Total restricted funds at the balance sheet date', 'Net profit (after tax)', 'Accumulated profit & loss reserves at the balance sheet date', 'Balance Sheet: Fixed Assets', 'Balance Sheet: Current Assets (includes debtors and bank accounts)', 'Balance Sheet: Creditors due within one year', 'Balance Sheet: Creditors due in more than one year', 'Proportion of your income that comes from the public sector', 'Proportion of your income that comes from your two biggest income streams', 'Number of full time staff', 'Number of part time staff', 'Number of volunteers', 'Please describe below your main products/services (max 150 words)', 'What is your investment need?', 'Please set out below the purposes and reasons for seeking investment?', 'Board Skills: Marketing', 'Board Skills: Business Development', 'Board Skills: Human Resources', 'Board Skills: Legal', 'Board: User/Local Community Representation', 'Board: Financial skills and understanding', 'Which of the following categories contains the greatest number of statements that feel like they describe your board?', 'Which of the following statements reflects the skills and experience of your staff/volunteer team in relation to marketing?', 'Which statement best describes the financial skills and expertise within the organisation?', 'How clear are you about the product(s) or service(s) that you offer? Which of the following statements fits you best?', 'How many potential customers do you have in the immediate future for your stated product(s) or service(s)?', 'What is the competition like for the product(s) or service(s) you offer? How is your offer different from your competitors?', 'How do you expect your customer base to change in the future? More or fewer customers? Improved or worse market position?', 'How far are you from being in a position to market your product(s) or service(s) and how profitable do you expect to be?', 'What is your organisations overall approach and culture when it comes to managing change and development?', 'Which of the following statements most closely applies to your organisations involvement in networks and partnerships?', 'Does your organisation have a clear vision for change and the impact you are trying to achieve?', 'Do staff have the capacity resources and skills to deliver?', 'Do you have an existing track record of delivery?', 'How do you engage with your user group and/or your local community?', 'What methods does your organisation use to manage performance and/or measure impact?', 'How do you ensure that the information you capture and report about your performance and social impact is correct and fair?', 'How do you report on your achievements and impact?', 'Which statement best describes the financial systems used for recording and managing finances and accounts?', 'How would you describe the organisations financial procedures and how they are used?', 'Which statement best describes your cashflow over the past 12 months?', 'Which statement best describes your outlook for cashflow over the next 12 months?', 'Which statement best describes the financial reporting within the organisation?');
+  $output ='';
+  foreach($header as $k => $v) {
+    $output .= $v.',';
+  }
+  $output .= "\r\n";
+ 
+  for($i=0 ; $i<count($data);$i++) {
+    foreach($data[$i] as $k => $v) {
+		if(strlen($v) > 0 && substr($v, 0, 1) == "0") {
+			$output .= '="' . $v . '",';
+		}
+		else {
+			$output .= '"' . $v . '",';
+		}
+    }
+    $output .= "\r\n";
+  }
+  $filename =  'big_potential_user_diagnostic_report_export_' . date("YmdHis", time()) . '.xls';
+	// $filepath = $base_url . '/sites/default/files/'.$filename;
+ 
+  header('Content-type: application/vnd.ms-excel');
+  header('Content-disposition: attachment; filename='.$filename);
+  echo "\xEF\xBB\xBF".$output;
+  exit;
+}
+
+function bp_excel_export_application($users) {
+	global $base_url;
+  	$count = 0;
+  	$data = array();
+	foreach ($users as $user) {
+		// Check if it exists for this user
+		$nid = bp_user_report($user->uid, 'nid', 'application');
+		$report = node_load($nid);
+	    $data[$count][] = $user->uid;
+	    $data[$count][] = empty($user->field_first_name[LANGUAGE_NONE][0]['value'])?"":$user->field_first_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = empty($user->field_last_name[LANGUAGE_NONE][0]['value'])?"":$user->field_last_name[LANGUAGE_NONE][0]['value'];
+		$data[$count][] = '=HYPERLINK(""http://www.bigpotential.org.uk/user/'.$user->uid.'"", ""'.$user->name.'"")';
+		$data[$count][] = '=HYPERLINK(""'.$user->mail.'"")';
+		if($nid > 0) {
+			/* Section A */
+			$data[$count][] = empty($report->field_ap_state_aid_confidence[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_state_aid_confidence[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_eligible[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_eligible[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_diagnostic_complete[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_diagnostic_complete[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_11_session[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_11_session[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_provider_consult[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_provider_consult[LANGUAGE_NONE][0]['value']);
+			/* Section B */
+			$data[$count][] = empty($report->field_ap_organisation_name[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_organisation_name[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_about_org[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_about_org[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_provider_name[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_provider_name[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_grant_amount[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_ap_grant_amount[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_grant_type[LANGUAGE_NONE][0]['value'])?"":$report->field_ap_grant_type[LANGUAGE_NONE][0]['value'];
+			/* Section C */
+			$data[$count][] = empty($report->field_ap_track_record[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_track_record[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_impact[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_impact[LANGUAGE_NONE][0]['value']);	
+			$files="";
+			if(!empty($report->field_ap_fin_perf_upload[LANGUAGE_NONE][0]['uri'])) {
+				$files .= '=HYPERLINK(""'.file_create_url($report->field_ap_fin_perf_upload[LANGUAGE_NONE][0]['uri']).'"", ""'.$report->field_ap_fin_perf_upload[LANGUAGE_NONE][0]['filename'].'"")';
+			}
+			$data[$count][] = $files;
+			$data[$count][] = empty($report->field_ap_fin_perf_clarify[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_fin_perf_clarify[LANGUAGE_NONE][0]['value']);	
+			$data[$count][] = empty($report->field_ap_investment_potential[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_investment_potential[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_gov_man_systems[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_gov_man_systems[LANGUAGE_NONE][0]['value']);
+			$i=0; $accounts_headers = array();
+			foreach($report->field_ap_annual_accounts_upload[LANGUAGE_NONE] as $file) {
+				$accounts=""; $i++;
+				if(!empty($file['uri'])) {
+					$accounts .= '=HYPERLINK(""'.file_create_url($file['uri']).'"", ""'.$file['filename'].'"")';
+				}
+				$data[$count][] = $accounts;
+				$accounts_headers[] = 'Annual Accounts: '.$i;
+			}
+			/* Section D */
+			$data[$count][] = empty($report->field_ap_stage_select[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_stage_select[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_how_much_investment[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_ap_how_much_investment[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_when_do_you_hope_to_raise_[LANGUAGE_NONE][0]['value'])?"":$report->field_when_do_you_hope_to_raise_[LANGUAGE_NONE][0]['value'];
+			$needs = array();
+			foreach($report->field_ap_identify_inv_readiness[LANGUAGE_NONE] as $need) {
+				$needs[] = $need['value'];
+			}
+			$data[$count][] = implode(", ", $needs);	
+			$data[$count][] = empty($report->field_ap_invest_readiness_desc[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_invest_readiness_desc[LANGUAGE_NONE][0]['value']);		
+			/* Section E */	
+			$data[$count][] = empty($report->field_ap_invest_ready_plan[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_invest_ready_plan[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_provider_choice[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_provider_choice[LANGUAGE_NONE][0]['value']);
+			/* Section F */
+			$data[$count][] = empty($report->field_ap_total_exp_provider[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_ap_total_exp_provider[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_total_exp_spec_prov[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_ap_total_exp_spec_prov[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_total_exp_vcse[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_ap_total_exp_vcse[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_total_grant_request[LANGUAGE_NONE][0]['value'])?0:number_format($report->field_ap_total_grant_request[LANGUAGE_NONE][0]['value']);
+			$table="";
+			if(!empty($report->field_ap_inv_readiness_upload[LANGUAGE_NONE][0]['uri'])) {
+				$table .= '=HYPERLINK(""'.file_create_url($report->field_ap_inv_readiness_upload[LANGUAGE_NONE][0]['uri']).'"", ""'.$report->field_ap_inv_readiness_upload[LANGUAGE_NONE][0]['filename'].'"")';
+			}
+			$data[$count][] = $table;
+			$table2="";
+			if(!empty($report->field_ap_budget_table_upload[LANGUAGE_NONE][0]['uri'])) {
+				$table2 .= '=HYPERLINK(""'.file_create_url($report->field_ap_budget_table_upload[LANGUAGE_NONE][0]['uri']).'"", ""'.$report->field_ap_budget_table_upload[LANGUAGE_NONE][0]['filename'].'"")';
+			}
+			$data[$count][] = $table2;
+			$data[$count][] = empty($report->field_ap_able_contribute[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_able_contribute[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_success_fee[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_success_fee[LANGUAGE_NONE][0]['value']);
+			/* Section G */
+			$data[$count][] = empty($report->field_ap_statutory_services[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_statutory_services[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_statutory_perc[LANGUAGE_NONE][0]['value'])?"0%":number_format($report->field_ap_statutory_perc[LANGUAGE_NONE][0]['value'])."%";
+			$i=0; $grants=array(); $grants_headers=array();
+			foreach($report->field_ap_list_grants[LANGUAGE_NONE] as $col) {
+				$i++;
+				$fc = field_collection_item_load($col);
+				if(!empty($fc->field_ap_offered_grant_amount[LANGUAGE_NONE])) {
+					$data[$count][] = number_format($fc->field_ap_offered_grant_amount[LANGUAGE_NONE][0]['value']) . " | " . str_replace(array('"', "'", ","), "", $fc->field_ap_public_body[LANGUAGE_NONE][0]['value']) . " | " . $fc->field_date_received_expected[LANGUAGE_NONE][0]['value'];
+					$grants_headers[] = "Grants: ".$i;
+				}
+			}
+			/* Section H */
+			$data[$count][] = empty($report->field_ap_org_name[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_org_name[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_org_alt_name[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_org_alt_name[LANGUAGE_NONE][0]['value']);
+			$adr_str = ""; $adr_array = array();
+			if(isset($report->field_address[LANGUAGE_NONE][0])) {
+				if(strlen($report->field_address[LANGUAGE_NONE][0]['street'])>0) { $adr_array[] = $report->field_address[LANGUAGE_NONE][0]['street']; }
+				if(strlen($report->field_address[LANGUAGE_NONE][0]['additional'])>0) { $adr_array[] = $report->field_address[LANGUAGE_NONE][0]['additional']; }
+				if(strlen($report->field_address[LANGUAGE_NONE][0]['city'])>0) { $adr_array[] = $report->field_address[LANGUAGE_NONE][0]['city']; }
+				if(strlen($report->field_address[LANGUAGE_NONE][0]['province_name'])>0) { $adr_array[] = $report->field_address[LANGUAGE_NONE][0]['province_name']; }
+				if(strlen($report->field_address[LANGUAGE_NONE][0]['postal_code'])>0) { $adr_array[] = $report->field_address[LANGUAGE_NONE][0]['postal_code']; }
+				if(strlen($report->field_address[LANGUAGE_NONE][0]['country_name'])>0) { $adr_array[] = $report->field_address[LANGUAGE_NONE][0]['country_name']; }
+				$adr_str = implode(", ", $adr_array);
+			}
+			$data[$count][] = $adr_str;		
+			$data[$count][] = empty($report->field_ap_organisation_telephone[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_organisation_telephone[LANGUAGE_NONE][0]['value']);			
+			$data[$count][] = empty($report->field_ap_organisation_email[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_organisation_email[LANGUAGE_NONE][0]['value']);	
+			$data[$count][] = empty($report->field_website[LANGUAGE_NONE][0]['value'])?"":$report->field_website[LANGUAGE_NONE][0]['url'];
+			$data[$count][] = empty($report->field_ap_org_status[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_org_status[LANGUAGE_NONE][0]['value']);	
+			$data[$count][] = empty($report->field_ap_company_no[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_company_no[LANGUAGE_NONE][0]['value']);	
+			$data[$count][] = empty($report->field_ap_reg_charity[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_reg_charity[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_charity_no[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_charity_no[LANGUAGE_NONE][0]['value']);	
+			$data[$count][] = empty($report->field_ap_area_covered[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_area_covered[LANGUAGE_NONE][0]['value']);	
+			
+			$data[$count][] = empty($report->field_ap_first_name[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_first_name[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_last_name[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_last_name[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_position[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_position[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_primary_telephone[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_primary_telephone[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_secondary_telephone[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_secondary_telephone[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_ap_contact_email[LANGUAGE_NONE][0]['email'])?"":'=HYPERLINK(""'.$report->field_ap_contact_email[LANGUAGE_NONE][0]['email'].'"")';
+			$areas = array();
+			foreach($report->field_areas_included[LANGUAGE_NONE] as $area) {
+				$areas[] = $area['value'];
+			}
+			$data[$count][] = implode(", ", $areas);
+			$sectors = array();
+			foreach($report->field_sectors_you_work_in[LANGUAGE_NONE] as $sector) {
+				$sectors[] = $sector['value'];
+			}
+			$data[$count][] = implode(", ", $sectors);
+			/* Section I */
+			$data[$count][] = empty($report->field_ap_annual_accounts[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_annual_accounts[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_dec_firstname[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_dec_firstname[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_dec_lastname[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_dec_lastname[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_dec_on_behalf_of[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_dec_on_behalf_of[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_dec_email[LANGUAGE_NONE][0]['email'])?"":'=HYPERLINK(""'.$report->field_dec_email[LANGUAGE_NONE][0]['email'].'"")';
+			$data[$count][] = empty($report->field_dec_telephone[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_dec_telephone[LANGUAGE_NONE][0]['value']);
+			$data[$count][] = empty($report->field_dec_acceptance[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_dec_acceptance[LANGUAGE_NONE][0]['value']);
+		}
+		else {
+			$data[$count][] = 'NO FUNDING APPLICATION FOUND';
+		}
+	    $count++;
+	}
+ 
+  $header = array('uid', 'First Name', 'Last Name', 'Link', 'Email', 'The organisation is confident that the application if successful will meet State Aid guidelines', 'Completed eligibility check. Organisation is eligible to apply', 'Completed diagnostic tool assessment. Organisation was invited to book a 1:1 session', 'Attended 1:1 session with advisor less than 6 months ago. Received investment readiness report and guidance on provider choice', 'Selected an approved provider. Consulted on proposed investment readiness project', 'Name of VCSE organisation', 'About the VCSE organisation', 'Name of Approved Provider', 'Grant Amount Requested', 'What type of grant are you applying for?', '1. Please provide a description of your organisations track record', '2. Please tell us about the impact your organisation makes', 'Financial Performance Table', 'Financial Performance: Clarifications', '4. Please describe the investment potential of your organisation', 'Please tell us about your organisations governance management and financial systems', implode(", ", $accounts_headers), '5. Choose the stage that best describes your situation', 'How much investment do you plan to raise?', 'When do you hope to raise this investment?', '7. Please identify your investment readiness development needs', '8. Please describe your investment readiness development needs in detail', '9. Describe your investment readiness plan', '10. Please describe why you chose to work with your provider and why they best meet your needs', 'Total expenditure (provider)', 'Total expenditure (specialist provider)', 'Total expenditure (VCSE)', 'Total grant amount requested', '11. Upload Investment Readiness Timelines Table', '12. Upload Budget Breakdown Table', '13. Are you able to contribute to the costs of this project? If so how much can you contribute? If not please explain why', '14. Please describe any success or contingent fee arrangements between you and your provider', 'Are any of the services you provide considered statutory?', 'If yes what percentage of your income will be derived from statutory services?', implode(", ", $grants_headers), 'What is the legal name of your organisation?', 'Does your organisation trade under a different name?', 'Address', 'Organisation telephone', 'Organisation email', 'Website', 'What is your organisations legal status?', 'If you are a company what is your company number?', 'Are you a registered charity?', 'If so what is your Charity Number?', 'Area covered', 'Contact: First Name', 'Contact: Last Name', 'Contact: Position', 'Contact: Primary Telephone', 'Contact: Secondary Telephone', 'Contact: Email', 'Areas included in your investment readiness plan', 'Sectors you work in', 'We have provided three years of annual accounts audited in line with legal requirements (or however many years are available)', 'Declarations: Firstname', 'Declarations: Surname', 'Declarations: On behalf of', 'Declarations: Email', 'Declarations: Telephone', 'I have read this statement and agree');
+  $output ='';
+  foreach($header as $k => $v) {
+    $output .= $v.',';
+  }
+  $output .= "\r\n";
+ 
+  for($i=0 ; $i<count($data);$i++) {
+    foreach($data[$i] as $k => $v) {
+		if(strlen($v) > 0 && substr($v, 0, 1) == "0") {
+			$output .= '="' . $v . '",';
+		}
+		else {
+			$output .= '"' . $v . '",';
+		}
+    }
+    $output .= "\r\n";
+  }
+  $filename =  'big_potential_user_funding_application_export_' . date("YmdHis", time()) . '.xls';
+	// $filepath = $base_url . '/sites/default/files/'.$filename;
+ 
+  header('Content-type: application/vnd.ms-excel');
+  header('Content-disposition: attachment; filename='.$filename);
+  echo "\xEF\xBB\xBF".$output;
+  exit;
+}
