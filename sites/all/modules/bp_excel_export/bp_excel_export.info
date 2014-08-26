@@ -1,0 +1,11 @@
+name = Big Potential CSV Export Module
+description = Allow various data to be output to Excel
+core = 7.x
+php = 5
+
+; Information added by Drupal.org packaging script on 2014-01-09
+version = "7.x-1.0-dev"
+core = "7.x"
+project = "bp"
+datestamp = "1389259410"
+

@@ -4378,7 +4378,7 @@ button.field-add-more-submit {
 .op-link {
 	display: block;
 }
-#views-exposed-form-user-admin-page input.form-text {
+.view-user-admin .view-filters form input.form-text {
 	height: 30px;
 }
 .view-user-admin table thead tr th {
@@ -4451,6 +4451,73 @@ button.field-add-more-submit {
 	font-size: 15px;
 }
 
+.view-user-admin .views-exposed-form .views-widget-filter-created {
+	clear: left;
+	width: 75%;
+	margin-top: 15px;
+	margin-right: 0;
+}
+.view-user-admin .views-exposed-form .views-widget-filter-created label, 
+.view-user-admin .views-exposed-form .views-widget-filter-created div,
+.view-user-admin .views-exposed-form .views-widget-filter-created div label,
+.view-user-admin .views-exposed-form .views-widget-filter-created div input {
+	display: inline-block;
+	margin-bottom: 0px;
+}
+.view-user-admin .views-exposed-form .views-widget-filter-created input.bef-datepicker {
+	width: 100px;
+	font-size: 12px;
+}
+.view-user-admin .views-exposed-form .views-widget-filter-created .form-item label,
+.view-user-admin .views-exposed-form .views-widget-per-page .form-item label {
+	font-size: 0.875rem;
+	color: #4d4d4d;
+	line-height: 1.5;
+	display: inline-block;
+	margin-bottom: 0px;	
+}
+.view-user-admin .views-exposed-form .views-widget-filter-created label {
+	margin-right: 8px;
+}
+.view-user-admin .views-exposed-form .views-widget-filter-created .form-item label {
+	margin-left: 8px;
+}
+.view-user-admin .views-exposed-form .views-widget-per-page {
+	width: 22%;
+	margin-right: 0;
+	margin-top: 15px;	
+}
+.view-user-admin .views-exposed-form .views-widget-per-page a.selectBox {
+	max-width: 70px;
+}
+
+.view-user-admin form > div > fieldset {
+	margin-top: 0;
+	padding: 0px;
+	border: 0px;
+	margin-bottom: 25px;
+}
+.view-user-admin form > div > fieldset legend {
+	display: none;
+}
+.view-user-admin form > div > fieldset a.selectBox-dropdown {
+	max-width: 250px;
+	display: inline-block;
+	width: 250px;
+	min-width: 250px;
+}
+.view-user-admin form > div > fieldset button {
+	display: inline-block;
+	height: 29px;
+	padding: 6px 16px;
+	font-size: 12px;
+	background-color: #0C233E;
+	margin-bottom: 0px;
+	margin-left: 15px;
+}
+.view-user-admin form > div > fieldset button:hover {
+	background-color: #000;
+}
 
 @media only screen and (max-width: 64.063em) {
 	
