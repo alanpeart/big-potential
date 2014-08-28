@@ -864,3 +864,21 @@ function bp_get_advising_vcse_names($uid) {
 	$string = implode(', ', $names);
 	return $string;
 }
+
+function bp_connected_consultants($uid, $link=FALSE) {	
+	$consultants = array();
+	$flags = flag_get_user_flags('user', NULL, $uid);
+	if(isset($flags['connected_consultants'])) {
+		foreach($flags['connected_consultants'] as $cc) {
+			// dsm($cc);
+			$con = user_load($cc->uid);
+			if($link) {
+				$consultants[] = '=HYPERLINK(""http://www.bigpotential.org.uk/user/'.$con->uid.'"", ""'.$con->name.'"")';
+			}
+			else {
+				$consultants[] = $con->name;
+			}
+		}
+	}
+	return implode(", ", $consultants);
+}
