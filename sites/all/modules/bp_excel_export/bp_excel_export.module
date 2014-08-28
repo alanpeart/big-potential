@@ -45,12 +45,20 @@ function bp_excel_export_profile($users) {
 		$data[$count][] = empty($user->field_minority_led[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($user->field_minority_led[LANGUAGE_NONE][0]['value']);
 		$data[$count][] = empty($user->field_date_established[LANGUAGE_NONE][0]['value'])?"":$user->field_date_established[LANGUAGE_NONE][0]['value'];
 		$data[$count][] = empty($user->field_financial_yearend[LANGUAGE_NONE][0]['value'])?"":$user->field_financial_yearend[LANGUAGE_NONE][0]['value'];
-		$data[$count][] = empty($user->field_website[LANGUAGE_NONE][0]['value'])?"":$user->field_website[LANGUAGE_NONE][0]['url'];
-		$data[$count][] = empty($user->field_connected_advisor[LANGUAGE_NONE][0]['uid'])?"":$user->field_connected_advisor[LANGUAGE_NONE][0]['uid'];
+		$data[$count][] = empty($user->field_website[LANGUAGE_NONE][0]['url'])?"":$user->field_website[LANGUAGE_NONE][0]['url'];
+		if(empty($user->field_connected_advisor[LANGUAGE_NONE][0]['uid'])) {
+			$advisor = "";
+		}
+		else {
+			$adv = user_load($user->field_connected_advisor[LANGUAGE_NONE][0]['uid']);
+			$advisor = $adv->name;
+		}
+		$data[$count][] = $advisor;
+		$data[$count][] = bp_connected_consultants($user->uid, true);
 	    $count++;
 	}
  
-  $header = array('uid', 'First Name', 'Last Name', 'Link', 'Email', 'Status', 'Roles', 'Organisation Name', 'Job Title', 'Address', 'Telephone', 'Mobile', 'Facebook', 'Twitter', 'LinkedIn', 'Region', 'Intend To Apply', 'Registered Charity', 'Reach', 'Org Type', 'Woman Led', 'Minority Led', 'Date Established', 'Financial Yearend', 'Website', 'Advisor');
+  $header = array('uid', 'First Name', 'Last Name', 'Link', 'Email', 'Status', 'Roles', 'Organisation Name', 'Job Title', 'Address', 'Telephone', 'Mobile', 'Facebook', 'Twitter', 'LinkedIn', 'Region', 'Intend To Apply', 'Registered Charity', 'Reach', 'Org Type', 'Woman Led', 'Minority Led', 'Date Established', 'Financial Yearend', 'Website', 'Advisor', 'Connected Consultants');
   $output ='';
   foreach($header as $k => $v) {
     $output .= $v.',';
