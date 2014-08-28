@@ -51,7 +51,7 @@ function bp_excel_export_profile($users) {
 		}
 		else {
 			$adv = user_load($user->field_connected_advisor[LANGUAGE_NONE][0]['uid']);
-			$advisor = $adv->name;
+			$advisor = '=HYPERLINK(""http://www.bigpotential.org.uk/user/'.$adv->uid.'"", ""'.$adv->name.'"")';
 		}
 		$data[$count][] = $advisor;
 		$data[$count][] = bp_connected_consultants($user->uid, true);
