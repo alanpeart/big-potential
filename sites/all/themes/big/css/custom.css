@@ -3868,38 +3868,43 @@ div.alert-box.warning a {
 #user-register-form .field-type-location .fieldset-wrapper {
 	margin-top: 30px;
 }
-#user-login, #user-register-form {
+#user-login, #user-register-form, #user-profile-form {
 	background: #FAFAFA;
 	padding: 15px;
 	float: left;
 	clear: left;
 	width: 100%;
 }
-#user-login .form-item, #user-register-form .form-item:not(.form-type-checkbox) {
+#user-login .form-item, #user-register-form .form-item:not(.form-type-checkbox), #user-profile-form .form-item:not(.form-type-checkbox) {
 	background: #FFF;
 	padding: 15px;
 }
-#user-login .form-item > label:not(.option), #user-register-form .form-item label:not(.option) {
+#user-login .form-item > label:not(.option), #user-register-form .form-item label:not(.option), #user-profile-form .form-item label:not(.option) {
 	font-size: 18px;
 	margin-bottom: 12px;
-	color: #0C233E;
+	color: #373C3F;
 }
-#user-register-form #field-address-add-more-wrapper .form-item label {
+#user-register-form #field-address-add-more-wrapper .form-item label,
+#user-profile-form #field-address-add-more-wrapper .form-item label {
 	font-size: 16px;
 }
-#user-register-form #field-address-add-more-wrapper .form-item {
+#user-register-form #field-address-add-more-wrapper .form-item,
+#user-profile-form #field-address-add-more-wrapper .form-item {
 	margin: 10px 0;
 }
 #user-login .form-required {
 	display: none;
 }
-#user-register-form .field-group-div {
+#user-register-form .field-group-div,
+#user-profile-form .field-group-div {
 	width: 100%;
 }
-#user-register-form .form-required {
-	color: #0C233E;
+#user-register-form .form-required,
+#user-profile-form .form-required {
+	color: #373C3F;
 }
-#user-register-form .field-type-location {
+#user-register-form .field-type-location,
+#user-profile-form .field-type-location {
 	background: #fff;
 }
 .file-widget button.ajax-processed,
