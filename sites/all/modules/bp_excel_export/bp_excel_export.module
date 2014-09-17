@@ -352,14 +352,16 @@ function bp_excel_export_application($users) {
 			$data[$count][] = empty($report->field_ap_fin_perf_clarify[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_fin_perf_clarify[LANGUAGE_NONE][0]['value']);	
 			$data[$count][] = empty($report->field_ap_investment_potential[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_investment_potential[LANGUAGE_NONE][0]['value']);
 			$data[$count][] = empty($report->field_ap_gov_man_systems[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_gov_man_systems[LANGUAGE_NONE][0]['value']);
-			$i=0; $accounts_headers = array();
-			foreach($report->field_ap_annual_accounts_upload[LANGUAGE_NONE] as $file) {
-				$accounts=""; $i++;
-				if(!empty($file['uri'])) {
-					$accounts .= '=HYPERLINK(""'.file_create_url($file['uri']).'"", ""'.$file['filename'].'"")';
+			$i=0; $accounts_headers = array('Annual Accounts: 1', 'Annual Accounts: 2', 'Annual Accounts: 3');
+			for($i=0;$i<3;$i++) {
+				$accounts="";
+				if(isset($report->field_ap_annual_accounts_upload[LANGUAGE_NONE][$i])) {
+					$file = $report->field_ap_annual_accounts_upload[LANGUAGE_NONE][$i];
+					if(!empty($file['uri'])) {
+						$accounts .= '=HYPERLINK(""'.file_create_url($file['uri']).'"", ""'.$file['filename'].'"")';
+					}
 				}
 				$data[$count][] = $accounts;
-				$accounts_headers[] = 'Annual Accounts: '.$i;
 			}
 			/* Section D */
 			$data[$count][] = empty($report->field_ap_stage_select[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_stage_select[LANGUAGE_NONE][0]['value']);
@@ -396,15 +398,15 @@ function bp_excel_export_application($users) {
 			/* Section G */
 			$data[$count][] = empty($report->field_ap_statutory_services[LANGUAGE_NONE][0]['value'])?"No":bp_excel_export_yesOrNo($report->field_ap_statutory_services[LANGUAGE_NONE][0]['value']);
 			$data[$count][] = empty($report->field_ap_statutory_perc[LANGUAGE_NONE][0]['value'])?"0%":number_format($report->field_ap_statutory_perc[LANGUAGE_NONE][0]['value'])."%";
-			$i=0; $grants=array(); $grants_headers=array();
+			$i=0; $grants=array(); $grants_headers=array('Grants'); $grants_text = "";
 			foreach($report->field_ap_list_grants[LANGUAGE_NONE] as $col) {
 				$i++;
 				$fc = field_collection_item_load($col);
 				if(!empty($fc->field_ap_offered_grant_amount[LANGUAGE_NONE])) {
-					$data[$count][] = number_format($fc->field_ap_offered_grant_amount[LANGUAGE_NONE][0]['value']) . " | " . str_replace(array('"', "'", ","), "", $fc->field_ap_public_body[LANGUAGE_NONE][0]['value']) . " | " . $fc->field_date_received_expected[LANGUAGE_NONE][0]['value'];
-					$grants_headers[] = "Grants: ".$i;
+					$grants_text .= number_format($fc->field_ap_offered_grant_amount[LANGUAGE_NONE][0]['value']) . " | " . str_replace(array('"', "'", ","), "", $fc->field_ap_public_body[LANGUAGE_NONE][0]['value']) . " | " . $fc->field_date_received_expected[LANGUAGE_NONE][0]['value'] . "\n";
 				}
 			}
+			$data[$count][] = $grants_text;
 			/* Section H */
 			$data[$count][] = empty($report->field_ap_org_name[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_org_name[LANGUAGE_NONE][0]['value']);
 			$data[$count][] = empty($report->field_ap_org_alt_name[LANGUAGE_NONE][0]['value'])?"":str_replace(array('"', "'", ","), "", $report->field_ap_org_alt_name[LANGUAGE_NONE][0]['value']);
