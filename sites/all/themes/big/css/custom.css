@@ -4533,31 +4533,6 @@ button.field-add-more-submit {
 		background-repeat:no-repeat;
 		background-position: 50% 28px;
 	}
-	.block-search-api-page-search {
-		top: -140px;
-		right: 65px;
-	}	
-	.admin-menu .block-search-api-page-search {
-		top: -140px;
-		right: 65px;
-	}
-	.logged-in .block-search-api-page-search {
-		right: 100px;
-	}
-	#search-api-page-search-form-search .form-type-textfield input {
-		height: 30px;
-		line-height: 30px;
-	}
-	#secondary-menu ul li {
-		display: none;
-	}
-	#secondary-menu ul li.login, #secondary-menu ul li.my-account  {
-		display: block;		
-	}	
-	#secondary-menu ul li.login a, #secondary-menu ul li.my-account a  {
-		background-color: #3d9ff7;
-		color: #fff;		
-	}
 	img.logo {
 		margin-left: 20px;
 	}	
@@ -4629,6 +4604,31 @@ button.field-add-more-submit {
 	}
 }
 @media only screen and (max-width: 40em) {
+	.block-search-api-page-search {
+		top: -140px;
+		right: 65px;
+	}	
+	.admin-menu .block-search-api-page-search {
+		top: -140px;
+		right: 65px;
+	}
+	.logged-in .block-search-api-page-search {
+		right: 100px;
+	}
+	#search-api-page-search-form-search .form-type-textfield input {
+		height: 30px;
+		line-height: 30px;
+	}
+	#secondary-menu ul li {
+		display: none;
+	}
+	#secondary-menu ul li.login, #secondary-menu ul li.my-account  {
+		display: block;		
+	}	
+	#secondary-menu ul li.login a, #secondary-menu ul li.my-account a  {
+		background-color: #3d9ff7;
+		color: #fff;		
+	}
 	.pane-guide-slider {
 		background-repeat: no-repeat;
 		background-size: cover;
