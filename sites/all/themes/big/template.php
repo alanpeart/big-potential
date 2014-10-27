@@ -43,7 +43,7 @@ function big_preprocess_field(&$vars, $hook) {
 			break;
 			default:
 			  foreach($vars['items'] as &$item) {
-				$item['#markup'] = '<div class="field-value-wrapper">'.$item['#markup'].'</div>';
+				if(isset($item['#markup'])) {$item['#markup'] = '<div class="field-value-wrapper">'.$item['#markup'].'</div>'; }
 			  }		
 		}
 	}
