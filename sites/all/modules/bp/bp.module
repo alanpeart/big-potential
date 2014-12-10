@@ -80,8 +80,11 @@ function bp_provider_count($nid) {
 	$sql = "SELECT COUNT(DISTINCT f.entity_id) AS usercount 
 			FROM {field_data_field_provider_organisation} f
 			INNER JOIN {users} u ON f.entity_id = u.uid 
+            INNER JOIN {users_roles} ur ON u.uid = ur.uid
+            INNER JOIN {role} r ON ur.rid = r.rid			
 			WHERE f.field_provider_organisation_nid = :nid 
-			AND f.entity_type = 'user' AND u.status = 1";
+			AND f.entity_type = 'user' AND u.status = 1
+			AND r.name LIKE 'Consultant'";
 	$result = db_query($sql, array(':nid' => $nid));
 	foreach($result as $ret) {
 		$cnt = $ret->usercount;
