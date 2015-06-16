@@ -874,7 +874,7 @@ function bp_connected_consultants($uid, $link=FALSE) {
 	if(isset($flags['connected_consultants'])) {
 		foreach($flags['connected_consultants'] as $cc) {
 			// dsm($cc);
-			$con = user_load($cc->uid);
+			$con = user_load($cc->entity_id);
 			if($link) {
 				$consultants[] = '=HYPERLINK(""http://www.bigpotential.org.uk/user/'.$con->uid.'"", ""'.$con->name.'"")';
 			}
